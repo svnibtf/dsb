@@ -1,0 +1,21 @@
+@charset "utf-8";
+.form-container-frd {
+   border: 1px solid #ffffff;
+   background: #90a3ad;
+	 width:100%;
+   }
+.form-field-frd {
+   border: 1px solid #5d8ca1;
+   background: #7695a6;
+   }
+.form-field-frd:focus {
+   background: #fff;
+   color: #000000;
+   }
+.form-title-frd {
+   margin-bottom:10px;
+   color: #ebebeb;
+   text-shadow: #e5f9fc 0 1px 0;
+   text-align:left;
+   }
+

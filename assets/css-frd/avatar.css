@@ -1,0 +1,99 @@
+@charset "utf-8";
+/* CSS Document */
+/*////////////////////////////Start: CLASSES AVATAR ///////////////*/
+.avatar-content {
+	position: fixed;
+	background-color: #007697;
+	z-index: 2001;
+	top: 36px;
+	width: 336px;
+	margin-left:20px;
+	-webkit-box-shadow: -9px 10px 28px -10px rgba(191,191,191,1);
+	-moz-box-shadow: -9px 10px 28px -10px rgba(191,191,191,1);
+	box-shadow: -9px 10px 28px -10px rgba(191,191,191,1);
+}
+
+.avatar-footer {
+	padding: 4px;
+	/*border-top:none;*/
+	margin-top: 4px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+ color: #99AD99;
+ opacity: 0.8; /* Firefox */
+ font-size:10px;
+}
+
+.input-text-avatar {
+	color: #6C6C6C;
+	width: 96%;
+	margin-left: 2%;
+	margin-bottom: 6px;
+	border: solid 1px #C4C4C4;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.parar-audio:Hover {
+	color: #f58a5b;
+}
+.parar-audio {
+	color: white;
+}
+.parar-audio:active {
+	color: white;
+}
+.fixedbutton {
+	position: fixed;
+	bottom: 50px;
+	right: 10px;
+	width: 70px;
+	z-index:2002;
+}
+
+.view-avatar-img{
+	width:116px;
+	height:116px;
+}
+
+.view-avatar-container{
+	width:110px;
+	height:110px
+}
+.view-avatar-legenda{
+	max-height:170px;
+	width:100%;
+	overflow-y:scroll;
+	font-size:12px; 
+	margin-left:2px; 
+	margin-right:2px; 
+	margin-top:6px;
+	padding-left:2px; 
+}
+
+
+@media (max-width: 300px) {
+	.view-avatar-img{
+	width:76px;
+	height:76px;
+	}
+	
+	.view-avatar-container{
+		width:70px;
+		height:70px;
+	}
+	.view-avatar-legenda{
+		height:150px;
+		width:100%;
+		overflow-y:scroll;
+		font-size:10px; 
+		margin-left:2px; 
+		margin-right:2px; 
+		margin-top:6px;
+		padding-left:2px; 
+	}		
+}
+/*////////////////////////////End: CLASSES AVATAR ///////////////*/
+

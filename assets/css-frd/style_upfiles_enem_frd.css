@@ -1,0 +1,25 @@
+
+/* prograss bar */
+#progressbox {
+	border: 1px solid #bce8f1;
+	padding: 1px; 
+	position:relative;
+	width:300px;
+	border-radius: 3px;
+	margin: 2px;
+	display:none;
+	text-align:left;
+}
+#progressbar {
+	height:20px;
+	border-radius: 3px;
+	background-color:#d9edf7;
+	width:1%;
+}
+#statustxt {
+	top:3px;
+	left:50%;
+	position:absolute;
+	display:inline-block;
+	color: #FFFFFF;
+}

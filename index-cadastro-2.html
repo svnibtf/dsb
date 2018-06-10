@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br" class="no-js">
+<!-- start: HEAD -->
+<head>
+<title>PROVA 10</title>
+<!-- start: META -->
+<meta charset="utf-8" />
+<!--meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"-->
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="" name="description" />
+<meta content="" name="author" />
+<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css-frd/style-responsive-mobile.css">
+<link rel="stylesheet" href="assets/css-frd/style-blue-2-index.css">
+<link rel="shortcut icon" href="images/prova10_ico.ico"/>
+</head>
+<style>
+.fundo-login{
+	position:absolute;
+	background-color:rgba(217,217,217,0.5);
+	margin-left: 10%;
+	margin-bottom:20px;
+	width: 70%;
+	height:180px;
+}
+.fundo-input{
+	position:relative;
+	opacity: 0.7;
+	margin-left: 10%;
+	margin-top: 8px;
+	width: 80%;
+}
+.fundo-btn{
+	width: 40%;
+	margin-top: 6px;
+	margin-left:10%;
+	opacity: 0.6;
+	font-size:12px;
+}
+
+.fundo-btn-rigth{
+	width: 60%;
+	
+	opacity: 0.6;
+	font-size:12px;
+}
+</style>
+<body>
+<div class="row">
+  <div class="col-sm-12">		
+      <div class="top-10p"></div>
+      <div class="fundo-login">
+      	<input id="email" type="email" class="fundo-input" placeholder="Email">
+        <input id="senha" type="password" class="fundo-input" placeholder="Senha">
+        <div id="btn_acessar" align="left" style=""><button type="button" class="btn btn-blue fundo-btn btn-xs" onClick="login()">ACESSAR</button></div>
+        <div align="right" style="margin: 6px 10% 0 0 "><a type="button" class="btn btn-danger fundo-btn-rigth btn-xs" href="http://seja.prova10.com.br/planos" target="_blank">Quero me cadastrar</a></div> 
+        <div id="carregado_dados" align="center" class="text-white no-display" style="margin-top:6px;"><i class="fa fa-cog fa-spin"></i>&nbsp;Aguarde!<br>Verificando seus dados.</div>         
+      </div>
+      <div class="footer"></div>
+  </div>
+</div>
+</body>
+<!-- start: MAIN JAVASCRIPTS -->
+<script src="assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/plugins/TouchSwipe/jquery.touchSwipe.min.js"></script>
+<script src="assets/plugins/toastr/toastr.js"></script>
+<!-- end: MAIN JAVASCRIPTS -->
+<script>
+parent.scroll(0,0);
+jQuery(document).ready(function() {
+
+});
+var cont_carrg = 20;
+function callback_CARREGANDO_DADOS(){
+	cont_carrg --;
+	$('#cont_carreg').html(cont_carrg);
+	if(cont_carrg < 1){
+	$('#carregado_dados').removeClass('no-display').html('<p class="text-extra-small">Ocorreu algum problema.<br> Verifique sua conexão e tente novamente,<br>ou entre em contato no botão de atendimento abaixo.</p>');
+	clearInterval(carregando_dados);
+	}
+}
+
+function login(){
+	get_url = {};
+	var url_local = window.location.href;
+	url = url_local.replace(/#/g, "");
+	if(url_local.indexOf("?")>-1){
+		var location_search = url_local.substring(1).split('?');
+		var parts = location_search[1].substring(0).split('#');
+		for (var i = 0; i < parts.length; i++) {
+			var nv = parts[i].split('=');
+			if (!nv[0]) continue;
+			get_url[nv[0]] = nv[1] || true;
+		}
+	}
+	estado = get_url.estado;
+	email= $('#email').val();
+	senha= $('#senha').val();
+	$('#carregado_dados').removeClass('no-display').html('<i class="fa fa-cog fa-spin"></i>&nbsp;Aguarde!<br>Verificando seus dados.&nbsp;Tempo:&nbsp;<span id="cont_carreg">20</span>&nbsp; seg');
+	$('#btn_acessar').attr('disabled','disabled');
+	carregando_dados = setInterval(callback_CARREGANDO_DADOS, 1000);
+	$.ajax({
+	url: "consulta-login-verifica-usuario.php",
+	type: "POST",
+	dataType: "json",
+	data: ({
+			email	: email,
+			senha	: senha,	
+		}),
+	success: function(json){
+		console.log('RETORNO LOG = ',json);
+			if(json.login == 1 || json.login > 100){
+				$('#carregado_dados').html('DADOS CORRETOS . <i class="fa fa-cog fa-spin"></i> . ACESSANDO!');
+					var url = 'page-dados-filtro-pesquisa.html?estado='+estado;
+				console.log('url = ', url);
+				window.open(url,'_self');
+			} else {
+				clearInterval(carregando_dados);
+				$('#carregado_dados').html('ERRO<br>Login (email) ou senha inválidos');
+				$('#btn_acessar').removeAttr('disabled','disabled');
+				toastr["error"]('login (email) ou senha inválidos','ERRO');
+			}
+		}				
+	});
+}
+
+</script>
+
+</html>

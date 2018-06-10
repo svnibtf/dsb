@@ -1,0 +1,49 @@
+10
+
+dir
+0
+https://github.com:443/svnibtf/branch.git/trunk/siseduc/assets/plugins/DataTables/media/js
+https://github.com:443/svnibtf/branch.git
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+
+
+
+
+
+
+
+
+
+
+
+b1779b81-da59-fdff-c086-ce57b7db7bff
+
+jquery.dataTables.min.js
+file
+
+
+
+add
+
+jquery.js
+file
+
+
+
+add
+
+jquery.dataTables.js
+file
+
+
+
+add
+

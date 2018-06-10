@@ -1,0 +1,491 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* INICIO INDEX PAGE LOGIN*/
+
+body.login .main-login {
+  margin-top: 0px;
+}
+
+body.login .box-login, body.login .box-forgot, body.login .box-register {
+	top: 0px;
+}
+
+/* FIM INDEX PAGE LOGIN*/
+
+
+.refresh-subviews {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  color: #111111;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 31px;
+  margin-right: 3px;
+  margin-top: 2px;
+  opacity: 0.9;
+  padding: 8px 0 7px 0;
+  position: relative;
+  text-align: center;
+  width: 90px;
+  float: right;
+  left: 20px;
+  -webkit-transition-property: left;
+  -moz-transition-property: left;
+  -o-transition-property: left;
+  transition-property: left;
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0;
+  display: none;
+}
+
+.refresh-subviews > i, .refresh-subviews > i {
+  display: block;
+  margin-top: 12px;
+  color: #111111;
+  font-size: 16px;
+}
+
+.refresh-subviews:hover, .refresh-subviews:focus, .refresh-subviews:hover, .refresh-subviews:focus {
+  background-color: #EEEEEE;
+  color: #111111;
+  text-decoration: none;
+}
+
+.link_container{}
+
+/* ---------------------------------------------------------------------- */
+/*  Form Wizard FRD
+/* ---------------------------------------------------------------------- */
+.swMain_frd > ul {
+  display: table;
+  list-style: none;
+  margin: 0 0 20px 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+.swMain_frd > ul li {
+  display: table-cell;
+  text-align: center;
+  width: 1%;
+}
+
+.swMain_frd > ul li > a:before {
+  border-top: 4px solid #CED1D6;
+  content: "";
+  display: block;
+  font-size: 0;
+  height: 1px;
+  overflow: hidden;
+  position: relative;
+  top: 21px;
+  width: 100%;
+  z-index: 1;
+}
+
+.swMain_frd > ul li:first-child > a:before {
+  left: 50%;
+  max-width: 51%;
+}
+
+.swMain_frd > ul li:last-child > a:before {
+  max-width: 50%;
+  width: 50%;
+}
+
+.swMain_frd > ul li > a.selected:before, .swMain_frd li > a.done:before {
+  border-color: #5293C4;
+}
+
+.swMain_frd > ul .stepNumber_frd {
+	background-color: #FFFFFF;
+	border: 5px solid #CED1D6;
+	border-radius: 100% 100% 100% 100%;
+	color: #000;
+	display: inline-block;
+	font-size: 15px;
+	height: 40px;
+	line-height: 30px;
+	position: relative;
+	text-align: center;
+	width: 40px;
+	z-index: 2;
+}
+
+.swMain_frd > ul li > a.selected .stepNumber_frd {
+  border-color: #5293C4;
+}
+
+.swMain_frd ul li > a.done .stepNumber_frd {
+  border-color: #5293C4;
+  background-color: #5293C4;
+  color: #fff;
+  text-indent: -9999px;
+}
+
+.swMain_frd ul li > a.done .stepNumber_frd:before {
+  content: "\f00c";
+  display: inline;
+  float: right;
+  font-family: FontAwesome;
+  font-weight: 300;
+  height: auto;
+  text-shadow: none;
+  margin-right: 7px;
+  text-indent: 0;
+}
+
+.swMain_frd ul li > a.done .stepNumber_frd {
+  content: "\f00c";
+  display: inline;
+  float: right;
+  font-family: FontAwesome;
+  font-weight: 300;
+  height: auto;
+  text-shadow: none;
+  margin-right: 7px;
+  text-indent: 0;
+}
+
+.swMain_frd ul li > a.done.wait .stepNumber_frd {
+  background-color: #F6F6F6 !important;
+  color: #CCCCCC !important;
+  text-indent: -0px !important;
+}
+
+.swMain_frd ul li > a.done.wait .stepNumber_frd:before {
+  content: "" !important;
+}
+
+.swMain_frd > ul li .stepDesc {
+  color: #8b91a0;
+  display: block;
+  font-size: 14px;
+  margin-top: 4px;
+  max-width: 100%;
+  table-layout: fixed;
+  text-align: center;
+  word-wrap: break-word;
+  z-index: 104;
+}
+
+.swMain_frd > ul li > a.selected .stepDesc, .swMain_frd li > a.done .stepDesc {
+  color: #2B3D53;
+}
+
+.swMain_frd > ul li > a:hover {
+  text-decoration: none;
+}
+
+.swMain_frd > ul li > a.disabled {
+  cursor: default;
+}
+
+.swMain_frd .progress {
+  margin-bottom: 30px;
+}
+
+.swMain_frd .stepContainer {
+  height: auto !important;
+}
+
+.swMain_frd .loader {
+  display: none;
+}
+
+.swMain_frd [class^="button"], .swMain_frd [class*=" button"] {
+  display: none;
+}
+
+.swMain_frd .close {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/*  Form Wizard 2 FRD
+/* ---------------------------------------------------------------------- */
+.swMain_frd > ul {
+  display: table;
+  list-style: none;
+  margin: 0 0 20px 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+.swMain_frd > ul li {
+  display: table-cell;
+  text-align: center;
+  width: 1%;
+}
+
+.swMain_frd > ul li > a:before {
+  border-top: 4px solid #CED1D6;
+  content: "";
+  display: block;
+  font-size: 0;
+  height: 1px;
+  overflow: hidden;
+  position: relative;
+  top: 21px;
+  width: 100%;
+  z-index: 1;
+}
+
+.swMain_frd > ul li:first-child > a:before {
+  left: 50%;
+  max-width: 51%;
+}
+
+.swMain_frd > ul li:last-child > a:before {
+  max-width: 50%;
+  width: 50%;
+}
+
+.swMain_frd > ul li > a.selected:before, .swMain_frd li > a.done:before {
+  border-color: #5293C4;
+}
+
+.swMain_frd > ul .stepNumber2_frd {
+	background-color: #B7C8D0;
+	border: 5px solid #CED1D6;
+	border-radius: 100% 100% 100% 100%;
+	color: #000;
+	display: inline-block;
+	font-size: 15px;
+	height: 40px;
+	line-height: 30px;
+	position: relative;
+	text-align: center;
+	width: 40px;
+	z-index: 2;
+}
+
+.swMain_frd > ul li > a.selected .stepNumber2_frd {
+  border-color: #5293C4;
+}
+
+.swMain_frd ul li > a.done .stepNumber2_frd {
+  border-color: #5293C4;
+  background-color: #5293C4;
+  color: #fff;
+  text-indent: -9999px;
+}
+
+.swMain_frd ul li > a.done .stepNumber2_frd:before {
+  content: "\f00c";
+  display: inline;
+  float: right;
+  font-family: FontAwesome;
+  font-weight: 300;
+  height: auto;
+  text-shadow: none;
+  margin-right: 7px;
+  text-indent: 0;
+}
+
+.swMain_frd ul li > a.done .stepNumber2_frd {
+  content: "\f00c";
+  display: inline;
+  float: right;
+  font-family: FontAwesome;
+  font-weight: 300;
+  height: auto;
+  text-shadow: none;
+  margin-right: 7px;
+  text-indent: 0;
+}
+
+.swMain_frd ul li > a.done.wait .stepNumber2_frd {
+  background-color: # !important;
+  color: #CCCCCC !important;
+  text-indent: -0px !important;
+}
+
+.swMain_frd ul li > a.done.wait .stepNumber2_frd:before {
+  content: "" !important;
+}
+
+.swMain_frd > ul li .stepDesc {
+  color: #8b91a0;
+  display: block;
+  font-size: 14px;
+  margin-top: 4px;
+  max-width: 100%;
+  table-layout: fixed;
+  text-align: center;
+  word-wrap: break-word;
+  z-index: 104;
+}
+
+.swMain_frd > ul li > a.selected .stepDesc, .swMain_frd li > a.done .stepDesc {
+  color: #2B3D53;
+}
+
+.swMain_frd > ul li > a:hover {
+  text-decoration: none;
+}
+
+.swMain_frd > ul li > a.disabled {
+  cursor: default;
+}
+
+.swMain_frd .progress {
+  margin-bottom: 30px;
+}
+
+.swMain_frd .stepContainer {
+  height: auto !important;
+}
+
+.swMain_frd .loader {
+  display: none;
+}
+
+.swMain_frd [class^="button"], .swMain_frd [class*=" button"] {
+  display: none;
+}
+
+.swMain2_frd .close {
+  display: none;
+}
+
+.no-display .li{
+  display:none;
+}
+
+input[type=radio].css-checkbox1 {
+	position:relative; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:20px; margin:-1px; padding:0; border:0;
+}
+
+input[type=radio].css-checkbox1 + label.css-label1 {
+	padding-left:37px;
+	height:32px; 
+	display:inline-block;
+	line-height:32px;
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	font-size:32px;
+	vertical-align:middle;
+	cursor:pointer;
+
+}
+
+input[type=radio].css-checkbox1:checked + label.css-label1 {
+	background-position: 0 -32px;
+}
+label.css-label1 {
+background-image:url(../../images/csscheckbox_green.png);
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+input[type=radio].css-checkbox2 {
+	position:relative; 
+	z-index:-1000; 
+	left:-1000px; 
+	overflow: hidden; 
+	clip: rect(0 0 0 0); 
+	height:1px; 
+	width:12px; 
+	margin:-1px; 
+	padding:0; 
+	border:0;
+}
+
+input[type=radio].css-checkbox2 + label.css-label2 {
+	padding-left:37px;
+	height:32px; 
+	display:inline-block;
+	line-height:32px;
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	font-size:32px;
+	vertical-align:middle;
+	cursor:pointer;
+
+}
+
+input[type=radio].css-checkbox2:checked + label.css-label2 {
+	background-position: 0 -32px;
+}
+label.css-label2 {
+background-image:url(../../images/csscheckbox_blue.png);
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+.partition-blue_frd .nav-tabs {
+  border: none;
+}
+.partition-blue_frd .nav-tabs > li {
+  margin-bottom: 0;
+}
+.partition-blue_frd .nav-tabs > li.active > a, .partition-blue_frd .nav-tabs > li.active > a:hover, .partition-blue_frd .nav-tabs > li.active a:focus {
+  /*background-color:#2c2f3b;*/
+	background-color:#7C9BAB;
+  border: none;
+  color: white;
+}
+.partition-blue_frd .nav-tabs > li.active > a:before, .partition-blue_frd .nav-tabs > li.active a:after {
+  border-color: rgba(0, 0, 0, 0);
+  border-style: solid;
+  display: block;
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+.partition-blue_frd .nav-tabs > li.active > a:after {
+  content: " ";
+  height: 0;
+  position: absolute;
+  width: 0;
+  border: 5px solid transparent;
+  border-top-color: #7C9BAB;
+  top: 105%;
+  left: 50%;
+  margin-left: -5px;
+  z-index: 1;
+}
+.partition-blue_frd .nav-tabs > li > a {
+  border: none;
+  color:#0FF;
+  padding: 5px 10px;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.partition-blue_frd .nav-tabs > li > a:hover, .partition-blue_frd .nav-tabs > li a:focus {
+  background-color:#dcdcdc;
+}
+.partition-blue_frd .tab-content {
+  z-index: 0;
+  color: #7C9BAB;
+}
+
+#slidingbar {
+  background: rgba(124, 155, 171,1);
+}

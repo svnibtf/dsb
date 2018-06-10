@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+label {
+	display: block;
+	margin-top: 10px;
+	margin-bottom:-2px;
+}
+input {
+	width:100%;	
+}
+.window {
+	display: none;
+	width: 480px;
+	height: 300px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #FFF;
+	z-index: 9900;
+	padding: 10px;
+	border-radius: 10px;
+}
+#mascara {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9000;
+	background-color: #000;
+}
+.fechar {
+	float:right;
+}
+
+.fecharbt {
+}
+

@@ -1,0 +1,120 @@
+@charset "utf-8";
+/*//////STYLES DA LOUSA VIRTUAL//////////*/	
+.img_inter_txt {
+	height: 30px;
+	margin: -6px 2px 0px 2px;
+	z-index:101;
+}
+.img_desafio_txt{
+	padding: 4px 6px 0px 6px;
+	width: 100%;
+	max-width: 640px;
+}
+.img_entre_txt, .linkpv10 {
+	padding: 4px 6px -1px 6px;
+	width:100%;
+	max-width: 640px;
+	z-index:106;
+}
+.img_equacao {
+	height: 22px;
+	margin: -6px 2px 0px 2px;
+	opacity: 0.6;
+	z-index:-1;
+}
+.img_equacao_gg {
+	height: 28px;
+	margin: -6px 2px 0px 2px;
+	z-index:104;
+}
+.div_enter_txt{
+	width:100%;
+	z-index:105;
+}
+.txt-visualizar{
+	text-align:left !important;
+}
+.alternativa_frd {
+	border: 1px;
+	border-style: solid;
+	border-color: #bce8f1;
+	background-color: #d9edf7;
+	padding: 5px 2px 5px 2px;
+	margin-bottom: 2px;
+	width: 100%;
+}
+.hr_frd {
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+.tab_frd {
+	margin-left: 10px;
+}
+.center-span-txt{
+	margin-top:-1px;
+}
+
+.borda-span-txt{
+	/*border:solid #FF0000;*/
+}
+.txt-item{
+	text-align:left;
+}
+.btn-r{
+	margin-right:4px;
+}
+.desafio_genio_p{
+	box-shadow: 0 2px 2px 1px #D9D9D9;
+	padding: 0 4px 0 4px;	
+}
+/*///////////HOVER ZOOM/////////////////*/
+.img_equacao, .img_inter_txt, .div_enter_txt, .img_equacao_gg .img_desafio_txt {
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+  	-moz-transition: all 1s ease; /* Firefox */
+  	-o-transition: all 1s ease; /* IE 9 */
+  	-ms-transition: all 1s ease; /* Opera */
+  	transition: all 1s ease;
+}
+.div_enter_txt:hover{
+	background-color:#FFFFFF;
+	opacity:1;
+	border-radius:1px;
+	-webkit-transform:scale(1.25); /* Safari and Chrome */
+	-moz-transform:scale(1.25); /* Firefox */
+	-ms-transform:scale(1.25); /* IE 9 */
+	-o-transform:scale(1.25); /* Opera */
+	 transform:scale(1.25);
+	 z-index:121;
+}
+
+.img_equacao_gg:hover, .img_equacao:hover {
+	background-color:#FFFFFF;
+	opacity:1;
+	border-radius:2px;
+	-webkit-transform:scale(2); /* Safari and Chrome */
+	-moz-transform:scale(2); /* Firefox */
+	-ms-transform:scale(2); /* IE 9 */
+	-o-transform:scale(2); /* Opera */
+	 transform:scale(2);
+	 z-index:121;
+}
+
+.img_inter_txt:hover  {
+	background-color:#FFFFFF;
+	border-radius:2px;
+	opacity:1;
+	-webkit-transform:scale(5); /* Safari and Chrome */
+	-moz-transform:scale(5); /* Firefox */
+	-ms-transform:scale(5); /* IE 9 */
+	-o-transform:scale(5); /* Opera */
+	 transform:scale(5);
+	 z-index:121;
+}
+
+.txt_desafios{
+	background-color:#FFFFFF;
+	padding: 4px 6px 2px 4px;
+	min-height:160px;
+	max-height:400px;
+	overflow: auto;
+}

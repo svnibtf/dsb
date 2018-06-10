@@ -1,0 +1,42 @@
+@charset "utf-8";
+.timer {
+	position:relative;
+	font-size: 16px;
+	width:1em;
+	height:1em;
+	padding: 0px 3px -3px 3px;
+}
+
+.timer > #slice {
+	position:absolute;
+	width:1em;
+	height:1em;
+	clip:rect(0px,1em,1em,0.5em);
+	
+}
+.timer > #slice.gt50 {
+	clip:rect(auto, auto, auto, auto);
+}
+
+.timer > #slice > .pie {
+	border: 0.1em solid #c0c0c0;
+	position:absolute;
+	clip:rect(0em,0.5em,1em,0em);
+	-moz-border-radius:0.5em;
+	-webkit-border-radius:0.5em; 
+	border-radius:0.5em; 
+}
+
+.timer > #slice > .pie.fill {
+	-moz-transform:rotate(180deg) !important;
+	-webkit-transform:rotate(180deg) !important;
+	-o-transform:rotate(180deg) !important;
+	transform:rotate(180deg) !important;
+}
+.timer.fill > #slice > .pie {
+		border: #FFF solid 2px;
+		background-color: #5cb85c;
+		width:1em;
+		height:1em;
+}
+

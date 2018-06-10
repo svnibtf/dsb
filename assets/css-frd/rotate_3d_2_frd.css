@@ -1,0 +1,49 @@
+@charset "utf-8";
+#container_frd {
+  position: relative;
+  margin: 10px auto;
+  width: 100%;
+  height:600px;
+  z-index: 1;
+  perspective: 1000;
+}
+
+#card_frd {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 1.0s ease-out;
+}
+
+.rotate_action{
+	transform: rotateY(180deg);
+}
+.face_frd {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 10px 5px 5px 15px;
+  backface-visibility: hidden;
+  background-color:#ffffff;
+}
+.face_frd.back_frd{
+	width: 100%;
+  	height: 100%;
+	transform: rotateY(180deg);
+	padding: 10px;
+	background-color:#F1F1F1;
+	box-shadow: 5px 5px 5px #aaa;
+}
+
+.form-box-pesquisa {
+    width: 100%;
+    height: 100%;
+    padding: 10px 15px 25px 15px;
+    overflow: hidden;
+}
+
+.bt-rodar-white{
+	text-decoration:none;
+	color:white;
+	
+}

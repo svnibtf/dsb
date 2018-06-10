@@ -1,0 +1,270 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>MAPA DO DIREITO SISTÊMICO NO BRASIL</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="" name="description" />
+<meta content="" name="author" />
+<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/styles-responsive.css">
+<link rel="stylesheet" href="assets/css-frd/style-responsive-mobile.css">
+<link rel="stylesheet" href="assets/css-frd/style-white-1.css">
+<link rel="stylesheet" href="assets/css/styles_frd.css">
+<link rel="shortcut icon" href="images/_favicon.ico"/>
+<script src="assets/js-obs/jquery-3.2.1.min.js"></script>
+<script src="assets/js-obs/bootstrap.bundle.min.js"></script>
+<style>
+body {
+	max-width: 900px;
+}
+/*////////////CARREGANDO////////////*/
+.div_carreg {
+	margin-top: 100px;
+}
+.div_carreg_bar {
+	background-color: #C5C5C5;
+	width: 60%;
+	margin-left: 20%;
+	top: 100px;
+	height: 10px;
+	border: solid thin #909090;
+}
+.div_carreg_per {
+	background-color: #007697;
+	width: 10%;
+	height: 9px;
+}
+.div_carreg_txt {
+	width: 60%;
+	margin-left: 20%;
+	text-align: center;
+	color: #007697;
+}
+.btn-info-topo {
+	background-color: transparent;
+	border: none;
+}
+.modal-dialog-center {
+	margin-top: 25%;
+}
+.modal-backdrop {
+	background-color: #FBFBFB;
+}
+.cadastro_form {
+	width: 92%;
+	margin-left: 4%;
+}
+.cadastro_div {
+	background-color: white;
+	border: 1px solid #EBEBEB;
+}
+
+.panel-title{
+	font-size:x-small;
+}
+</style>
+</head>
+
+<body>
+<div class="div_carreg">
+  <div class="div_carreg_bar">
+    <div id="carreg_per" class="div_carreg_per"></div>
+  </div>
+  <p id="carreg_per_txt" class="div_carreg_txt">Carregando</p>
+</div>
+<script>
+var dados_config = new Array();
+var carregando = 0;
+var carregar_script = 0;
+e = document.getElementsByClassName('div_carreg_per');
+
+var dados = false;
+function callback_CARREGANDO(){
+	if(typeof dados_config !== 'undefined'){
+		callback_CARREGADO();
+	}
+	carregando ++;
+	if(carregando > 90)carregando = 10;
+	document.getElementById('carreg_per_txt').innerHTML = 'carregando scripts:' + carregar_script;
+	e[0].style["width"] = carregando +'%';
+	carregar_script ++;
+	return console.log(dados);
+}
+
+function callback_CARREGADO(){	
+	carregando = 100;
+	//$('.div_carreg_per').css({'width':carregando});
+	clearInterval(call);
+	$('#pg_pv10').removeClass('no-display');
+	$('.div_carreg').addClass('no-display');
+	//////////// STARTICONE E URL VIDEO INFO NO RODAPÉ FOOTER-PV.JS TITULO E DOIS VÍDEOS ///////////////
+	console.log ('session_info_inicial frd = ', dados_config['session_info_inicial']);
+	if(dados_config['session_info_inicial'] < 1){
+		$('#primeiro_acesso').removeClass('no-display');
+	}
+	if (typeof footer_carregado !== 'undefined') {
+		$('#info_mat_vdo').removeClass('no-display').attr('href','page-info-mat-vdo-inicial.html');
+	} else {
+		console.log(' TIME OUT info_mat_vdo');
+	}
+}
+call = setInterval(callback_CARREGANDO, 100);
+</script>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="top-10p"></div>
+    <!--DADOS DA PÁGINA TOPO-->
+    <div class="panel panel-white">
+      <div class="panel-heading">
+        <a href="index.html" class="pull-left"><i class="fa fa-mail-reply">&nbsp;</i> <i class="fa fa-home"></i>&nbsp;MAPA</a><a href="index.html" class="pull-right"><img src="images/logos/logo-dsb-2.png" class="img-fluid pull-right" alt="logo" style="max-width:30px;"></a><div class="panel-title center">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</div>  
+      </div>
+      <div class="panel-body">
+        <div id="pg_pv10" class="no-display"> 
+          <!--DADOS DA PÁGINA DADOS -->
+          <div id="info_geral" class="alert alert-info center"></div>
+          <div align="center" id="cadastro" class="cadastro_div col-lg-offset-3 col-md-offset-3 col-md-8 col-sm-12 col-lg-6">
+            <form id="form_cadstro" class="cadastro_form">
+              <div class="form-group">
+                <label for="email">Login</label>
+                <input type="email" class="form-control feedback" id="email" placeholder="Insira seu email de cadastro" maxlength="100">
+              </div>
+              <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="email" class="form-control feedback" id="senha" placeholder="Insira sua senha" maxlength="20">
+              </div>
+            </form>
+            <div id="btn_acessar" class="cadastro_form" align="left" >
+              <button type="button" class="btn btn-blue fundo-btn btn-xs" onClick="login()" style="margin-bottom:16px;">ACESSAR</button>
+            </div>
+              <div id="carregado_dados" align="center" class="no-display cadastro_form" style="margin-top:6px;"><i class="fa fa-cog fa-spin"></i>&nbsp;Aguarde!<br>
+                Verificando seus dados.</div>
+          </div>
+          <div align="right" class="cadastro_div col-lg-offset-3 col-md-offset-3 col-md-8 col-sm-12 col-lg-6" style=" margin-top:16px; margin-bottom:160px;">
+          <a type="button" class="btn btn-danger  btn-lg btn-block" href="http://mapa.direitosistemicobrasil.com.br/passo01" target="_blank">Quero me cadastrar</a>
+          <img src="images/logos/logo-dsb-2-gg.jpg" class="img-responsive" alt="logo">
+          </div>
+        </div>
+      </div>
+      <!--<div class="footer-pv10"></div>--> 
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="panel_dim_n" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-center modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id=""><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="info_ori_dim">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</span></h5>
+      </div>
+      <div class="modal-body">
+        <div id="val_body_modal"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" onClick="enviar_dados_func()">Salvar e avançar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<!-- start: MAIN JAVASCRIPTS -->
+<script src="assets/plugins/TouchSwipe/jquery.touchSwipe.min.js"></script>
+<script src="assets/plugins/toastr/toastr.js"></script>
+<script src="assets/plugins/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+<!-- end: MAIN JAVASCRIPTS -->
+
+<script>
+jQuery(document).ready(function() {
+	
+});
+var item_dados_db = new Array();
+
+var cont_carrg = 20;
+function callback_CARREGANDO_DADOS(){
+	cont_carrg --;
+	$('#cont_carreg').html(cont_carrg);
+	if(cont_carrg < 1){
+	$('#carregado_dados').removeClass('no-display').html('<p class="text-extra-small">Ocorreu algum problema.<br> Verifique sua conexão e tente novamente,<br>ou entre em contato no botão de atendimento abaixo.</p>');
+	clearInterval(carregando_dados);
+	}
+}
+<script>
+function aguarde_carr(){
+console.log('aguarde_carr');
+$('#aguarde_carregando').show();
+$('#btn_avancar').attr('disabled', 'disabled');
+}
+</script>
+
+get_url = {};
+var url_local = window.location.href;
+url = url_local.replace(/#/g, "");
+if(url_local.indexOf("?")>-1){
+	var location_search = url_local.substring(1).split('?');
+	var parts = location_search[1].substring(0).split('#');
+	for (var i = 0; i < parts.length; i++) {
+		var nv = parts[i].split('=');
+		if (!nv[0]) continue;
+		get_url[nv[0]] = nv[1] || true;
+	}
+}
+estado = get_url.estado;
+enviar = get_url.enviar;
+console.log('enviar = ', enviar);
+
+if(typeof enviar != 'undefined' && enviar == 'cadastrar'){
+	$('#info_geral').html('Temos o maior prazer em colocar o seu link a disposição em nosso MAPA DE AÇÕES DO DIREITO SISTÊMICO NO BRASIL, mas precisamos primeiro identificá-lo.<br>Acesse com seu login (email) e senha ou clique em quero me cadastrar para fazer o seu cadastro.<br>O seu link é muito importante para nós!');
+}
+
+function login(){
+
+	email= $('#email').val();
+	senha= $('#senha').val();
+	$('#carregado_dados').removeClass('no-display').html('<i class="fa fa-cog fa-spin"></i>&nbsp;Aguarde!<br>Verificando seus dados.&nbsp;Tempo:&nbsp;<span id="cont_carreg">20</span>&nbsp; seg');
+	$('#btn_acessar').attr('disabled','disabled');
+	carregando_dados = setInterval(callback_CARREGANDO_DADOS, 1000);
+	$.ajax({
+	url: "consulta-login-verifica-usuario.php",
+	type: "POST",
+	dataType: "json",
+	data: ({
+			email	: email,
+			senha	: senha,	
+		}),
+	success: function(json){
+		console.log('RETORNO LOG = ',json);
+			if(json.login == 1){
+				$('#carregado_dados').html('DADOS CORRETOS . <i class="fa fa-cog fa-spin"></i> . ACESSANDO!');
+				if(typeof estado == 'undefined'){
+					var url = 'index.html';
+				} else {
+					var url = 'page-dados-filtro-pesquisa.html?estado='+estado;
+				}
+				console.log('url = ', url);
+				window.open(url,'_self');
+			} else if(json.login == 2) {
+				$('#carregado_dados').html('ERRO<br>Não localizamos esse email em nosso banco de dados, verifique e tente novamente ou entre em contato com a nossa central de atendimento');
+				$('#btn_acessar').removeAttr('disabled','disabled');
+				toastr["error"]('login (email) ou senha inválidos','ERRO');
+			} else if(json.login == 3) {
+				$('#carregado_dados').html('ERRO<br>Senha errada');
+				$('#btn_acessar').removeAttr('disabled','disabled');
+				toastr["error"]('login (email) ou senha inválidos','ERRO');
+			} else {
+				clearInterval(carregando_dados);
+				$('#carregado_dados').html('ERRO<br>Login (email) ou senha inválidos');
+				$('#btn_acessar').removeAttr('disabled','disabled');
+				toastr["error"]('login (email) ou senha inválidos','ERRO');
+			}
+		}				
+	});
+}
+
+</script>
+</html>

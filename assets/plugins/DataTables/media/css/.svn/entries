@@ -1,0 +1,56 @@
+10
+
+dir
+0
+https://github.com:443/svnibtf/branch.git/trunk/siseduc/assets/plugins/DataTables/media/css
+https://github.com:443/svnibtf/branch.git
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+
+
+
+
+
+
+
+
+
+
+
+b1779b81-da59-fdff-c086-ce57b7db7bff
+
+jquery.dataTables.css
+file
+
+
+
+add
+
+DT_bootstrap.css
+file
+
+
+
+add
+
+jquery.dataTables.min.css
+file
+
+
+
+add
+
+jquery.dataTables_themeroller.css
+file
+
+
+
+add
+

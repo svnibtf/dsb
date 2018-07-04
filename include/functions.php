@@ -16,7 +16,7 @@ function verificaLogin(){
 }
 
 $desenvolvimento_frd = false;
-$desenvolvimento_interno = true;
+$desenvolvimento_interno = false;
 if($_SERVER["SERVER_NAME"] == 'localhost' && $desenvolvimento_interno == true){
 	$desenvolvimento_frd = true;
 }

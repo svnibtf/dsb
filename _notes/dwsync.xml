@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
 <file name="_consulta-basica.php" server="C:/xampp/htdocs/Dreamweaver" local="131731205415964827" remote="131731205410000000" Dst="1" />
-<file name="page-dados-filtro-pesquisa.html" server="C:/xampp/htdocs/Dreamweaver" local="131725069747375016" remote="131725069740000000" Dst="1" />
+<file name="page-dados-filtro-pesquisa.html" server="C:/xampp/htdocs/Dreamweaver" local="131738886859569239" remote="131738886850000000" Dst="1" />
 <file name="page-inserir-dados.html" server="C:/xampp/htdocs/Dreamweaver" local="131728981044824879" remote="131728981040000000" Dst="1" />
 <file name="z-estados-municipios.html" server="C:/xampp/htdocs/Dreamweaver" local="131725096550403552" remote="131725096550000000" Dst="1" />
-<file name="index.html" server="C:/xampp/htdocs/Dreamweaver" local="131729401484644196" remote="131729401480000000" Dst="1" />
+<file name="index.html" server="C:/xampp/htdocs/Dreamweaver" local="131742247416026826" remote="131742247410000000" Dst="1" />
 <file name="consulta-dados-estado-inicial.php" server="C:/xampp/htdocs/Dreamweaver" local="131730530942203326" remote="131730530940000000" Dst="1" />
-<file name="index-cadastro.html" server="C:/xampp/htdocs/Dreamweaver" local="131728823657679611" remote="131728823650000000" Dst="1" />
+<file name="index-cadastro.html" server="C:/xampp/htdocs/Dreamweaver" local="131738234020443783" remote="131738234020000000" Dst="1" />
 <file name="consulta-login-verifica-usuario.php" server="C:/xampp/htdocs/Dreamweaver" local="131729375325193682" remote="131729375320000000" Dst="1" />
 <file name="consulta-inserir-dados-usuarios.php" server="C:/xampp/htdocs/Dreamweaver" local="131729415152005662" remote="131729415150000000" Dst="1" />
 <file name="index-cadastro-2.html" server="C:/xampp/htdocs/Dreamweaver" local="131728745909325396" remote="131728745900000000" Dst="1" />
@@ -19,5 +19,7 @@
 <file name="consulta-cont-inserts.php" server="C:/xampp/htdocs/Dreamweaver" local="131730625700498236" remote="131730625700000000" Dst="1" />
 <file name="z-enviar-dados.html" server="C:/xampp/htdocs/Dreamweaver" local="131731108356023134" remote="131731108350000000" Dst="1" />
 <file name="z-estados-municipios-leadlovers.html" server="C:/xampp/htdocs/Dreamweaver" local="131731176776591825" remote="131731176770000000" Dst="1" />
-<file name="consulta-llv-gatilho-inteligente.php" server="C:/xampp/htdocs/Dreamweaver" local="131731249676025200" remote="131731249670000000" Dst="1" />
+<file name="consulta-llv-gatilho-inteligente.php" server="C:/xampp/htdocs/Dreamweaver" local="131752164140125258" remote="131752164140000000" Dst="1" />
+<file name="consulta-sair.php" server="C:/xampp/htdocs/Dreamweaver" local="131738914545793108" remote="131738914540000000" Dst="1" />
+<file name="z-cadastro.html" server="C:/xampp/htdocs/Dreamweaver" local="131752106820318820" remote="131752106820000000" Dst="1" />
 </dwsync>

@@ -448,7 +448,7 @@ function consulta_inicial(){
 			} else {
 				console.log('log sucesso = ', json.logado);
 				if(json.logado == 'erro'){			
-					$('#val_body_modal').html('VOCÊ NÃO ESTA LOGADO OU HOUVE UM PROBLEMA DE CONEXÃO!<br>TENTE NOVAMENTE OU ENTRE EM CONTATO (<a href="index.html?#contato">INFORMAÇÕES NO MAPA</a>)');
+					$('#val_body_modal').html('VOCÊ NÃO ESTA LOGADO OU HOUVE UM PROBLEMA DE CONEXÃO!<br>TENTE NOVAMENTE OU ENTRE EM (<a href="index.html?#contato">CONTATO NO MAPA</a>)');
 					$('#panel_retorno').modal({
 									backdrop: 'static',
 									keyboard: false  // to prevent closing with Esc button (if you want this too)

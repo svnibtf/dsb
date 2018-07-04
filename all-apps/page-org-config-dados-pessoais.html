@@ -1,0 +1,365 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>MAPA DO DIREITO SISTÊMICO NO BRASIL</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="" name="description" />
+<meta content="" name="author" />
+<link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="../assets/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/styles-responsive.css">
+<link rel="stylesheet" href="../assets/css-frd/style-responsive-mobile.css">
+<link rel="stylesheet" href="../assets/css-frd/style-white-1.css">
+<link rel="stylesheet" href="../assets/css/styles_frd.css">
+<link rel="shortcut icon" href="../../images/_favicon.ico"/>
+<script src="../assets/js-obs/jquery-3.2.1.min.js"></script>
+<script src="../assets/js-obs/bootstrap.bundle.min.js"></script>
+<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<style>
+body {
+	max-width: 900px;
+}
+/*////////////CARREGANDO////////////*/
+.div_carreg {
+	margin-top: 100px;
+}
+.div_carreg_bar {
+	background-color: #C5C5C5;
+	width: 60%;
+	margin-left: 20%;
+	top: 100px;
+	height: 10px;
+	border: solid thin #909090;
+}
+.div_carreg_per {
+	background-color: #007697;
+	width: 10%;
+	height: 9px;
+}
+.div_carreg_txt {
+	width: 60%;
+	margin-left: 20%;
+	text-align: center;
+	color: #007697;
+}
+.btn-info-topo {
+	background-color: transparent;
+	border: none;
+}
+.modal-dialog-center {
+	margin-top: 25%;
+}
+.modal-backdrop {
+	background-color: #FBFBFB;
+}
+.cadastro_form {
+	width: 92%;
+	margin-left: 4%;
+}
+.cadastro_div {
+	background-color: white;
+	border: 1px solid #EBEBEB;
+}
+
+.panel-title{
+	font-size:x-small;
+}
+</style>
+</head>
+
+<body>
+<div class="div_carreg">
+  <div class="div_carreg_bar">
+    <div id="carreg_per" class="div_carreg_per"></div>
+  </div>
+  <p id="carreg_per_txt" class="div_carreg_txt">Carregando</p>
+</div>
+<script>
+var dados_config = new Array();
+var carregando = 0;
+var carregar_script = 0;
+e = document.getElementsByClassName('div_carreg_per');
+
+var dados = false;
+function callback_CARREGANDO(){
+	if(typeof dados_config !== 'undefined'){
+		callback_CARREGADO();
+	}
+	carregando ++;
+	if(carregando > 90)carregando = 10;
+	document.getElementById('carreg_per_txt').innerHTML = 'carregando scripts:' + carregar_script;
+	e[0].style["width"] = carregando +'%';
+	carregar_script ++;
+	return console.log(dados);
+}
+
+function callback_CARREGADO(){	
+	carregando = 100;
+	//$('.div_carreg_per').css({'width':carregando});
+	clearInterval(call);
+	$('#pg_pv10').removeClass('no-display');
+	$('.div_carreg').addClass('no-display');
+	//////////// STARTICONE E URL VIDEO INFO NO RODAPÉ FOOTER-PV.JS TITULO E DOIS VÍDEOS ///////////////
+	console.log ('session_info_inicial frd = ', dados_config['session_info_inicial']);
+	if(dados_config['session_info_inicial'] < 1){
+		$('#primeiro_acesso').removeClass('no-display');
+	}
+	if (typeof footer_carregado !== 'undefined') {
+		$('#info_mat_vdo').removeClass('no-display').attr('href','page-info-mat-vdo-inicial.html');
+	} else {
+		console.log(' TIME OUT info_mat_vdo');
+	}
+}
+call = setInterval(callback_CARREGANDO, 100);
+</script>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="top-10p"></div>
+    <!--DADOS DA PÁGINA TOPO-->
+    <div class="panel panel-white">
+      <div class="panel-heading">
+        <a href="../index.html" class="pull-left"><i class="fa fa-mail-reply">&nbsp;</i> <i class="fa fa-home"></i>&nbsp;MAPA</a><a href="../index.html" class="pull-right"><img src="../images/logos/logo-dsb-2.png" class="img-fluid pull-right" alt="logo" style="max-width:30px;"></a><div class="panel-title center">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</div>  
+      </div>
+      <div class="panel-body">
+        <div id="pg_pv10" class="no-display"> 
+          <!--DADOS DA PÁGINA DADOS -->
+          <div id="info_geral" class="alert alert-info center"></div>
+          <div align="center" id="cadastro" class="cadastro_div col-lg-offset-3 col-md-offset-2 col-md-8 col-sm-12 col-lg-6">
+            <form id="form_cadastro" class="cadastro_form">
+          <div class="form-dd-pessoais">
+            <div class="form-group">
+              <label class="control-label text-small"> Nome* </label>
+              <input type="text" placeholder="Nome" class="form-control dados_send" id="nome" name="nome" onChange="dados_send_acesso(id)">
+            </div>
+            <div class="form-group">
+              <label class="control-label text-small"> Sobrenome* </label>
+              <input type="text" placeholder="Sobrenome" class="form-control dados_send" id="sobrenome" name="sobrenome" onChange="dados_send_acesso(id)">
+            </div>
+            <div class="form-group">
+              <label class="control-label text-small"> Email </label>
+              <input type="text" placeholder="email" class="form-control dados_send" id="email" name="email" data-tp="usuarios" disabled>
+            </div>
+            <div>
+              <button class="btn btn-blue btn-block accordion-toggle space5" data-toggle="collapse" data-parent="#accordion" href="#troca_de_senha" onClick="view_btn_send()">TROCAR MINHA SENHA</button>
+            </div>
+            <div id="troca_de_senha" class="panel-collapse collapse">
+              <div class="form-group">
+                <label class="control-label text-small"> Nova senha </label>
+                <input type="password" placeholder="NOVA SENHA" class="form-control dados_send" id="nova_senha">
+              </div>
+              <div class="form-group">
+                <label class="control-label text-small"> Repetir Senha </label>
+                <input type="password" placeholder="REPETIR SENHA" class="form-control dados_send" id="repetir_senha">
+              </div>
+            </div>
+          </div>
+          </form>
+        </div>
+        <div>
+          <button id="btn-dados_send_senha" class="btn btn-success btn-block no-display" onClick="dados_send_senha()" style="margin-bottom:16px;">ENVIAR NOVA SENHA</button>
+        </div>
+      </div>
+     </div>
+    </div>
+    <div class="footer-pv10"></div>
+  </div>
+ </div>
+<div class="modal fade" id="panel_retorno" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-center modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id=""><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="info_ori_dim">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</span></h5>
+      </div>
+      <div class="modal-body">
+        <div id="val_body_modal"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary btn-avancar no-display" onClick="avancar_page()">Avançar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<!-- start: MAIN JAVASCRIPTS -->
+<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/plugins/TouchSwipe/jquery.touchSwipe.min.js"></script>
+<script src="../assets/plugins/toastr/toastr.js"></script>
+<!-- end: MAIN JAVASCRIPTS -->
+<script>
+jQuery(document).ready(function() {
+	consulta_inicial();
+});
+var item_dados_db = new Array();
+
+var code 	= '';
+var email = '';
+function get_url(){
+	get_url = {};
+		var url = window.location.href;
+		url = url.replace(/#/g, "");
+		var location_search = url.split('/');
+		var ultimoElemento = location_search.length - 1;
+		page = location_search[ultimoElemento];
+		var index_acesso = 0;
+		if(url.indexOf("index")>-1){
+			index_acesso = url.indexOf("index");
+			//console.log('url.indexOf ', url.indexOf("index"));
+		}
+		if(url.indexOf("?")>-1){
+			var location_search = url.substring(1).split('?');
+			url_base = location_search[0];
+			//console.log('url_base = ', url_base);
+			var location_search_page = url_base.split('/');
+			var ultimoElemento = location_search_page.length - 1;
+			page = location_search_page[ultimoElemento];
+			var parts = location_search[1].substring(0).split('&');
+			for (var i = 0; i < parts.length; i++) {
+				var nv = parts[i].split('=');
+				if (!nv[0]) continue;
+				get_url[nv[0]] = nv[1] || true;
+			}
+		}
+		code = get_url.code; //////SEM ELE NÃO CARREGA A PÁGINA ///////
+		email = get_url.email; //////SEM ELE NÃO CARREGA A PÁGINA ///////
+}
+
+function view_btn_send(){
+	if($('#troca_de_senha').hasClass('in') === true){
+		$('#btn-dados_send_senha').addClass('no-display');
+	} else {
+		$('#btn-dados_send_senha').removeClass('no-display');
+	}
+	
+}
+
+function consulta_inicial(){
+	get_url();
+	console.log(code , email);
+	toastr.remove();
+	toastr["info"]('Aguarde carregando dados!', "");
+	desenvolvimento = false;
+		$.ajax({
+		url: '../consulta-config-inicial.php',
+		type: "POST",
+		dataType: "json",
+		data:({
+			desenvolvimento : desenvolvimento,
+					}),
+		success: function(json){
+			toastr.remove();
+			item_dados_db = json;
+			logado = json.logado;
+			console.log('item_dados_db = ', item_dados_db);
+			if(item_dados_db == ''){
+				console.log('log erro = ', json.logado);
+			} else {
+				console.log('log sucesso = ', json.logado);
+				$('#info_tt_pt').html('DADOS PESSOAIS');
+				$('#dados-usuario').removeClass('no-display');
+				for (var index in item_dados_db){
+					var id = index.split("_");
+					$('#'+ id[1]).val(json[index]);
+				}
+			}
+		}
+	});
+}
+
+function dados_send_senha() {
+	if(typeof item_dados_db != 'undefined' || (code != '' && email != '')){
+		var senha = $('#nova_senha').val();
+		var rpt_senha = $('#repetir_senha').val();
+		if(senha == rpt_senha && senha.length > 5){
+			$('#nova_senha, #repetir_senha').attr('disabled','disabled');
+			toastr["info"]('','Enviando dados!');
+			$.ajax({
+				url			: 'consulta-substituir-senha.php', 
+				type		: "POST",
+				dataType: "json",
+				data		: ({
+							senha		: senha,
+							email		: email,
+							code		: code,
+				}),
+				success		: function(json){
+					$('#nova_senha, #repetir_senha').removeAttr('disabled','disabled');
+					toastr.remove();
+					$('#panel_retorno').modal({
+									backdrop: 'static',
+									keyboard: false  // to prevent closing with Esc button (if you want this too)
+								})   // initialized with no keyboard
+					$('#panel_retorno').modal('show');
+					
+					if(json.cadastro == 'sucesso'){
+						toastr["info"]('No próximo acesso utilize esse login e senha','Dados enviados com sucesso!');
+						$('#val_body_modal').html('SUA SENHA FOI ALTERADA COM SUCESSO!');
+					} else if(json.cadastro == 'erro_code'){
+						$('#val_body_modal').html('ERRO DO CÓDIGO PARA TROCAR SENHA!');
+						$('#val_body_modal').html('<strong>ERRO DO CÓDIGO PARA TROCAR SENHA</strong>'+
+							'<br>Dois principais motivos que acarretam esse erro:<br>'+
+							'<br>1 - Sua senha já foi alterada com esse código.<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SOLUÇÃO[</strong> Tente acessar.'+
+							'<br>2 - Esse código é de um email antigo.<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SOLUÇÃO[</strong> Apague seus emails antigos com solicitações de troca e solicite uma nova alteração de senha. Vá para o <a href="../index.html" class="">MAPA</a>, clique em ENTRAR e em seguida em ESQUECI MINHA SENHA');						
+					} else if(json.cadastro == 'erro_alterada'){
+						$('#val_body_modal').html('ERRO AO TROCAR A SENHA!');
+						$('#val_body_modal').html('<strong>ERRO PARA TROCAR SENHA</strong>'+
+							'<br>Sua senha já foi alterada ANTERIORMENTE.<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SOLUÇÃO[</strong> Solicite uma nova alteração de senha. Vá para o <a href="../index.html" class="">MAPA</a>, clique em ENTRAR e em seguida em ESQUECI MINHA SENHA.<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SUGESTÃO]</strong> Para facilitar, apague seus emails de solicitações anteriores, antes de solicitar uma nova.');						
+					} else {
+						toastr["error"]('Leia com atenção ou tente novamente caso seja a sua conexão','Erro ao trocar a senha!');
+						$('#val_body_modal').html('<strong>ERRO AO TROCAR SENHA</strong>'+
+							'<br>Três principais motivos que acarretam esse erro:<br>'+
+							'<br>1 - Falha na conexão'+
+							'<br>2 - Você não está logado portanto não pode alterar a sua senha'+
+							'<br>3 - Você precisa acessar o link do seu email se esqueceu a sua senha para trocá-la.'+
+							'<br><br>Para altera sua senha acesse vá para o <a href="../index.html" class="">MAPA</a>, clique em entrar e em seguida em ESQUECI MINHA SENHA'+
+							'<br><div align="center"><a href="../index.html" class=""><img src="../images/logos/logo-dsb-2.png" class="img-fluid" alt="logo" style="max-width:30px;"></a><div>');
+					}
+				}
+			});
+		} else {
+			toastr["error"]('Os campos Senha e Repetir Senha devem ser iguais com no mínimo 6 caracteres','Campos diferentes!');
+		}
+	} else {
+		toastr["error"]('Para trocar de senha é preciso ter logado ou recebido um email com um link com um código especial de acesso para trocá-la!','TROCA DE SENHA');
+	}
+}
+
+function dados_send_acesso(id) {
+	var campo = $('#'+id).attr('name');
+	var valor = $('#'+id).val();
+	if(valor.length > 2){
+		$('#'+id).attr('disabled','disabled');
+		$.ajax({
+			url			: 'consulta-update-dp-dados-unicos.php', 
+			type		: "POST",
+			dataType: "json",
+			data		: ({
+						campo		: campo,
+						valor		: valor,
+			}),
+			success		: function(json){
+				$('#'+id).removeAttr('disabled','disabled');
+				toastr.remove();
+				if(json.cadastro == 'sucesso'){
+					toastr["info"]('','Dados enviados com sucesso!');
+					$('#'+id).attr('style','color:blue').removeAttr('disabled','disabled');
+				} else {
+					toastr["error"]('Tente novamente','Erro ao enviar seus dados!');
+					$('#'+id).attr('style','color:red').removeAttr('disabled','disabled');
+				}
+			}
+		});
+	} else {
+		toastr["error"]('O Campo Nnome e Sobrenome devem conter no mínimo 3 caracteres','Campos obrigatórios!');
+	}
+}
+
+
+</script>
+</html>

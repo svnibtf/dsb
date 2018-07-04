@@ -323,11 +323,11 @@ call = setInterval(callback_CARREGANDO, 100);
             <ul class="navbar-nav ml-auto">
               <li class="nav-item"> <a class="nav-link active" href="#home">MAPA BRASIL <span class="sr-only">(current)</span></a> </li>
               <li class="nav-item"> <a class="nav-link" href="#como_participar">COMO PARTICIPAR</a> </li>
-              <li class="nav-item"> <a class="nav-link" href="#" style="color:#FF8E1E">ENVIAR AÇÃO DSB</a> </li>
+              <!--<li class="nav-item"> <a class="nav-link" href="#" style="color:#FF8E1E">ENVIAR AÇÃO DSB</a> </li>-->
               <li class="nav-item"> <a class="nav-link" href="#alunos_inn">ALUNOS INNOVARE</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#depoimento">DEPOIMENTOS</a> </li>
               <li class="nav-item"> <a class="nav-link" href="#contato">CONTATO</a> </li>
-              <li class="nav-item"><a href="index-cadastro.html" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">ENTRAR</a></li>
+              <li class="nav-item"><a id="btn_entrar" href="index-cadastro.html" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">ENTRAR</a></li>
               <li class="nav-item"><a href="#" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3"  onClick="enviar_acao()">ENVIAR AÇÃO DSB</a></li>
               
             </ul>
@@ -339,13 +339,14 @@ call = setInterval(callback_CARREGANDO, 100);
 </div>
 <header class="bg-gradient" id="home" style="">
 <div align="center"><img src="images/banner/TOPO_BLOG.png" class="img-fluid" alt="topo" style="margin-top:52px;"></div>
+<div id="debug" class="no-display">debug 10</div>
   <!--<div class="container mt-5">
     <h1 align="center">O DIREITO SISTÊMICO <br>
       NO BRASIL</h1>
     <p class="tagline" align="center">MAPA COM LINKS DE CASES, AÇÕES, DEPOIMENTOS, LEGISLAÇÃO, ARTIGOS, ETC.</p>
   </div>-->
   <div align="center">
-   <div class="text-small" style="background-color:#E3E3E3; padding-top:16px; padding-bottom:16px; padding-left:0px;">Clique sobre os Estados para acessar as informações.</div></div>
+   <div class="text-small" style="background-color:#E3E3E3; padding-top:6px; padding-bottom:16px; padding-left:0px;">Clique (2 no celular) sobre os<br>Estados para acessar as informações.</div></div>
   <div id="map_div" class="" align="center" style="background-color:#E3E3E3;">   
     <svg id="map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: inline; background-color:#E3E3E3; height:1000px; margin-left: 2px; margin-top:0;" preserveAspectRatio="xMinYMin meet" width="100%">
       <g id="mapa_shape"  class="model-green" style="margin-top:10px;">
@@ -509,7 +510,10 @@ call = setInterval(callback_CARREGANDO, 100);
 </header>
 <div align="center" class="container">
   <button class="btn btn-blue btn-block btn-lg" type="button" data-toggle="collapse" data-target="#btn_estados" aria-expanded="false" aria-controls="collapseExample" style=" margin-top:16px;"> Acessar os Estados por botões ... </button>
-  <div id="btn_estados" class="collapse" style=" width:80%;margin-top:16px;"></div>
+  <div id="btn_estados" class="collapse" style=" width:70%;margin-top:16px;">
+  
+  </div>
+  
 </div>
 <div class="section light-bg" id="como_participar">
   <div class="client-logos my-5">
@@ -563,7 +567,7 @@ call = setInterval(callback_CARREGANDO, 100);
 </div>
 <!-- // end .section -->
 <div class="section light-bg" id="alunos_inn">
-  <div class="client-logos my-5">
+  <div class="client-logos my-5" >
     <div class="container text-center"> <img src="images/banner/banner_site_2.png" alt="client logos" class="img-fluid"> </div>
   </div>
   <div class="container">
@@ -622,21 +626,33 @@ call = setInterval(callback_CARREGANDO, 100);
     <div id="carouselDepoimentos" class="carousel slide" data-ride="carousel" style="">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div align="center" class=""><img class="d-block img-frd" src="images/client.png" alt="First slide">
-            <p class="text-secondary text-uppercase titulo">titulo</p>
-            <p class="depoimento">Depoimento</p>
+          <div align="center" class=""><img class="d-block img-frd" src="images/depoimentos/1.png" alt="First slide">
+            <p class="text-secondary text-uppercase titulo">Ana Sofia</p>
+            <p class="depoimento">... como terapeuta o que o Direito Sistêmico fez na minha vida foi alicerçar os meus conhecimentos...</p>
           </div>
         </div>
         <div class="carousel-item">
-          <div align="center"  class=""><img class="d-block img-frd" src="images/img-55398-20170210112011.png" alt="Second slide">
-            <p class="text-secondary text-uppercase titulo">titulo</p>
-            <p class="depoimento">Depoimento</p>
+          <div align="center"  class=""><img class="d-block img-frd" src="images/depoimentos/2.png" alt="Second slide">
+            <p class="text-secondary text-uppercase titulo">Amilton Plácido da Rosa</p>
+            <p class="depoimento">O Direito Sistêmico traz uma postura diferente, com dinâmicas diferentes no seu trabalho no dia a dia...</p>
           </div>
         </div>
         <div class="carousel-item">
-          <div align="center" class=""> <img class="d-block img-frd" src="images/196c4436717d8913fe11fefdcb8857c1.jpg" alt="Third slide">
-            <p class="text-secondary text-uppercase titulo">titulo</p>
-            <p class="depoimento">Depoimento</p>
+          <div align="center" class=""> <img class="d-block img-frd" src="images/depoimentos/3.png" alt="Third slide">
+            <p class="text-secondary text-uppercase titulo">Lairton</p>
+            <p class="depoimento">... na minha vida e na minha profissão eu consigo ajudar mais pessoas...</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div align="center" class=""> <img class="d-block img-frd" src="images/depoimentos/4.png" alt="Third slide">
+            <p class="text-secondary text-uppercase titulo">Janaina Vieira</p>
+            <p class="depoimento">Uma nova e poderosa ferramenta de trabalho para ajudar as pessoas a resolverem seus conflitos...</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div align="center" class=""> <img class="d-block img-frd" src="images/depoimentos/5.png" alt="Third slide">
+            <p class="text-secondary text-uppercase titulo">Elo</p>
+            <p class="depoimento">Na psicologia o Direito Sistêmico tem me ajudado muito para lidar com questões familiares...</p>
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselDepoimentos" role="button" data-slide="prev" style="background-color:rgba(232,232,232,0.62);"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Voltar</span> </a> 
@@ -724,6 +740,7 @@ call = setInterval(callback_CARREGANDO, 100);
 
 <script>
 var logado = 'erro';
+var estados = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
 function consulta_inicial(){
 	get_url();
 	console.log(estado);
@@ -747,6 +764,9 @@ function consulta_inicial(){
 				console.log('log erro = ', json.logado);
 			} else {
 				console.log('log sucesso = ', json.logado);
+				if(json.logado == 'sucesso'){
+					$('#btn_entrar').html('SAIR&nbsp;&nbsp;<img src="images/icones/logado.png" alt="Logado" style="max-height:16px; margin-bottom:3px;">');
+				}
 			}
 		}
 	});
@@ -776,7 +796,10 @@ function num_leads_view(){
 		var text_label = $(id_label_stt).text();
 		if(num_leads[index]>0){
 			$(id_stt).text(sttd.toUpperCase()+': '+ num_leads[index]);
-			$(id_label_stt).text(text_label+' - '+num_leads[index]);			
+			$(id_label_stt).text(text_label+' - '+num_leads[index]);
+			$('#btn_estados').append('<button class="btn btn-success btn-block btn-lg" type="button" style=" margin-top:10px;">'+text_label.toUpperCase()+': '+ num_leads[index]+'</button>');	
+		} else {
+			$('#btn_estados').append('<button name="state_'+sttd+'" class="btn btn-success btn-block btn-lg" name type="button" style=" margin-top:10px;" onClick="estado_selecionado(name)">'+text_label.toUpperCase()+'</button>');	
 		}
 	}
 }
@@ -811,31 +834,7 @@ function get_url(){
 		estado = get_url.estado; //////SEM ELE NÃO CARREGA A PÁGINA ///////
 }
 
-var estados = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
-
-/*function num_leads_view(){
-	for (index in estados) {
-		var sttd = estados[index];
-		sttd = sttd.toLowerCase();
-		var id_stt='#label_icon_state_'+sttd;
-		var id_label_stt='#label_state_'+sttd;
-		var text_label = $(id_label_stt).text();
-		$(id_stt).text(sttd.toUpperCase());
-		$(id_stt).text(sttd.toUpperCase()+': '+num_leads[index]);
-		$(id_label_stt).text(text_label+' Leads: '+num_leads[index]);
-		$('#btn_estados').append('<button name="state_'+sttd+'" class="btn btn-blue btn-block btn-lg" onClick="estado_selecionado(name)">'+sttd.toUpperCase()+'</button>');
-	}	
-}*/
-
 function recise(){
-//	var svg1 = document.getElementById('map');
-//		console.log(svg1);
-//		console.log('style', svg1.style.width + 'x' + svg1.style.height);
-//		console.log('client', svg1.clientWidth + 'x' + svg1.clientHeight);
-//		console.log('offset', svg1.offsetWidth + 'x' + svg1.offsetHeight);		
-//		var bBox = svg1.getBBox();
-//		console.log('XxY', bBox.x + 'x' + bBox.y);
-//		console.log('size', bBox.width + 'x' + bBox.height);
 	
 	var div_W = $('#map_div').width();
 	var div_H = $('#map_div').height();
@@ -870,18 +869,27 @@ function recise(){
 }
 recise();
 
-function estado_selecionado(id){
+$('.state').on('click', function(){
+	$('#debug').append('<br>estado_selecionado');
+	id = $(this).id;
 	console.log('click = ', id);
 	var estado = 'label_icon_'+id;
 	var dados_estado = $('#'+estado).text();
 	var sigla = dados_estado.split(":");
 	console.log('sigla = ', sigla[0]);
+	$('#debug').append('<br>page-dados-filtro-pesquisa.html?estado='+sigla[0]);
 	if(logado == 'sucesso'){
 		window.open('page-dados-filtro-pesquisa.html?estado='+sigla[0], '_self');
+		$('#debug').append('<br>sucesso');
 	} else {
 		window.open('index-cadastro.html?estado='+sigla, '_self');
-	}
-	
+		$('#debug').append('<br>logar');
+	}	
+	$('#debug').append('<br>estado_selecionado   click');
+})
+
+function estado_selecionado(id){
+
 }
 
 function enviar_acao(){

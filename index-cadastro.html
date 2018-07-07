@@ -127,6 +127,7 @@ call = setInterval(callback_CARREGANDO, 100);
         <div id="pg_pv10" class="no-display"> 
           <!--DADOS DA PÁGINA DADOS -->
           <div id="info_geral" class="alert alert-info center"></div>
+          <!--DADOS DA PÁGINA DADOS -->
           <div align="center" id="cadastro" class="cadastro_div ">
             <form id="form_cadastro" class="cadastro_form">
               <div class="form-group">
@@ -136,9 +137,7 @@ call = setInterval(callback_CARREGANDO, 100);
               <div class="form-group">
                 <label for="senha">Senha</label>
                 <input type="password" class="form-control feedback" id="senha" placeholder="Insira sua senha" maxlength="20" required>
-              </div>
-             
-            
+              </div>            
             <button type="submit" class="btnValidaAcesso no-display"></button> 
             </form>
             <div id="btn_acessar" class="cadastro_form" align="left">
@@ -150,7 +149,7 @@ call = setInterval(callback_CARREGANDO, 100);
                 Verificando seus dados.</div>
           </div>
           <div align="right" class="cadastro_div " style=" margin-top:16px; margin-bottom:160px;">
-          <a type="button" class="btn btn-danger  btn-lg btn-block" href="http://mapa.direitosistemicobrasil.com.br/cadastro" target="_blank">Quero me cadastrar</a>
+          <a type="button" class="btn btn-danger  btn-lg btn-block" href="page-cadastro.html" target="_blank">Quero me cadastrar</a>
           <img src="images/logos/logo-dsb-2-gg.jpg" class="img-responsive" alt="logo">
           </div>
         </div>
@@ -299,7 +298,7 @@ function login(){
 		success: function(json){
 			console.log('RETORNO LOG = ',json);
 				if(json.login == 1){
-					$('#carregado_dados').html('DADOS CORRETOS . <i class="fa fa-cog fa-spin"></i> . ACESSANDO!');
+					$('#carregado_dados').addClass('no-display');
 					if(typeof estado == 'undefined'){
 						url_login = 'index.html';
 					} else {
@@ -386,6 +385,17 @@ function sair(){
 function avancar_page(){
 	console.log(url_login);
 	window.open(url_login,'_self');
+}
+
+toastr.options = {
+	"closeButton": true,
+  "debug": false,
+  "positionClass": "toast-top-full-width",
+  "onclick": null,
+  "fadeIn": 300,
+  "fadeOut": 1000,
+  "timeOut": 10000,
+  "extendedTimeOut": 1000
 }
 
 </script>

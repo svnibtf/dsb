@@ -93,13 +93,13 @@ function validate_email($email, $email_errado){
 //	$sql_up =	"UPDATE 
 //			acd_semanario_temp
 //			SET 
-//				sem_seg 		= '".$seg."';  
-//				sem_ter 		= '".$ter."';  
-//				sem_qua 		= '".$qua."';  
-//				sem_qui 		= '".$qui."';  
-//				sem_sex 		= '".$sex."';  
-//				sem_sab 		= '".$sab."';  
-//				sem_dom 		= '".$dom."'; 
+//				sem_seg 		= '".$seg."',  
+//				sem_ter 		= '".$ter."',  
+//				sem_qua 		= '".$qua."',  
+//				sem_qui 		= '".$qui."',  
+//				sem_sex 		= '".$sex."',  
+//				sem_sab 		= '".$sab."',  
+//				sem_dom 		= '".$dom."', 
 //		WHERE
 //				sem_id 	= '".$sem_id."'"; 
 //	$conexao->query($sql_up);

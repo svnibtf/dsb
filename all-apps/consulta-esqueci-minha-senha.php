@@ -33,7 +33,7 @@ $dados = $conexao->query($sql);
 			$row = $dados->fetch_array();
 			(isset($row["sobrenome"]))?$sobrenome = $row["sobrenome"]:$sobrenome = '';
 			$msg = "Olá, " . $row["nome"] .' '. $row["sobrenome"] .". <br> Você reportou que esqueceu sua senha do MAPA DO DIREITO SISTÊMICO NO BRASIL?<br> Então clique no link abaixo em no máximo 48 horas e redefina a sua senha.<br><br>
-	Link = http://direitosistemicobrasil.com.br/page-org-config-dados-pessoais.html?code=".$code."&email=".$email."<br><br><strong>Caso não consiga acessar o link, copie e cole na barra de endereços do navegador.</strong><br><br>Ao acessar o MAPA esse link perderá sua função!<br><br>Caso não tenha solicitado, desconsidere essa mensagem.<br><br><br> Equipe Gestora do Mapa do Direito Sistêmico no Brasil";
+	Link = http://direitosistemicobrasil.com.br/all-apps/page-org-config-dados-pessoais.html?code=".$code."&email=".$email."<br><br><strong>Caso não consiga acessar o link, copie e cole na barra de endereços do navegador.</strong><br><br>Ao acessar o MAPA esse link perderá sua função!<br><br>Caso não tenha solicitado, desconsidere essa mensagem.<br><br><br> Equipe Gestora do Mapa do Direito Sistêmico no Brasil";
 //		echo $msg;	
 		$mail 					= new PHPMailer();
 		$mail->IsSMTP(); 

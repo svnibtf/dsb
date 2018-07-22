@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="assets/css-frd/style-responsive-mobile.css">
 <link rel="stylesheet" href="assets/css-frd/style-white-1.css">
 <link rel="stylesheet" href="assets/css/styles_frd.css">
-<link rel="shortcut icon" href="images/_favicon.ico"/>
+<link rel="shortcut icon" href="images/favicon.ico"/>
 <script src="assets/js-obs/jquery-3.2.1.min.js"></script>
 <script src="assets/js-obs/bootstrap.bundle.min.js"></script>
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -128,8 +128,8 @@ call = setInterval(callback_CARREGANDO, 100);
           <!--DADOS DA PÁGINA DADOS -->
           <div id="info_geral" class="alert alert-info center"></div>
           <!--DADOS DA PÁGINA DADOS -->
-          <div align="center" id="cadastro" class="cadastro_div ">
-            <form id="form_cadastro" class="cadastro_form">
+          <div align="center" id="cadastro" class="cadastro_div">
+            <form id="form_cadastro" class="cadastro_form" method="post">
               <div class="form-group">
                 <label for="email">Login</label>
                 <input type="email" class="form-control feedback" id="email" placeholder="Insira seu email de cadastro" maxlength="100" required>
@@ -159,6 +159,8 @@ call = setInterval(callback_CARREGANDO, 100);
   </div>
 </div>
 
+
+<!--////////////////////MODAL /////////////////////-->
 <div class="modal fade" id="panel_retorno" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-center modal-sm" role="document">
     <div class="modal-content">
@@ -166,10 +168,13 @@ call = setInterval(callback_CARREGANDO, 100);
         <h5 class="modal-title" id="" align="center"><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="info_ori_dim">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</span></h5>
       </div>
       <div class="modal-body">
-      <button type="button" class="btn btn-success btn-block btn-lg" onClick="avancar_page()">AVANÇAR</button>
+      <div id="info_modal" class="info-retorno"></div>
+      <button id="btn_avancar" type="button" class="btn btn-success btn-block btn-lg btns-retornos" onClick="avancar_page()">AVANÇAR</button>
       </div>
       <div class="modal-footer">        
-        <a type="button" href="all-apps/page-org-config-dados-pessoais.html" target="_self" class="btn btn-blue btn-block btn-xs" style="font-size:xx-small">ACESSAR MEUS DADOS<br>PARA TORCAR MINHA SENHA</a>
+        <a id="btn_acessar_dp" type="button" href="all-apps/page-org-config-dados-pessoais.html" target="_self" class="btn btn-blue btn-block btn-xs btns-retornos 1" style="font-size:xx-small">ACESSAR MEUS DADOS<br>PARA TORCAR MINHA SENHA</a>
+        <a id="btn_outro_email" type="button" class="btn btn-danger btn-lg btn-block btns-retornos" href="page-cadastro.html" target="_blank">Quero me cadastrar<br>com outro email</a>
+          <img src="images/logos/logo-dsb-2-gg.jpg" class="img-responsive" alt="logo">
       </div>
     </div>
   </div>
@@ -287,6 +292,10 @@ function login(){
 		$('#carregado_dados').removeClass('no-display').html('<i class="fa fa-cog fa-spin"></i>&nbsp;Aguarde!<br>Verificando seus dados.&nbsp;Tempo:&nbsp;<span id="cont_carreg">20</span>&nbsp; seg');
 		$('#btn_acessar').attr('disabled','disabled');
 		carregando_dados = setInterval(callback_CARREGANDO_DADOS, 1000);
+		$('.btns-retornos').each(function(index, element) {
+      $(this).addClass('no-display');
+    });
+		$('#info_modal').html('');
 		$.ajax({
 		url: "consulta-login-verifica-usuario.php",
 		type: "POST",
@@ -296,7 +305,9 @@ function login(){
 				senha	: senha,	
 			}),
 		success: function(json){
-			console.log('RETORNO LOG = ',json);
+				var exibir_modal = false;
+				console.log('RETORNO LOG = ',json);
+				///// EXEMPLOS DE ACESSOS /// json.login = 9;
 				if(json.login == 1){
 					$('#carregado_dados').addClass('no-display');
 					if(typeof estado == 'undefined'){
@@ -305,24 +316,50 @@ function login(){
 						url_login = 'page-dados-filtro-pesquisa.html?estado='+estado;
 					}
 					clearInterval(carregando_dados);
+					$('#btn_avancar, #btn_acessar_dp').removeClass('no-display');
+					exibir_modal = true;
+				} else if(json.login == 2) {
+					$('#carregado_dados').html('<strong>EMAIL NÃO LOCALIZADO</strong><br>Não localizamos esse email.');
+					$('#info_modal').html('<strong>EMAIL NÃO LOCALIZADO</strong><br>Não localizamos esse email em nosso banco de dados, verifique e tente novamente ou entre em contato com a nossa central de atendimento.<br><a href="index.html?#contato">CONTATO NO MAPA</a>');
+					$('#btn_outro_email').removeClass('no-display');
+					exibir_modal = true;
+					$('#btn_acessar').removeAttr('disabled','disabled');
+					toastr["error"]('EMAIL NÃO LOCALIZADO!','ERRO');
+				} else if(json.login == 3) {
+					$('#carregado_dados').html('ERRO<br>Senha errada');
+					$('#btn_acessar').removeAttr('disabled','disabled');
+					toastr["error"]('SENHA INVÁLIDA!','ERRO');
+				} else if(json.login == 4) {
+					clearInterval(carregando_dados);
+					$('#carregado_dados').html('Email não validado');
+					$('#btn_acessar').removeAttr('disabled','disabled');
+					toastr["error"]('Após fazer o cadastro você recebeu um email que precisa ser validado, pois só trabalhamos com emails válidos','EMAIL NÃO VALIDADO');
+					$('#info_modal').html('<strong>EMAIL NÃO VALIDADO</strong> <br> Após fazer o cadastro você recebeu um email que precisa ser validado. Localize o email (veja na caixa de spam) e clique no link que você recebeu para validar seu email no nosso sistema, pois só trabalhamos com Emails válidados');
+					$('#btn_outro_email').removeClass('no-display');
+					exibir_modal = true;
+				} else if(json.login == 5 || json.login == 5 || json.login == 7 || json.login == 8) {
+					clearInterval(carregando_dados);
+					$('#carregado_dados').html('ERRO DE CADASTRO - ' + json.login);
+					$('#btn_acessar').removeAttr('disabled','disabled');
+					toastr["error"]('Ocorreu algum erro de cadastro!','ERRO DE CADASTRO - ' + json.login);
+					$('#info_modal').html('<strong>Ocorreu algum erro de cadastro:</strong><br>1 -	Se você cadastrou um email não válido, nosso sistema não permitirá o acesso, pois só trabalhamos com emails válidos.<br>Cadastre um email válido (Existente e ativo)<br>2 -	Ou pode ter ocorrido algum erro no momento do cadastro, conexão, banco de dados, etc.<br><br><strong>Caso o problema persista estamos a disposição.</strong><br>Entre em contato com a nossa equipe e reporte ERRO DE CADASTRO ' + json.login + '.<br><a href="index.html?#contato">CONTATO NO MAPA</a>');
+					$('#btn_outro_email').removeClass('no-display');
+					exibir_modal = true;
+				} else if(json.login == 9) {
+					clearInterval(carregando_dados);
+					$('#carregado_dados').html('ERRO DE CONEXÃO - ' + json.login);
+					$('#btn_acessar').removeAttr('disabled','disabled');
+					toastr["error"]('Erro de conexão ao acessar o banco de dados.','ERRO DE CONEXÃO - ' + json.login);
+					$('#info_modal').html('<strong>Ocorreu algum Erro de conexão ao acessar o banco de dados.</strong><br>Tente novamente e caso o problema persista estamos a disposição.</strong><br>Entre em contato com a nossa equipe e reporte ERRO DE CONEXÃO ' + json.login + '.<br><a href="index.html?#contato">CONTATO NO MAPA</a>');
+					$('#btn_outro_email').removeClass('no-display');
+					exibir_modal = true;
+				}				
+				if(exibir_modal == true){
 					$('#panel_retorno').modal({
 									backdrop: 'static',
 									keyboard: false  // to prevent closing with Esc button (if you want this too)
 								})   // initialized with no keyboard
-					$('#panel_retorno').modal('show');	
-				} else if(json.login == 2) {
-					$('#carregado_dados').html('ERRO<br>Não localizamos esse email em nosso banco de dados, verifique e tente novamente ou entre em contato com a nossa central de atendimento');
-					$('#btn_acessar').removeAttr('disabled','disabled');
-					toastr["error"]('login (email) ou senha inválidos','ERRO');
-				} else if(json.login == 3) {
-					$('#carregado_dados').html('ERRO<br>Senha errada');
-					$('#btn_acessar').removeAttr('disabled','disabled');
-					toastr["error"]('login (email) ou senha inválidos','ERRO');
-				} else {
-					clearInterval(carregando_dados);
-					$('#carregado_dados').html('ERRO<br>Login (email) ou senha inválidos');
-					$('#btn_acessar').removeAttr('disabled','disabled');
-					toastr["error"]('login (email) ou senha inválidos','ERRO');
+					$('#panel_retorno').modal('show');
 				}
 			}				
 		});
@@ -394,7 +431,7 @@ toastr.options = {
   "onclick": null,
   "fadeIn": 300,
   "fadeOut": 1000,
-  "timeOut": 10000,
+  "timeOut": 5000,
   "extendedTimeOut": 1000
 }
 

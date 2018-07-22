@@ -5,13 +5,13 @@ mysqli_set_charset($conexao, "utf8");
 
 $desenvolvimento_frd = false;
 if($desenvolvimento_frd){
-$_POST['senha'] 				= 'DSB@mapa';
-$_POST['responsavel'] 	= '0';
-$_POST['permissao_id']	= '10';
-$_POST['nome'] 					= 'Hamilton';
-$_POST['sbnome'] 				= 'Silva';
-$_POST['email'] 				= 'fradinho@hotmail.com';
-$_POST['api_key'] 			= '001llv0001';
+//$_POST['senha'] 				= 'DSB@mapa';
+//$_POST['responsavel'] 	= '0';
+//$_POST['permissao_id']	= '10';
+//$_POST['nome'] 					= 'Hamilton';
+//$_POST['sbnome'] 				= 'Silva';
+//$_POST['email'] 				= 'fradinho@hotmail.com';
+//$_POST['api_key'] 			= '001llv0001';
 }
 include_once("include/functions.php");
 //include_once("php-email/phpmailer/class.phpmailer.php");

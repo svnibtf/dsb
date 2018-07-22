@@ -17,7 +17,14 @@ if($desenvolvimento_frd){
 if (isset($senha) && $senha != ''){
 	$senha_new = trim($senha);
 	$senha_new = md5($senha_new);
-	if(isset($session_id))$session_id = $_SESSION['session_id'];	
+	if(isset($_SESSION['session_id'])){
+		$session_id = $_SESSION['session_id']; 
+		$where = "id = '$session_id'";
+	}
+	
+	if(isset($code) && isset($email)){
+		$where = "email = '$email' AND email = '$email'";
+	}
 	
 	if(isset($code) && isset($email)){	
 		$sql_sel = $conexao->query("SELECT id, code
@@ -30,9 +37,11 @@ if (isset($senha) && $senha != ''){
 				$session_id = $dados['id'];
 				//echo ' code =  ' . $dados['code'];
 			} else {
-				$retorno['cadastro'] = 'erro_code';
-				if($dados['code'] == 0){
-					$retorno['cadastro'] = 'erro_alterada';
+				if(!isset($_SESSION['session_id'])){
+					$retorno['cadastro'] = 'erro_code';
+					if($dados['code'] == 0){
+						$retorno['cadastro'] = 'erro_alterada';
+					}
 				}
 				//echo ' code =  ' . $dados['code'];
 			}

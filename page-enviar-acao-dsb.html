@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="assets/css-frd/style-responsive-mobile.css">
 <link rel="stylesheet" href="assets/css-frd/style-white-1.css">
 <link rel="stylesheet" href="assets/css/styles_frd.css">
-<!--<link rel="shortcut icon" href="images/_favicon.ico"/>-->
+<!--<link rel="shortcut icon" href="images/favicon.ico"/>-->
 <script src="assets/js-obs/jquery-3.2.1.min.js"></script>
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script>
@@ -542,7 +542,10 @@ function enviar_dados_func(){
 					$('btn-avancar').addClass('no-display');
 					$('#val_body_modal').html('DADOS DO CADASTRO:');
 					for (var index in item_dados_db['dados_link']){
-						$('#val_body_modal').append('<p>' + index.toUpperCase() +  ' = ' + item_dados_db['dados_link'][index] + '</p>');
+						if(index == 'dbo_link')$('#val_body_modal').append('<p>' + 'LINK: ' + item_dados_db['dados_link'][index] + '</p>');
+						if(index == 'dbo_autor')$('#val_body_modal').append('<p>' + 'Autor/Fonte: ' + item_dados_db['dados_link'][index] + '</p>');
+						if(index == 'dbo_tit')$('#val_body_modal').append('<p>' + 'Título: ' + item_dados_db['dados_link'][index] + '</p>');
+						if(index == 'dbo_time_in')$('#val_body_modal').append('<p>' + 'Postado em: ' + item_dados_db['dados_link'][index] + '</p>');					
 					}
 				} else {
 					

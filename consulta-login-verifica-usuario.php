@@ -63,7 +63,7 @@ if(isset($email)){
 			$MACHINE_CODE = 179223;
 			$SEQUENCIA = 'DSB - Double';
 		/////////// //////////////////////////// //////////
-		if($dados_array['email_validado'] == 0){
+		if($dados_array['emailvalidado'] == 0){
 			$validar = validar_email_llv($SEQUENCIA, $email, $MACHINE_CODE);
 			//$validar = 7;	
 			//echo 'validar = ' . $validar . '<br>';
@@ -76,18 +76,18 @@ if(isset($email)){
 			} else if($validar == 1){/////CADASTRADO NO BANCO E NO LLV NA MÁQUINA CERTA
 				$sql_up =	"UPDATE usuarios
 									SET 
-										email_validado = 1
+										emailvalidado = 1
 									WHERE
 										email = '$email'";
 				$conexao->query($sql_up);
 			} else if($validar == 8){/////CADASTRADO NO BANCO E NAO NO LLV OU HARD BOUNCE	
 				$retorno['login'] = 8;
-			}  else if($validar == 9){/////ERRO AO ACESSAR O BANCO	NO LLV
+			}  else if($validar == 9){/////ERRO AO ACESSAR O BANCO NO LLV
 				$retorno['login'] = 9;
 			}
 		}
 	
-		if($dados_array['email_validado'] == 1 || $validar == 1){/////CADASTRADO NO BANCO E NO LLV NA MÁQUINA CERTA
+		if($dados_array['emailvalidado'] == 1 || $validar == 1){/////CADASTRADO NO BANCO E NO LLV NA MÁQUINA CERTA
 			if($dados_array['senha'] == $senha){
 				$_SESSION['session_local'] = $local;
 				foreach($dados_array AS $key => $dados){

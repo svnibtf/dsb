@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="../assets/css-frd/style-responsive-mobile.css">
 <link rel="stylesheet" href="../assets/css-frd/style-white-1.css">
 <link rel="stylesheet" href="../assets/css/styles_frd.css">
-<link rel="shortcut icon" href="../../images/_favicon.ico"/>
+<link rel="shortcut icon" href="../../images/favicon.ico"/>
 <script src="../assets/js-obs/jquery-3.2.1.min.js"></script>
 <script src="../assets/js-obs/bootstrap.bundle.min.js"></script>
 <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -135,15 +135,15 @@ call = setInterval(callback_CARREGANDO, 100);
           <div class="form-dd-pessoais">
             <div class="form-group">
               <label class="control-label text-small"> Nome* </label>
-              <input type="text" placeholder="Nome" class="form-control dados_send" id="nome" name="nome" onChange="dados_send_acesso(id)">
+              <input type="text" id="nome" name="nome" placeholder="Nome" class="form-control dados_send"  onChange="dados_send_acesso(id)">
             </div>
             <div class="form-group">
               <label class="control-label text-small"> Sobrenome* </label>
-              <input type="text" placeholder="Sobrenome" class="form-control dados_send" id="sobrenome" name="sobrenome" onChange="dados_send_acesso(id)">
+              <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" class="form-control dados_send" onChange="dados_send_acesso(id)">
             </div>
             <div class="form-group">
               <label class="control-label text-small"> Email </label>
-              <input type="text" placeholder="email" class="form-control dados_send" id="email" name="email" data-tp="usuarios" disabled>
+              <input type="text" id="email" name="email" placeholder="email" class="form-control dados_send" data-tp="usuarios" disabled>
             </div>
             <div>
               <button class="btn btn-blue btn-block accordion-toggle space5" data-toggle="collapse" data-parent="#accordion" href="#troca_de_senha" onClick="view_btn_send()">TROCAR MINHA SENHA</button>
@@ -244,32 +244,57 @@ function consulta_inicial(){
 	console.log(code , email);
 	toastr.remove();
 	toastr["info"]('Aguarde carregando dados!', "");
-	desenvolvimento = false;
-		$.ajax({
-		url: '../consulta-config-inicial.php',
-		type: "POST",
-		dataType: "json",
-		data:({
-			desenvolvimento : desenvolvimento,
-					}),
-		success: function(json){
-			toastr.remove();
-			item_dados_db = json;
-			logado = json.logado;
-			console.log('item_dados_db = ', item_dados_db);
-			if(item_dados_db == ''){
-				console.log('log erro = ', json.logado);
-			} else {
-				console.log('log sucesso = ', json.logado);
-				$('#info_tt_pt').html('DADOS PESSOAIS');
-				$('#dados-usuario').removeClass('no-display');
-				for (var index in item_dados_db){
-					var id = index.split("_");
-					$('#'+ id[1]).val(json[index]);
+	if(code == undefined && email == undefined){
+			desenvolvimento = false;
+			$.ajax({
+			url: '../consulta-config-inicial.php',
+			type: "POST",
+			dataType: "json",
+			data:({
+				desenvolvimento : desenvolvimento,
+						}),
+			success: function(json){
+				toastr.remove();
+				item_dados_db = json;
+				logado = json.logado;
+				console.log('item_dados_db = ', item_dados_db);
+				if(item_dados_db == ''){
+					console.log('log erro = ', json.logado);
+				} else {
+					console.log('log sucesso = ', json.logado);
+					$('#info_tt_pt').html('DADOS PESSOAIS');
+					$('#dados-usuario').removeClass('no-display');
+					for (var index in item_dados_db){
+						var id = index.split("_");
+						console.log('id = ', id);
+						$('#'+ id[1]).val(json[index]);
+					}
 				}
 			}
-		}
-	});
+		});
+	} else {
+		$.ajax({
+			url: 'consulta-org-dados-torcar-senha.php',
+			type: "POST",
+			dataType: "json",
+			data:({
+				code : code,
+				email: email
+						}),
+			success: function(json){
+				toastr.remove();
+				item_dados_db = json;
+				if(item_dados_db == ''){
+					//console.log('log erro = ', json.logado);
+				} else {
+					console.log('item_dados_db = ', item_dados_db);
+					for (var index in item_dados_db['dados_usuario']){
+						$('#'+ index).val(item_dados_db['dados_usuario'][index]);
+					}
+				}
+			}
+		});		
+	}
 }
 
 function dados_send_senha() {
@@ -360,6 +385,15 @@ function dados_send_acesso(id) {
 	}
 }
 
-
+toastr.options = {
+	"closeButton": true,
+  "debug": false,
+  "positionClass": "toast-top-full-width",
+  "onclick": null,
+  "fadeIn": 300,
+  "fadeOut": 1000,
+  "timeOut": 10000,
+  "extendedTimeOut": 1000
+}
 </script>
 </html>

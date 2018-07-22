@@ -24,7 +24,7 @@
 <script src="assets/js-obs/jquery-3.2.1.min.js"></script>
 <script src="assets/js-obs/bootstrap.bundle.min.js"></script>
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<link rel="shortcut icon" href="images/_favicon.ico"/>
+<link rel="shortcut icon" href="images/favicon.ico"/>
 
 <!--GOOGLE ANALYTICS NÃO ALTERAR-->
 <script>
@@ -37,7 +37,9 @@
 	ga('send', 'pageview');
 </script>
 <style>
-
+body {
+	max-width: 900px;
+}
 .font-banner-p {
 	font-size: 38px;
 }
@@ -337,15 +339,13 @@ call = setInterval(callback_CARREGANDO, 100);
 </script>
 
 <!--INICIO DA PÁGINA-->
-<div class="container">
 <div class="row">
   <div class="col-sm-12">
     <div class="top-10p"></div>
     <!--DADOS DA PÁGINA TOPO-->
     <div class="panel panel-white">
-      <div class="panel-heading"> <a href="index.html" class="pull-left"><i class="fa fa-mail-reply">&nbsp;</i> <i class="fa fa-home"></i>&nbsp;MAPA</a><a href="index.html" class="pull-right"><img src="images/logos/logo-dsb-2.png" class="img-fluid pull-right" alt="logo" style="max-width:30px;"></a>
-        <div class="panel-title center">MAPA DO <strong>DIREITO SISTÊMICO</strong><br>
-          NO BRASIL</div>
+      <div class="panel-heading">
+        <a href="index.html" class="pull-left"><i class="fa fa-mail-reply">&nbsp;</i> <i class="fa fa-home"></i>&nbsp;MAPA</a><a href="index.html" class="pull-right"><img src="images/logos/logo-dsb-2.png" class="img-fluid pull-right" alt="logo" style="max-width:30px;"></a><div class="panel-title center">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</div>  
       </div>
       <div class="panel-body col-lg-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-lg-8">
           <!--DADOS DA PÁGINA DADOS -->
@@ -358,14 +358,14 @@ call = setInterval(callback_CARREGANDO, 100);
           <p class="content text-center" data-selector="p">Preencha com os seus dados:</p>
           <p id="aguarde_carregando" class="text-center content text-small" data-selector="p" style="display:none"><strong>AGUARDE CARREGANDO PRÓXIMO PASSO<br />
             <i class="fa fa-2x fa-cog fa-spin"></i></strong></p>
-          <form id="dados_aluno" action="https://leadlovers.com/Pages/Index/179223" class="form-horizontal text-left" style="border: medium none;" method="post">
+          <form id="form_cadastro" action="https://leadlovers.com/Pages/Index/179223" class="" style="border: medium none;" method="post">
             <input id="id" name="id" value="179223" type="hidden">
             <input id="pid" name="pid" value="6296452" type="hidden">
             <input id="list_id" name="list_id" value="179223" type="hidden">
             <input id="provider" name="provider" value="leadlovers" type="hidden">
             <div class="form-group">
               <label for="name">Nome Completo:</label>
-              <input class="form-control" id="name" name="name" placeholder="Informe o seu nome completo" style="" type="text" required  data-value-missing="Required">
+              <input class="form-control" id="name" name="name" placeholder="Informe o seu nome completo" style="" type="text" required>
             </div>
             <div class="form-group">
               <label for="phone">Telefone (preferência celular):</label>
@@ -393,18 +393,17 @@ call = setInterval(callback_CARREGANDO, 100);
             </div>
             <div class="form-group">
               <label for="senha">Confirme a mesma senha:</label>
-              <input class="form-control" id="senha_confirma" name="senha_confirma" placeholder="Informe o seu melhor email" type="password"  maxlength="20" required>
+              <input class="form-control" id="senha_confirma" name="senha_confirma" placeholder="Confirme a senha" type="password"  maxlength="20" required>
             </div>
             <input id="source" name="source" value="" type="hidden">
             <img src="https://llimages.com/redirect/redirect.aspx?A=V&amp;p=6296452&amp;m=179223" alt="" style="display: none;" data-selector="img">
-            
+            <button type="submit" class="btnValidaAcesso no-display"></button>
           </form>
           <button id="btn_avancar" class="btn btn-danger" style="margin-bottom: 5px; color: rgb(255, 255, 255); border-color: rgb(228, 139, 55); border-width: 1px; border-radius: 4px; font-size: 17px; background-color: rgb(228, 139, 55);" type="button" data-selector="a.btn, a.download-btn, button.btn, a.goto" onclick="enviar_frd()">Avançar</button>
         </div>
       </div>
     </div>
   </div>
-</div>
   <div class="modal fade" id="panel_dim_n" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-center modal-sm" role="document">
       <div class="modal-content">
@@ -501,12 +500,12 @@ function enviar_frd(){
 	}
 	if(enviar){
 		toastr["info"]('<i class="fa fa-cog fa-spin"></i>&nbsp; Aguarde!!', "VERIFICANDO DADOS");	 
-	//console.log($("#dados_aluno").serialize());
+	//console.log($("#form_cadastro").serialize());
 		$.ajax({
 			url: "consulta-inserir-dados-usuarios-llv.php",
 			type: "POST",
 			dataType: "json",
-				data: $("#dados_aluno").serialize(),
+				data: $("#form_cadastro").serialize(),
 			success: function(json){
 				console.log(json, json['cadastro']);
 				if(json['cadastro'] == 'sucesso'){				
@@ -517,6 +516,8 @@ function enviar_frd(){
 				}
 			}
 		});
+	} else {
+		$('.btnValidaAcesso').click();
 	}
 }
 
@@ -533,7 +534,7 @@ toastr.options = {
 
 function enviar_llv(){
 	toastr["success"]('<i class="fa fa-cog fa-spin"></i>&nbsp; Redirecionando!!', "MAIS UM POUQUINHO");
-	document.getElementById("dados_aluno").submit();
+	document.getElementById("form_cadastro").submit();
 }
 <!-- End code pzw.io  //-->
 

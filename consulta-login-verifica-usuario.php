@@ -17,7 +17,7 @@ if($desenvolvimento_frd){
 // $senha 			= '123456';
 // $email 			= 'hsfradinho@gmail.com';
 
-// $senha 			= 'DSB@mapa';
+// $senha 			= '123456';
 // $email 			= 'hsfradinho@hotmail.com';
 
 	//$senha 			= '123456';

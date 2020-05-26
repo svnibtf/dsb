@@ -1,0 +1,437 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>MAPA DO DIREITO SISTÊMICO NO BRASIL</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="" name="description" />
+<meta content="" name="author" />
+<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/styles-responsive.css">
+<link rel="stylesheet" href="assets/css-frd/style-responsive-mobile.css">
+<link rel="stylesheet" href="assets/css-frd/style-white-1.css">
+<link rel="stylesheet" href="assets/css/styles_frd.css">
+<link rel="shortcut icon" href="images/favicon.ico"/>
+<script src="assets/js-obs/jquery-3.2.1.min.js"></script>
+<script src="assets/js-obs/bootstrap.bundle.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<style>
+body {
+	max-width: 900px;
+}
+/*////////////CARREGANDO////////////*/
+.div_carreg {
+	margin-top: 100px;
+}
+.div_carreg_bar {
+	background-color: #C5C5C5;
+	width: 60%;
+	margin-left: 20%;
+	top: 100px;
+	height: 10px;
+	border: solid thin #909090;
+}
+.div_carreg_per {
+	background-color: #007697;
+	width: 10%;
+	height: 9px;
+}
+.div_carreg_txt {
+	width: 60%;
+	margin-left: 20%;
+	text-align: center;
+	color: #007697;
+}
+.btn-info-topo {
+	background-color: transparent;
+	border: none;
+}
+.modal-backdrop {
+	background-color: #FBFBFB;
+}
+.cadastro_form {
+	width: 92%;
+	/*margin-left: 4%;*/
+}
+.cadastro_div {
+	background-color: white;
+	border: 1px solid #EBEBEB;
+}
+
+.panel-title{
+	font-size:x-small;
+}
+</style>
+</head>
+
+<body>
+<div class="div_carreg">
+  <div class="div_carreg_bar">
+    <div id="carreg_per" class="div_carreg_per"></div>
+  </div>
+  <p id="carreg_per_txt" class="div_carreg_txt">Carregando</p>
+</div>
+<script>
+var dados_config = new Array();
+var carregando = 0;
+var carregar_script = 0;
+e = document.getElementsByClassName('div_carreg_per');
+
+var dados = false;
+function callback_CARREGANDO(){
+	if(typeof dados_config !== 'undefined'){
+		callback_CARREGADO();
+	}
+	carregando ++;
+	if(carregando > 90)carregando = 10;
+	document.getElementById('carreg_per_txt').innerHTML = 'carregando scripts:' + carregar_script;
+	e[0].style["width"] = carregando +'%';
+	carregar_script ++;
+	return console.log(dados);
+}
+
+function callback_CARREGADO(){	
+	carregando = 100;
+	//$('.div_carreg_per').css({'width':carregando});
+	clearInterval(call);
+	$('#pg_cadastro').removeClass('no-display');
+	$('.div_carreg').addClass('no-display');
+	//////////// STARTICONE E URL VIDEO INFO NO RODAPÉ FOOTER-PV.JS TITULO E DOIS VÍDEOS ///////////////
+	console.log ('session_info_inicial frd = ', dados_config['session_info_inicial']);
+	if(dados_config['session_info_inicial'] < 1){
+		$('#primeiro_acesso').removeClass('no-display');
+	}
+	if (typeof footer_carregado !== 'undefined') {
+		$('#info_mat_vdo').removeClass('no-display').attr('href','page-info-mat-vdo-inicial.html');
+	} else {
+		console.log(' TIME OUT info_mat_vdo');
+	}
+}
+call = setInterval(callback_CARREGANDO, 100);
+</script>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="top-10p"></div>
+    <!--DADOS DA PÁGINA TOPO-->
+    <div class="panel panel-white">
+      <div class="panel-heading">
+        <a href="index.html" class="pull-left"><i class="fa fa-mail-reply">&nbsp;</i> <i class="fa fa-home"></i>&nbsp;MAPA</a><a href="index.html" class="pull-right"><img src="images/logos/logo-dsb-2.png" class="img-fluid pull-right" alt="logo" style="max-width:30px;"></a><div class="panel-title center">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</div>  
+      </div>
+      <div class="panel-body col-lg-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-lg-8">
+        <div id="pg_cadastro" class="no-display"> 
+          <!--DADOS DA PÁGINA DADOS -->
+          <div id="info_geral" class="alert alert-info center"></div>
+          <div align="center" id="cadastro" class="cadastro_div">
+            <form id="form_cadastro" class="cadastro_form" method="post">
+              <div class="form-group">
+                <label for="email">Login</label>
+                <input type="email" class="form-control feedback" id="email" placeholder="Insira seu email de cadastro" maxlength="100" required>
+              </div>
+              <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" class="form-control feedback" id="senha" placeholder="Insira sua senha" maxlength="20" required>
+              </div>            
+            <button type="submit" class="btnValidaAcesso no-display"></button> 
+            </form>
+            <div id="btn_acessar" class="cadastro_form" align="left">
+            	<button type="button" class="btn btn-blue fundo-btn btn-xs" onClick="login()" style="margin-bottom:16px;">ACESSAR</button>
+            
+             	<button id="btn_esqueci_senha" type="button" class="btn btn-white fundo-btn btn-xs pull-right" onClick="esqueci_minha_senha(id)" style="margin-bottom:16px;">ESQUECI MINHA SENHA</button>
+             </div>
+              <div id="carregado_dados" align="center" class="no-display cadastro_form" style="margin-top:6px;"><i class="fa fa-cog fa-spin"></i>&nbsp;Aguarde!<br>
+                Verificando seus dados.</div>
+          </div>
+          <div align="right" class="cadastro_div " style=" margin-top:16px; margin-bottom:160px;">
+          <a type="button" class="btn btn-danger  btn-lg btn-block" href="page-cadastro.html" target="_blank">Quero me cadastrar</a>
+          <img src="images/logos/logo-dsb-2-gg.jpg" class="img-responsive" alt="logo">
+          </div>
+        </div>
+      </div>
+      <!--<div class="footer-pv10"></div>--> 
+    </div>
+  </div>
+</div>
+<!--////////////////////MODAL /////////////////////-->
+<div class="modal fade" id="panel_retorno" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="" align="center"><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="info_ori_dim">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</span></h5>
+      </div>
+      <div class="modal-body">
+      <div id="info_modal" class="info-retorno"></div>
+      <button id="btn_avancar" type="button" class="btn btn-success btn-block btn-lg btns-retornos" onClick="avancar_page()">AVANÇAR</button>
+      </div>
+      <div class="modal-footer">        
+        <a id="btn_acessar_dp" type="button" href="all-apps/page-org-config-dados-pessoais.html" target="_self" class="btn btn-blue btn-block btn-xs btns-retornos 1" style="font-size:xx-small">ACESSAR MEUS DADOS<br>PARA TORCAR MINHA SENHA</a>
+        <a id="btn_outro_email" type="button" class="btn btn-danger btn-lg btn-block btns-retornos" href="page-cadastro.html" target="_blank">Quero me cadastrar<br>com outro email</a>
+          <img src="images/logos/logo-dsb-2-gg.jpg" class="img-responsive" alt="logo">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="panel_esqueci_senha" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-center modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="" align="center"><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</span></h5>
+      </div>
+      <div class="modal-body">
+      <div id="retorno_body_modal">
+      
+      </div>
+      <div>
+      	<p>1 - Insira o email que você utilizou para fazer o seu cadastro e aguarde a verificação;</p>
+        <p>2 - Você receberá um email (pode levar alguns minutos - verifique sua caixa de spam) confirmando a solicitação de mudança de senha;</p>
+        <p>3 - Leia com atenção o email e siga os passos indicados para alterar sua senha. </p>      
+      </div>
+      <form id="form_esqueci_senha">
+        <div class="form-group">
+          <label for="email">Insira seu email cadastrado</label>
+          <input type="email" class="form-control" id="esqueci_email" placeholder="email cadastrado" maxlength="100" style="font-size:small" required>
+        </div>
+        <button type="submit" class="btnValida no-display">Enviar que valida o required</button>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button id="btn_enviar_esqueci_senha" type="button" class="btn btn-primary" onClick="esqueci_minha_senha(id)">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+</body>
+<!-- start: MAIN JAVASCRIPTS -->
+<script src="assets/plugins/TouchSwipe/jquery.touchSwipe.min.js"></script>
+<script src="assets/plugins/toastr/toastr.js"></script>
+<script src="assets/plugins/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+<!-- end: MAIN JAVASCRIPTS -->
+
+<script>
+jQuery(document).ready(function() {
+	consulta_inicial()
+});
+var item_dados_db = new Array();
+
+var cont_carrg = 20;
+function callback_CARREGANDO_DADOS(){
+	cont_carrg --;
+	$('#cont_carreg').html(cont_carrg);
+	if(cont_carrg < 1){
+	$('#carregado_dados').removeClass('no-display').html('<p class="text-extra-small">Ocorreu algum problema.<br> Verifique sua conexão e tente novamente,<br>ou entre em contato no botão de atendimento abaixo.</p>');
+	clearInterval(carregando_dados);
+	}
+}
+
+function consulta_inicial(){
+	toastr.remove();
+	toastr["info"]('Aguarde carregando dados!', "");
+	desenvolvimento = false;
+		$.ajax({
+		url: 'consulta-config-inicial.php',
+		type: "POST",
+		dataType: "json",
+		data:({
+			desenvolvimento : desenvolvimento,
+					}),
+		success: function(json){
+			toastr.remove();
+			item_dados_db = json;
+			logado = json.logado;
+			console.log('item_dados_db = ', item_dados_db);
+			if(item_dados_db == ''){
+				console.log('log erro = ', json.logado);
+			} else {
+				console.log('log sucesso = ', json.logado);
+				if(json.logado == 'sucesso'){
+					$('#info_geral').html('Você está logado. Retorne ao MAPA ou <button class="btn btn-danger btn-xs" onClick="sair()">SAIR</button>');
+				} else if(json.logado == 'erro'){
+					$('#info_geral').html('Faça o Login abaixo!');
+				}
+			}
+		}
+	});
+}
+
+get_url = {};
+var url_local = window.location.href;
+url = url_local.replace(/#/g, "");
+if(url_local.indexOf("?")>-1){
+	var location_search = url_local.substring(1).split('?');
+	var parts = location_search[1].substring(0).split('#');
+	for (var i = 0; i < parts.length; i++) {
+		var nv = parts[i].split('=');
+		if (!nv[0]) continue;
+		get_url[nv[0]] = nv[1] || true;
+	}
+}
+estado = get_url.estado;
+enviar = get_url.enviar;
+console.log('enviar = ', enviar);
+
+if(typeof enviar != 'undefined' && enviar == 'cadastrar'){
+	$('#info_geral').html('Temos o maior prazer em colocar o seu link a disposição em nosso MAPA DE AÇÕES DO DIREITO SISTÊMICO NO BRASIL, mas precisamos primeiro identificá-lo.<br>Acesse com seu login (email) e senha ou clique em quero me cadastrar para fazer o seu cadastro.<br>O seu link é muito importante para nós!');
+}
+
+var url_login = '';
+function login(){
+	email= $('#email').val();
+	senha= $('#senha').val();
+	if($('#form_cadastro')[0].checkValidity()){
+		console.log('form_cadastro = ',$('#form_cadastro')[0].checkValidity());
+		$('#carregado_dados').removeClass('no-display').html('<i class="fa fa-cog fa-spin"></i>&nbsp;Aguarde!<br>Verificando seus dados.&nbsp;Tempo:&nbsp;<span id="cont_carreg">20</span>&nbsp; seg');
+		$('#btn_acessar').attr('disabled','disabled');
+		carregando_dados = setInterval(callback_CARREGANDO_DADOS, 1000);
+		$('.btns-retornos').each(function(index, element) {
+      $(this).addClass('no-display');
+    });
+		$('#info_modal').html('');
+		$.ajax({
+		url: "consulta-login-verifica-usuario.php",
+		type: "POST",
+		dataType: "json",
+		data: ({
+				email	: email,
+				senha	: senha,	
+			}),
+		success: function(json){
+				var exibir_modal = false;
+				console.log('RETORNO LOG = ',json);
+				///// EXEMPLOS DE ACESSOS /// json.login = 9;
+				if(json.login == 1){
+					$('#carregado_dados').addClass('no-display');
+					if(typeof estado == 'undefined'){
+						url_login = 'index.html';
+					} else {
+						url_login = 'page-dados-filtro-pesquisa.html?estado='+estado;
+					}
+					clearInterval(carregando_dados);
+					$('#btn_avancar, #btn_acessar_dp').removeClass('no-display');
+					exibir_modal = true;
+				} else if(json.login == 2) {
+					$('#carregado_dados').html('<strong>EMAIL NÃO LOCALIZADO</strong><br>Não localizamos esse email.');
+					$('#info_modal').html('<strong>EMAIL NÃO LOCALIZADO</strong><br>Não localizamos esse email em nosso banco de dados, verifique e tente novamente ou entre em contato com a nossa central de atendimento.<br><a href="index.html?#contato">CONTATO NO MAPA</a>');
+					$('#btn_outro_email').removeClass('no-display');
+					exibir_modal = true;
+					$('#btn_acessar').removeAttr('disabled','disabled');
+					toastr["error"]('EMAIL NÃO LOCALIZADO!','ERRO');
+				} else if(json.login == 3) {
+					$('#carregado_dados').html('ERRO<br>Senha errada');
+					$('#btn_acessar').removeAttr('disabled','disabled');
+					toastr["error"]('SENHA INVÁLIDA!','ERRO');
+				} else if(json.login == 4) {
+					clearInterval(carregando_dados);
+					$('#carregado_dados').html('Email não validado');
+					$('#btn_acessar').removeAttr('disabled','disabled');
+					toastr["error"]('Após fazer o cadastro você recebeu um email que precisa ser validado, pois só trabalhamos com emails válidos','EMAIL NÃO VALIDADO');
+					$('#info_modal').html('<strong>EMAIL NÃO VALIDADO</strong> <br> Após fazer o cadastro você recebeu um email que precisa ser validado. Localize o email (veja na caixa de spam) e clique no link que você recebeu para validar seu email no nosso sistema, pois só trabalhamos com Emails válidados');
+					$('#btn_outro_email').removeClass('no-display');
+					exibir_modal = true;
+				} else if(json.login == 5 || json.login == 5 || json.login == 7 || json.login == 8) {
+					clearInterval(carregando_dados);
+					$('#carregado_dados').html('ERRO DE CADASTRO - ' + json.login);
+					$('#btn_acessar').removeAttr('disabled','disabled');
+					toastr["error"]('Ocorreu algum erro de cadastro!','ERRO DE CADASTRO - ' + json.login);
+					$('#info_modal').html('<strong>Ocorreu algum erro de cadastro:</strong><br>1 -	Se você cadastrou um email não válido, nosso sistema não permitirá o acesso, pois só trabalhamos com emails válidos.<br>Cadastre um email válido (Existente e ativo)<br>2 -	Ou pode ter ocorrido algum erro no momento do cadastro, conexão, banco de dados, etc.<br><br><strong>Caso o problema persista estamos a disposição.</strong><br>Entre em contato com a nossa equipe e reporte ERRO DE CADASTRO ' + json.login + '.<br><a href="index.html?#contato">CONTATO NO MAPA</a>');
+					$('#btn_outro_email').removeClass('no-display');
+					exibir_modal = true;
+				} else if(json.login == 9) {
+					clearInterval(carregando_dados);
+					$('#carregado_dados').html('ERRO DE CONEXÃO - ' + json.login);
+					$('#btn_acessar').removeAttr('disabled','disabled');
+					toastr["error"]('Erro de conexão ao acessar o banco de dados.','ERRO DE CONEXÃO - ' + json.login);
+					$('#info_modal').html('<strong>Ocorreu algum Erro de conexão ao acessar o banco de dados.</strong><br>Tente novamente e caso o problema persista estamos a disposição.</strong><br>Entre em contato com a nossa equipe e reporte ERRO DE CONEXÃO ' + json.login + '.<br><a href="index.html?#contato">CONTATO NO MAPA</a>');
+					$('#btn_outro_email').removeClass('no-display');
+					exibir_modal = true;
+				}				
+				if(exibir_modal == true){
+					$('#panel_retorno').modal({
+									backdrop: 'static',
+									keyboard: false  // to prevent closing with Esc button (if you want this too)
+								})   // initialized with no keyboard
+					$('#panel_retorno').modal('show');
+				}
+			}				
+		});
+	} else {
+		$('.btnValidaAcesso').click();
+	}
+}
+
+function esqueci_minha_senha(id){
+	$('#retorno_body_modal').html('');
+	if(id == 'btn_esqueci_senha'){
+		console.log('esqueci_minha_senha');
+		//$('#val_body_modal').html('');
+		$('#panel_esqueci_senha').modal({
+						backdrop: 'static',
+						keyboard: false  // to prevent closing with Esc button (if you want this too)
+					})   // initialized with no keyboard
+		$('#panel_esqueci_senha').modal('show');
+	} else if(id == 'btn_enviar_esqueci_senha'){
+		var esqueci_email = $('#esqueci_email').val();
+		var form_esqueci_senha = document.getElementById('form_esqueci_senha');
+		if($('#form_esqueci_senha')[0].checkValidity()){
+			console.log('esqueci_email = ', esqueci_email);
+			$('#retorno_body_modal').html('<div class="alert alert-info">AGUARDE ... <i class="fa fa-cog fa-spin"></i> ... PESQUISANDO!!!</div>');
+			$.ajax({
+				url: "all-apps/consulta-esqueci-minha-senha.php",
+				type: "POST",
+				dataType: "json",
+				data: ({
+						email	: esqueci_email,
+					}),
+				success: function(json){
+					console.log(json)
+					if(json['troca'] == -1){
+						$('#retorno_body_modal').html('<div class="alert alert-warning">Não encontramos esse email cadastrado em nosso banco de dados. <br> Troque o email e tente novamente ou entre em contato com a nossa central de atendimento. <a href="index.html?#contato"><div align="center">CONTATO NO MAPA</a></div></div>');
+					} else if(json['troca'] == 1){
+						$('#retorno_body_modal').html('<div class="alert alert-danger">Enviamos um email para '+esqueci_email+' com um link para que possa trocar a sua senha.<br>Dependemos agora dos servidores. Isso pode levar de alguns minutos até horas<br><br><div align="center"><strong>[IMPORTANTE]</strong><br>NÃO DEIXE DE OLHAR<br>NA SUA CAIXA DE SPAM.<br> Caso tenha dúvidas ou necessite de ajuda, entre em contato com a nossa central de atendimento.<br><a href="index.html?#contato">CONTATO NO MAPA</a></div></div>');
+					}
+				}
+			});
+		} else {
+			$('.btnValida').click();
+		}
+	}
+}
+
+function sair(){
+	$.ajax({
+		url: "consulta-sair.php",
+		type: "POST",
+		dataType: "json",
+		data: ({
+			}),
+		success: function(json){
+			location.reload();
+		}
+	});
+}
+
+function avancar_page(){
+	console.log(url_login);
+	window.open(url_login,'_self');
+}
+
+toastr.options = {
+	"closeButton": true,
+  "debug": false,
+  "positionClass": "toast-top-full-width",
+  "onclick": null,
+  "fadeIn": 300,
+  "fadeOut": 1000,
+  "timeOut": 5000,
+  "extendedTimeOut": 1000
+}
+
+</script>
+</html>

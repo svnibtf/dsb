@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sem título</title>
+</head>
+
+<body>
+	<script>
+	
+function isYoutubeVideo(url) {
+  var v = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+  return (url.match(v)) ? RegExp.$1 : false;
+}
+		
+var urlvideo = "https://www.youtube.com/embed/HVEknahCR0E"; //Substitua pela URL do seu vídeo
+var codvideo = isYoutubeVideo(urlvideo);
+ 
+if (!codvideo){
+	alert('Vídeo não encontrado.');
+}
+else{
+	alert('Código do vídeo: ' + codvideo);
+}
+	
+	</script>
+</body>
+</html>

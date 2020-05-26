@@ -1,0 +1,17 @@
+index-cadastro-relacao-entre-variaveis-de-retorno.txt 
+ret_login(acao, plano, passo, painel_modal)
+
+
+ret_lanc_plan_cad_prof(acao, plano, passo)
+login = 1
+login	udp_primeiro_acesso		acao 		plano 		passo 		painel_modal
+1																				
+1																				
+1																				
+1																				
+1																				
+1																				
+1																				
+1																				
+1																				
+1																				

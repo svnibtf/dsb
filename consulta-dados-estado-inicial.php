@@ -2,22 +2,27 @@
 	include_once("connections/define.php");
 	$conexao  = new mysqli(DB_HOST, DB_LOGIN, DB_SENHA, DB_NAME);
 	mysqli_set_charset($conexao, "utf8");
+
+//  include_once( "connections/define-iaper.php");
+//  $conexao_iaper  = new mysqli(DB_HOST_IAPER, DB_LOGIN_IAPER, DB_SENHA_IAPER, DB_NAME_IAPER);
+//  mysqli_set_charset($conexao_iaper, "utf8");
 	include_once("include/functions.php");
+
 	
 	$item_dados_db = array();
 	$retorno['cadastro'] = 'erro';
 	
 	if(isset($_SESSION['session_id']))$usuario_id = $_SESSION['session_id'];
 	if($desenvolvimento_interno){		
-//		$dbo_link 	= 'http://localhost/ds-observatorio/observatorio/page-inserir-dados.html5';
-//		$dbo_link 	= 'http://localhost/ds-observatorio/observatorio/page-inserir-dados.html5';
-//		$tit 				= 'aaaaaa';
-//		$autor 			= '';
-//		$estado 		= '0';		
-//		$descricao 	= 'descricao';
-//		$aluno_inn 	= false;
-//		$cidade 		= '0';
-//		$session_id	= 1;
+		$dbo_link 	= 'http://localhost/ds-observatorio/observatorio/page-inserir-dados.html5';
+    $dbo_link 	= '';
+		$tit 				= '';
+		$autor 			= '';
+		$estado 		= 'SP';		
+		$descricao 	= '';
+		$aluno_inn 	= '';
+		$cidade 		= '0';
+		$session_id	= 1;
 		$liberado = 0;
 	}
 	
@@ -55,21 +60,24 @@
 
 if((isset($estado) &&  $estado != '' ) || (isset($cidade) &&  $cidade != '') || (isset($autor) &&  $autor != '' ) || (isset($dbo_link) &&  $dbo_link != '') || (isset($tit) &&  $tit != '')){
 	//if($desenvolvimento_frd)echo '<pre> _POST = ', print_r($_POST['valor'],true), '</pre>';
-	
-	$sql = "SELECT dados_obs.*, nome, sobrenome, date_format(dbo_time_in, '%d/%m/%Y as %H:%i' ) as dbo_time_in
+	//dados_obs.*, nome, sobrenome, date_format(dbo_time_in, '%d/%m/%Y as %H:%i' ) as dbo_time_in
+	$sql = "SELECT dados_obs.*, usu_nome, usu_sobrenome, date_format(dbo_time_in, '%d/%m/%Y as %H:%i' ) as dbo_time_in
 					FROM dados_obs
 					LEFT JOIN estados ON sigla = dbo_estado
-					LEFT JOIN usuarios ON id = dbo_user_id_insert
+					LEFT JOIN iaper_db.usuarios ON usu_id = dbo_user_id_insert
 					WHERE 
 						$where
 					LIMIT 50 
 					";
-	if($desenvolvimento_frd)echo '<br> sql = ' . $sql;
+	//if($desenvolvimento_echo) echo '<br><br><br>LINHA: ' . __LINE__ . '  sql  = ' . $sql . '<br><br>';
+
 	$sql_exec = $conexao->query($sql);
 	while($dados = $sql_exec->fetch_assoc()){
 		$item_dados_db[] = $dados;
 	}
 	
+  if($desenvolvimento_echo) echo '<br>' . __LINE__ .  '<pre> item_dados_db ', print_r($item_dados_db,true), '</pre>';
+  
 	$retorno['itens'] = $_POST;
 	$retorno['cadastro'] = 'sucesso';	
 	$retorno['dados_estado'] = $item_dados_db;
@@ -87,6 +95,5 @@ if((isset($estado) &&  $estado != '' ) || (isset($cidade) &&  $cidade != '') || 
 		}
 }
 	
-if($desenvolvimento_frd)echo '<pre> item_dados_db  ', print_r($item_dados_db,true), '</pre>';
 echo json_encode($retorno);
 ?>

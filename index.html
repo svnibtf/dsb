@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 <head>
 <title>MAPA DO DIREITO SISTÊMICO NO BRASIL</title>
 <!-- Required meta tags -->
@@ -765,7 +765,7 @@ jQuery(document).ready(function() {
 var logado = 'erro';
 var estados = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
 function consulta_inicial(){
-	get_url();
+	get_url_func();
 	console.log(estado);
 	toastr["info"]('Aguarde carregando dados!', "");
 	desenvolvimento = false;
@@ -830,7 +830,7 @@ function num_leads_view(){
 }
 
 var estado = '';
-function get_url(){
+function get_url_func(){
 	get_url = {};
 		var url = window.location.href;
 		url = url.replace(/#/g, "");

@@ -18,54 +18,79 @@
 <link rel="stylesheet" href="assets/css-frd/style-white-1.css">
 <link rel="stylesheet" href="assets/css/styles_frd.css">
 <link rel="shortcut icon" href="images/favicon.ico"/>
-<script src="assets/js-obs/jquery-3.2.1.min.js"></script>
-<script src="assets/js-obs/bootstrap.bundle.min.js"></script>
+<script src="assets/js-obs/jquery-3.2.1.min.js"></script> 
+<script src="assets/js-obs/bootstrap.bundle.min.js"></script> 
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <style>
 body {
-	max-width: 900px;
+  max-width: 900px;
 }
 /*////////////CARREGANDO////////////*/
 .div_carreg {
-	margin-top: 100px;
+  margin-top: 100px;
 }
 .div_carreg_bar {
-	background-color: #C5C5C5;
-	width: 60%;
-	margin-left: 20%;
-	top: 100px;
-	height: 10px;
-	border: solid thin #909090;
+  background-color: #C5C5C5;
+  width: 60%;
+  margin-left: 20%;
+  top: 100px;
+  height: 10px;
+  border: solid thin #909090;
 }
 .div_carreg_per {
-	background-color: #007697;
-	width: 10%;
-	height: 9px;
+  background-color: #007697;
+  width: 10%;
+  height: 9px;
 }
 .div_carreg_txt {
-	width: 60%;
-	margin-left: 20%;
-	text-align: center;
-	color: #007697;
+  width: 60%;
+  margin-left: 20%;
+  text-align: center;
+  color: #007697;
 }
 .btn-info-topo {
-	background-color: transparent;
-	border: none;
+  background-color: transparent;
+  border: none;
 }
 .modal-backdrop {
-	background-color: #FBFBFB;
+  background-color: #FBFBFB;
 }
 .cadastro_form {
-	width: 92%;
-	margin-left: 4%;
+  width: 92%;/*margin-left: 4%;*/
 }
 .cadastro_div {
-	background-color: white;
-	border: 1px solid #EBEBEB;
+  background-color: white;
+  border: 1px solid #EBEBEB;
 }
-
-.panel-title{
-	font-size:x-small;
+.panel-title {
+  font-size: x-small;
+}
+/*/////////IMAGEM BOTÕES///////////*/
+.fundo-impar-frd {
+  background-color: #B0DFF7;
+}
+.fundo-par-frd {
+  background-color: #d9edf7;
+}
+.imagem-fisica-frd {
+  background-repeat: no-repeat;
+  background-image: url("images/tipos_fisica_juridica/imagem_fisica.png");
+  background-size: 50px 50px;
+  width: 50px;
+  height: 50px;
+  padding-bottom: 10px;
+}
+.imagem-juridica-frd {
+  background-repeat: no-repeat;
+  background-image: url("images/tipos_fisica_juridica/imagem_juridica.png");
+  background-size: 50px 50px;
+  width: 50px;
+  height: 50px;
+  padding-bottom: 10px;
+}
+.info_tipo_ajustes {
+  color: grey;
+  font-size: 10px;
 }
 </style>
 </head>
@@ -100,7 +125,7 @@ function callback_CARREGADO(){
 	carregando = 100;
 	//$('.div_carreg_per').css({'width':carregando});
 	clearInterval(call);
-	$('#pg_pv10').removeClass('no-display');
+	$('#pg_cadastro').removeClass('no-display');
 	$('.div_carreg').addClass('no-display');
 	//////////// STARTICONE E URL VIDEO INFO NO RODAPÉ FOOTER-PV.JS TITULO E DOIS VÍDEOS ///////////////
 	console.log ('session_info_inicial frd = ', dados_config['session_info_inicial']);
@@ -120,38 +145,36 @@ call = setInterval(callback_CARREGANDO, 100);
     <div class="top-10p"></div>
     <!--DADOS DA PÁGINA TOPO-->
     <div class="panel panel-white">
-      <div class="panel-heading">
-        <a href="index.html" class="pull-left"><i class="fa fa-mail-reply">&nbsp;</i> <i class="fa fa-home"></i>&nbsp;MAPA</a><a href="index.html" class="pull-right"><img src="images/logos/logo-dsb-2.png" class="img-fluid pull-right" alt="logo" style="max-width:30px;"></a><div class="panel-title center">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</div>  
+      <div class="panel-heading"> <a href="index.html" class="pull-left"><i class="fa fa-mail-reply">&nbsp;</i> <i class="fa fa-home"></i>&nbsp;MAPA</a><a href="index.html" class="pull-right"><img src="images/logos/logo-dsb-2.png" class="img-fluid pull-right" alt="logo" style="max-width:30px;"></a>
+        <div class="panel-title center">MAPA DO <strong>DIREITO SISTÊMICO</strong><br>
+          NO BRASIL</div>
       </div>
       <div class="panel-body col-lg-offset-2 col-md-offset-2 col-md-8 col-sm-12 col-lg-8">
-        <div id="pg_pv10" class="no-display"> 
+        <div id="pg_cadastro" class="no-display"> 
           <!--DADOS DA PÁGINA DADOS -->
           <div id="info_geral" class="alert alert-info center"></div>
-          <!--DADOS DA PÁGINA DADOS -->
           <div align="center" id="cadastro" class="cadastro_div">
             <form id="form_cadastro" class="cadastro_form" method="post">
               <div class="form-group">
                 <label for="email">Login</label>
                 <input type="email" class="form-control feedback" id="email" placeholder="Insira seu email de cadastro" maxlength="100" required>
               </div>
-              <div class="form-group">
-                <label for="senha">Senha</label>
+              <div  class="form-group">
+                <label id="olho"  for="senha">Senha&nbsp;<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII=" alt=""
+/></label>
                 <input type="password" class="form-control feedback" id="senha" placeholder="Insira sua senha" maxlength="20" required>
-              </div>            
-            <button type="submit" class="btnValidaAcesso no-display"></button> 
+              </div>
+              <button type="submit" class="btnValidaAcesso no-display"></button>
             </form>
             <div id="btn_acessar" class="cadastro_form" align="left">
-            	<button type="button" class="btn btn-blue fundo-btn btn-xs" onClick="login()" style="margin-bottom:16px;">ACESSAR</button>
-            
-             	<button id="btn_esqueci_senha" type="button" class="btn btn-white fundo-btn btn-xs pull-right" onClick="esqueci_minha_senha(id)" style="margin-bottom:16px;">ESQUECI MINHA SENHA</button>
-             </div>
-              <div id="carregado_dados" align="center" class="no-display cadastro_form" style="margin-top:6px;"><i class="fa fa-cog fa-spin"></i>&nbsp;Aguarde!<br>
-                Verificando seus dados.</div>
+              <button type="button" class="btn btn-blue fundo-btn btn-xs" onClick="login()" style="margin-bottom:16px;">ACESSAR</button>
+              <button id="btn_esqueci_senha" type="button" class="btn btn-white fundo-btn btn-xs pull-right" onClick="esqueci_minha_senha(id)" style="margin-bottom:16px;">ESQUECI MINHA SENHA</button>
+            </div>
+            <a id="btn_acessar_dp_page" type="button" href="all-apps/page-org-config-dados-pessoais.html" target="_self" class="btn btn-success btn-lg btn-block no-display" style="font-size:xx-small">ACESSAR MEUS DADOS</a>
+            <div id="carregado_dados" align="center" class="no-display cadastro_form" style="margin-top:6px;"><i class="fa fa-cog fa-spin"></i>&nbsp;Aguarde!<br>
+              Verificando seus dados.</div>
           </div>
-          <div align="right" class="cadastro_div " style=" margin-top:16px; margin-bottom:160px;">
-          <a type="button" class="btn btn-danger  btn-lg btn-block" href="page-cadastro.html" target="_blank">Quero me cadastrar</a>
-          <img src="images/logos/logo-dsb-2-gg.jpg" class="img-responsive" alt="logo">
-          </div>
+          <div align="right" class="cadastro_div " style=" margin-top:16px; margin-bottom:160px;"> <a id="btn_quero_cadastrar" type="button" class="btn btn-danger btn-lg btn-block" href="page-cadastro.html" target="_blank">Quero me cadastrar</a> <img src="images/logos/logo-dsb-2-gg.jpg" class="img-responsive" alt="logo"> </div>
         </div>
       </div>
       <!--<div class="footer-pv10"></div>--> 
@@ -159,49 +182,128 @@ call = setInterval(callback_CARREGANDO, 100);
   </div>
 </div>
 
-
-<!--////////////////////MODAL /////////////////////-->
-<div class="modal fade" id="panel_retorno" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-center modal-sm" role="document">
+<!--////////////////////MODAL panel_retorno_base /////////////////////-->
+<div class="modal fade" id="panel_retorno_base" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="" align="center"><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="info_ori_dim">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</span></h5>
+        <h5 class="modal-title" id="" align="center"><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="info_ori_dim">MAPA DO <strong>DIREITO SISTÊMICO</strong><br>
+          NO BRASIL</span></h5>
       </div>
       <div class="modal-body">
-      <div id="info_modal" class="info-retorno"></div>
-      <button id="btn_avancar" type="button" class="btn btn-success btn-block btn-lg btns-retornos" onClick="avancar_page()">AVANÇAR</button>
+        <div id="info_modal" class="alert alert-info info-retorno"></div>
+        <button id="btn_avancar" type="button" name="mapa" class="btn btn-success btn-block btn-lg btns-retornos no-display" onClick="avancar_page(name)">AVANÇAR</button>
+        <button id="btn_avancar_modal" name="cad_prof" type="button" class="btn btn-primary btn-block btn-lg btns-retornos no-display" onClick="avancar_page(name)">ACEITAR CONTINUAR</button>
       </div>
-      <div class="modal-footer">        
-        <a id="btn_acessar_dp" type="button" href="all-apps/page-org-config-dados-pessoais.html" target="_self" class="btn btn-blue btn-block btn-xs btns-retornos 1" style="font-size:xx-small">ACESSAR MEUS DADOS<br>PARA TORCAR MINHA SENHA</a>
-        <a id="btn_outro_email" type="button" class="btn btn-danger btn-lg btn-block btns-retornos" href="page-cadastro.html" target="_blank">Quero me cadastrar<br>com outro email</a>
-          <img src="images/logos/logo-dsb-2-gg.jpg" class="img-responsive" alt="logo">
-      </div>
+      <div id="footer_retorno_base"  class="modal-footer"> <a id="btn_acessar_dp" type="button" href="all-apps/page-org-config-dados-pessoais.html" target="_self" class="btn btn-blue btn-block btn-xs btns-retornos 1" style="font-size:xx-small">ACESSAR MEUS DADOS<br>
+        PARA TORCAR MINHA SENHA</a> <a id="btn_outro_email" type="button" class="btn btn-danger btn-lg btn-block btns-retornos no-display" href="page-cadastro.html" target="_blank">Quero me cadastrar<br>
+        com outro email</a> <img src="images/logos/logo-dsb-2-gg.jpg" class="img-responsive" alt="logo"> </div>
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="panel_esqueci_senha" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-center modal-sm" role="document">
+<!--////////////////////MODAL panel_retorno_cadastro_prof /////////////////////-->  
+<div class="modal fade" id="panel_retorno_cad_prof" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="" align="center"><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</span></h5>
+        <h5 class="modal-title" id="" align="center"><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="info_ori_dim">MAPA DO <strong>DIREITO SISTÊMICO</strong><br>
+          NO BRASIL</span></h5>
       </div>
       <div class="modal-body">
-      <div id="retorno_body_modal">
-      
-      </div>
-      <div>
-      	<p>1 - Insira o email que você utilizou para fazer o seu cadastro e aguarde a verificação;</p>
-        <p>2 - Você receberá um email (pode levar alguns minutos - verifique sua caixa de spam) confirmando a solicitação de mudança de senha;</p>
-        <p>3 - Leia com atenção o email e siga os passos indicados para alterar sua senha. </p>      
-      </div>
-      <form id="form_esqueci_senha">
-        <div class="form-group">
-          <label for="email">Insira seu email cadastrado</label>
-          <input type="email" class="form-control" id="esqueci_email" placeholder="email cadastrado" maxlength="100" style="font-size:small" required>
+        <div id="info_modal_cad_prof" class="info-retorno">
+          <div align="center" class="alert alert-success"><strong>CADASTRO PROFISSIONAL</strong><br>IDENTIFICAMOS QUE VOCE ESTÁ CADASTRADO COMO UM PROFISSIONAL e gostaríamos de oferecer uma oportunidade para você se cadastrar no <strong>APLICATIVO CONSTELAÇÕES</strong>, sem custo nenhum de cadastro. <br> Esse simples cadastro já colocará você dentro dos meios de comunicação do APP CONSTELAÇÕES, <strong>SEM CUSTO NENHUM</strong>, com as funcionalidades básicas para localizarem você e seus trabalhos. Posteriormente, caso decida, você poderá aderir aos módulos e funcionalidades PREMIUM do <strong>APLICATIVO CONSTELAÇÕES</strong>.</div>
         </div>
-        <button type="submit" class="btnValida no-display">Enviar que valida o required</button>
-      </form>
+        <button id="btn_avancar_modal_cad_prof" name="cad_prof" type="button" class="btn btn-primary btn-block btn-lg btns-retornos no-display" onClick="avancar_page(name)">QUERO ME CADASTRAR<br> ACEITAR E CONTINUAR</button>
+      </div>
+      <div id="footer_cad_prof" class="modal-footer"> <img src="images/logos/logo-dsb-2-gg.jpg" class="img-responsive" alt="logo"> </div>
+    </div>
+  </div>
+</div>
+<!--////////////////////MODAL panel_retorno_promo /////////////////////-->  
+<div class="modal fade" id="panel_retorno_promo" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="" align="center"><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="info_ori_dim">MAPA DO <strong>DIREITO SISTÊMICO</strong><br>
+          NO BRASIL</span></h5>
+      </div>
+      <div class="modal-body">
+        <div id="info_modal_promo" class="info-retorno">
+          <div align="center" class="alert alert-success"><strong>PROMOÇÃO DE LANÇAMENTO</strong><br>Essa é uma incrível oportunidade para você se cadastrar nessa semana de pré-lançamento do <strong>APLICATIVO CONSTELAÇÕES</strong> e participar de um grupo vip, sem custo nenhum de cadastro, e posteriormente se você quiser poderá aderir aos módulos e funcionalidades PREMIUM com descontos que será realmente diferenciados para você que participou desse momento único do <strong>APLICATIVO CONSTELAÇÕES</strong>.</div>
+        </div>
+        <button id="btn_avancar_modal_promo" name="cad_prof" type="button" class="btn btn-primary btn-block btn-lg btns-retornos no-display" onClick="avancar_page(name)">QUERO ME CADASTRAR<br> ACEITAR E CONTINUAR</button>
+      </div>
+      <div id="footer_promo" class="modal-footer"> <img src="images/logos/logo-dsb-2-gg.jpg" class="img-responsive" alt="logo"> </div>
+    </div>
+  </div>
+</div>
+<!--////////////////////MODAL panel_retorno_ajustes /////////////////////--> 
+<div class="modal fade" id="panel_retorno_ajustes" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="" align="center"><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="info_ori_dim">MAPA DO <strong>DIREITO SISTÊMICO</strong><br>
+          NO BRASIL</span></h5>
+      </div>
+      <div class="modal-body">
+        <div id="info_modal_ajustes" class="info-retorno">
+          <h4 align="center" id="info_modal_ajustes_tipo"  class="alert alert-info text-center"  style="margin-top: 10px; margin-bottom: 10px;"> COMO PRETENDO ATUAR E RECEBER INFORMAÇÕES, TIPOS DE ACESSO, PRODUTOS, ETC, NOS APLICATIVOS RELACIONADOS AOS TEMAS DIREITO SISTÊMICO E CONSTELAÇÕES FAMILIARES? </h4>
+          <table align="center" class="cadastro_form"  border="2px" bordercolor="#FFFFFF" style="margin-bottom: 10px;">
+            <tr class="fundo-impar-frd">
+              <td style="50px"><button name="5" class="imagem-juridica-frd" onClick="tipo_pfj(name)"></button></td>
+              <td width="100%"><div>&nbsp;PESSOA JURÍDICA com atuação aderente a essa área</div>
+                <div class="info_tipo_ajustes">&nbsp;Pessoa Jurídica com atuação profissional aderente a essa área</div></td>
+            </tr>
+            <tr class="fundo-par-frd">
+              <td style="50px"><button name="6" class="imagem-juridica-frd" onClick="tipo_pfj(name)"></button></td>
+              <td width="100%"><div>&nbsp;PESSOA JURÍDICA com atuação em outra(s) área(s)</div>
+                <div class="info_tipo_ajustes">&nbsp;Pessoa Jurídica com atuação profissional em outra área, <strong>não</strong> aderente a essa</div></td>
+            </tr>
+            <tr class="fundo-impar-frd">
+              <td style="50px"><button name="3" class="imagem-fisica-frd" onClick="tipo_pfj(name)"></button></td>
+              <td width="100%"><div>&nbsp;PESSOA FÍSICA com atuação aderente a essa área</div>
+                <div class="info_tipo_ajustes">&nbsp;Gostaria de me qualificar como Pessoa Física sem identificação entre essa área e a minha atução profissional</div></td>
+            </tr>
+            <tr class="fundo-par-frd">
+              <td style="50px"><button name="4" class="imagem-fisica-frd" onClick="tipo_pfj(name)"></button></td>
+              <td width="100%"><div>&nbsp;PESSOA FÍSICA com atuação <strong>NÃO</strong> aderente a essa área</div>
+                <div class="info_tipo_ajustes">&nbsp;Gostaria de me qualificar como Pessoa Física com atuação profissional em área não aderente</div></td>
+            </tr>
+            <tr class="fundo-impar-frd">
+              <td style="50px"><button name="1" class="imagem-fisica-frd" onClick="tipo_pfj(name)"></button></td>
+              <td width="100%"><div>&nbsp;PESSOA FÍSICA - USUÁRIO</div>
+                <div class="info_tipo_ajustes">&nbsp;Gostaria de me qualificar apenas como Pessoa Física, Usuário do aplicativo.</div></td>
+            </tr>
+          </table>
+        </div>
+        <button id="btn_avancar_ajustes" type="button" name="url" class="btn btn-blue btn-block btn-lg btns-retornos" onClick="avancar_page(name)">AVANÇAR</button>
+      </div>
+      <div id="footer_ajustes" class="modal-footer"> <img src="images/logos/logo-dsb-2-gg.jpg" class="img-responsive" alt="logo"> </div>
+    </div>
+  </div>
+</div>
+<!--////////////////////MODAL panel_esqueci_senha /////////////////////-->    
+<div class="modal fade" id="panel_esqueci_senha" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-center modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="" align="center"><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="">MAPA DO <strong>DIREITO SISTÊMICO</strong><br>
+          NO BRASIL</span></h5>
+      </div>
+      <div class="modal-body">
+        <div id="retorno_body_modal"> </div>
+        <div>
+          <p>1 - Insira o email que você utilizou para fazer o seu cadastro e aguarde a verificação;</p>
+          <p>2 - Você receberá um email (pode levar alguns minutos - verifique sua caixa de spam) confirmando a solicitação de mudança de senha;</p>
+          <p>3 - Leia com atenção o email e siga os passos indicados para alterar sua senha. </p>
+        </div>
+        <form id="form_esqueci_senha">
+          <div class="form-group">
+            <label for="email">Insira seu email cadastrado</label>
+            <input type="email" class="form-control" id="esqueci_email" placeholder="email cadastrado" maxlength="100" style="font-size:small" required>
+          </div>
+          <button type="submit" class="btnValida no-display">Enviar que valida o required</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -222,6 +324,7 @@ jQuery(document).ready(function() {
 	consulta_inicial()
 });
 var item_dados_db = new Array();
+var item_dados_login = new Array();
 
 var cont_carrg = 20;
 function callback_CARREGANDO_DADOS(){
@@ -232,6 +335,25 @@ function callback_CARREGANDO_DADOS(){
 	clearInterval(carregando_dados);
 	}
 }
+
+get_url = {};
+var url_local = window.location.href;
+url = url_local.replace(/#/g, "");
+if(url_local.indexOf("?")>-1){
+	var location_search = url_local.substring(1).split('?');
+	var parts = location_search[1].substring(0).split('&');
+	for (var i = 0; i < parts.length; i++) {
+		var nv = parts[i].split('=');
+		if (!nv[0]) continue;
+		get_url[nv[0]] = nv[1] || true;
+	}
+}
+estado  = get_url.estado;
+enviar  = get_url.enviar;
+email   = get_url.email;
+senha   = get_url.senha;
+login_reload   = get_url.login_reload;
+console.log('enviar = ', enviar);
 
 function consulta_inicial(){
 	toastr.remove();
@@ -254,41 +376,47 @@ function consulta_inicial(){
 			} else {
 				console.log('log sucesso = ', json.logado);
 				if(json.logado == 'sucesso'){
-					$('#info_geral').html('Você está logado. Retorne ao MAPA ou <button class="btn btn-danger btn-xs" onClick="sair()">SAIR</button>');
+					//ret_login_page_info();
+          if(typeof login_reload !== "undefined" && login_reload == 1){
+            login();
+          } else {
+            console.log('item_dados_db.acao_modal.acao = ', item_dados_db.acao_modal.acao);
+            ret_login(item_dados_db.acao_modal.acao, item_dados_db.acao_modal.plano, item_dados_db.acao_modal.passo, item_dados_db.acao_modal.panel_retorno, item_dados_db.login);
+          }
 				} else if(json.logado == 'erro'){
-					$('#info_geral').html('Faça o Login abaixo!');
+					$('#info_geral').html('FAÇA O LOGIN ABAIXO!');
 				}
 			}
 		}
 	});
 }
 
-get_url = {};
-var url_local = window.location.href;
-url = url_local.replace(/#/g, "");
-if(url_local.indexOf("?")>-1){
-	var location_search = url_local.substring(1).split('?');
-	var parts = location_search[1].substring(0).split('#');
-	for (var i = 0; i < parts.length; i++) {
-		var nv = parts[i].split('=');
-		if (!nv[0]) continue;
-		get_url[nv[0]] = nv[1] || true;
-	}
-}
-estado = get_url.estado;
-enviar = get_url.enviar;
-console.log('enviar = ', enviar);
-
 if(typeof enviar != 'undefined' && enviar == 'cadastrar'){
 	$('#info_geral').html('Temos o maior prazer em colocar o seu link a disposição em nosso MAPA DE AÇÕES DO DIREITO SISTÊMICO NO BRASIL, mas precisamos primeiro identificá-lo.<br>Acesse com seu login (email) e senha ou clique em quero me cadastrar para fazer o seu cadastro.<br>O seu link é muito importante para nós!');
 }
 
-var url_login = '';
-function login(){
-	email= $('#email').val();
-	senha= $('#senha').val();
-	if($('#form_cadastro')[0].checkValidity()){
-		console.log('form_cadastro = ',$('#form_cadastro')[0].checkValidity());
+$(document).on('click', '#olho', function(){
+  var input = document.querySelector('#senha');
+  input.type = input.type == 'text' ? 'password' : 'text';
+});
+
+function login(){  
+  console.log('login()', '  ---- ', typeof login_reload);
+  var logar = false;
+  $('#btn_acessar_dp_page').addClass('no-display');
+  if(typeof login_reload === "undefined" || typeof item_dados_db.logado === "undefined"){
+    email= $('#email').val();
+    senha= $('#senha').val();
+    if($('#form_cadastro')[0].checkValidity()){
+      console.log('form_cadastro = ',$('#form_cadastro')[0].checkValidity());
+      logar = true; 
+    }
+  } else if(typeof item_dados_db.logado !== "undefined" && login_reload == 1 && item_dados_db.logado == 'sucesso'){
+    logar = true;
+  } else {
+    //avancar_page('url_cadastro');
+  } 
+	if(logar){		
 		$('#carregado_dados').removeClass('no-display').html('<i class="fa fa-cog fa-spin"></i>&nbsp;Aguarde!<br>Verificando seus dados.&nbsp;Tempo:&nbsp;<span id="cont_carreg">20</span>&nbsp; seg');
 		$('#btn_acessar').attr('disabled','disabled');
 		carregando_dados = setInterval(callback_CARREGANDO_DADOS, 1000);
@@ -305,67 +433,183 @@ function login(){
 				senha	: senha,	
 			}),
 		success: function(json){
-				var exibir_modal = false;
-				console.log('RETORNO LOG = ',json);
-				///// EXEMPLOS DE ACESSOS /// json.login = 9;
-				if(json.login == 1){
-					$('#carregado_dados').addClass('no-display');
-					if(typeof estado == 'undefined'){
-						url_login = 'index.html';
-					} else {
-						url_login = 'page-dados-filtro-pesquisa.html?estado='+estado;
-					}
-					clearInterval(carregando_dados);
-					$('#btn_avancar, #btn_acessar_dp').removeClass('no-display');
-					exibir_modal = true;
-				} else if(json.login == 2) {
-					$('#carregado_dados').html('<strong>EMAIL NÃO LOCALIZADO</strong><br>Não localizamos esse email.');
-					$('#info_modal').html('<strong>EMAIL NÃO LOCALIZADO</strong><br>Não localizamos esse email em nosso banco de dados, verifique e tente novamente ou entre em contato com a nossa central de atendimento.<br><a href="index.html?#contato">CONTATO NO MAPA</a>');
-					$('#btn_outro_email').removeClass('no-display');
-					exibir_modal = true;
-					$('#btn_acessar').removeAttr('disabled','disabled');
-					toastr["error"]('EMAIL NÃO LOCALIZADO!','ERRO');
-				} else if(json.login == 3) {
-					$('#carregado_dados').html('ERRO<br>Senha errada');
-					$('#btn_acessar').removeAttr('disabled','disabled');
-					toastr["error"]('SENHA INVÁLIDA!','ERRO');
-				} else if(json.login == 4) {
-					clearInterval(carregando_dados);
-					$('#carregado_dados').html('Email não validado');
-					$('#btn_acessar').removeAttr('disabled','disabled');
-					toastr["error"]('Após fazer o cadastro você recebeu um email que precisa ser validado, pois só trabalhamos com emails válidos','EMAIL NÃO VALIDADO');
-					$('#info_modal').html('<strong>EMAIL NÃO VALIDADO</strong> <br> Após fazer o cadastro você recebeu um email que precisa ser validado. Localize o email (veja na caixa de spam) e clique no link que você recebeu para validar seu email no nosso sistema, pois só trabalhamos com Emails válidados');
-					$('#btn_outro_email').removeClass('no-display');
-					exibir_modal = true;
-				} else if(json.login == 5 || json.login == 5 || json.login == 7 || json.login == 8) {
-					clearInterval(carregando_dados);
-					$('#carregado_dados').html('ERRO DE CADASTRO - ' + json.login);
-					$('#btn_acessar').removeAttr('disabled','disabled');
-					toastr["error"]('Ocorreu algum erro de cadastro!','ERRO DE CADASTRO - ' + json.login);
-					$('#info_modal').html('<strong>Ocorreu algum erro de cadastro:</strong><br>1 -	Se você cadastrou um email não válido, nosso sistema não permitirá o acesso, pois só trabalhamos com emails válidos.<br>Cadastre um email válido (Existente e ativo)<br>2 -	Ou pode ter ocorrido algum erro no momento do cadastro, conexão, banco de dados, etc.<br><br><strong>Caso o problema persista estamos a disposição.</strong><br>Entre em contato com a nossa equipe e reporte ERRO DE CADASTRO ' + json.login + '.<br><a href="index.html?#contato">CONTATO NO MAPA</a>');
-					$('#btn_outro_email').removeClass('no-display');
-					exibir_modal = true;
-				} else if(json.login == 9) {
-					clearInterval(carregando_dados);
-					$('#carregado_dados').html('ERRO DE CONEXÃO - ' + json.login);
-					$('#btn_acessar').removeAttr('disabled','disabled');
-					toastr["error"]('Erro de conexão ao acessar o banco de dados.','ERRO DE CONEXÃO - ' + json.login);
-					$('#info_modal').html('<strong>Ocorreu algum Erro de conexão ao acessar o banco de dados.</strong><br>Tente novamente e caso o problema persista estamos a disposição.</strong><br>Entre em contato com a nossa equipe e reporte ERRO DE CONEXÃO ' + json.login + '.<br><a href="index.html?#contato">CONTATO NO MAPA</a>');
-					$('#btn_outro_email').removeClass('no-display');
-					exibir_modal = true;
-				}				
-				if(exibir_modal == true){
-					$('#panel_retorno').modal({
-									backdrop: 'static',
-									keyboard: false  // to prevent closing with Esc button (if you want this too)
-								})   // initialized with no keyboard
-					$('#panel_retorno').modal('show');
-				}
+				console.log('RETORNO LOGIN = ',json);
+        item_dados_login = json;
+      ////// TXT RELAÇÃO ENTRE AS VARIAVEIS DE RETORNO  
+			//////ATIVAR A APRTIR DA DATA DE INICIO DA PROMOCAO NO INICIO DA PAGINA PHP//////
+      //panel_retorno_promo, panel_retorno_ajustes, panel_retorno_base
+      ret_login('', '', '', '', item_dados_login.login);
 			}				
 		});
 	} else {
 		$('.btnValidaAcesso').click();
 	}
+}
+  
+function ret_info_login_base(){
+  $('#info_geral').html('<div align="center">Você está logado</div><a><button name="mapa" class="btn btn-blue btn-xs pull-left" onClick="avancar_page(name)">MAPA</a><button class="btn btn-danger btn-xs pull-right" onClick="sair()">SAIR</button></div><br><div align="center"></div>');
+  $('#btn_acessar_dp_page').removeClass('no-display');
+  $('#btn_quero_cadastrar').addClass('no-display');
+  if(typeof estado == 'undefined'){
+    $('#btn_avancar').attr('name', 'mapa');
+  } else {
+    $('#btn_avancar').attr('name', 'estado');
+  }
+}
+
+function ret_login(acao, plano, passo, painel_modal, login){
+  console.log('painel_modal = ', painel_modal);
+  console.log('login = ', login);
+  $('#carregado_dados').addClass('no-display');
+  $('.btns-retornos').each(function(index, element) {
+    $(this).addClass('no-display');
+  });
+  $('#info_modal').html('');
+  var exibir_modal = false;
+  if(typeof carregando_dados !== 'undefined')clearInterval(carregando_dados);
+  switch(parseInt(login)) {
+    case 1:
+      console.log('login case 1  = ', login);
+      if(acao == '')var acao = item_dados_login.acao_modal.acao;
+      if(plano == '')var plano = item_dados_login.acao_modal.plano;
+      if(passo == '')var passo = item_dados_login.acao_modal.passo;
+      if(painel_modal == '')var painel_modal = item_dados_login.acao_modal.panel_retorno;
+      console.log('login = ', item_dados_login.login);
+      console.log('acao = ', acao);
+      console.log('plano = ', plano);
+      console.log('passo = ', passo);
+      ret_lanc_plan_cad_prof(acao, plano, passo, painel_modal);
+      break;
+    case 2:
+      $('#carregado_dados').html('<strong>EMAIL NÃO LOCALIZADO</strong><br>Não localizamos esse email.');
+      $('#info_modal').html('<strong>EMAIL NÃO LOCALIZADO</strong><br>Não localizamos esse email em nosso banco de dados, verifique sua conexão e tente novamente ou entre em contato com a nossa central de atendimento.<br><a href="index.html?#contato">CONTATO NO MAPA</a>');
+      $('#btn_outro_email').removeClass('no-display');
+      exibir_modal = true;
+      $('#btn_acessar').removeAttr('disabled','disabled');
+      toastr["error"]('EMAIL NÃO LOCALIZADO!','ERRO');
+      break;
+    case 3:
+      $('#carregado_dados').html('<div style="color:red">ERRO<br>Senha errada, confira e tente novamente<br>ou solicite nova senha! </div>');
+      $('#btn_acessar').removeAttr('disabled','disabled');
+      $('#btn_esqueci_senha').addClass('btn-danger');
+      toastr["error"]('SENHA INVÁLIDA!','ERRO');
+      break;
+    case 4:
+      $('#carregado_dados').html('Email não validado');
+      $('#btn_acessar').removeAttr('disabled','disabled');
+      toastr["error"]('Após fazer o cadastro você recebeu um email que precisa ser validado, pois só trabalhamos com emails válidos','EMAIL NÃO VALIDADO');
+      $('#info_modal').html('<strong>EMAIL NÃO VALIDADO</strong> <br> Após fazer o cadastro você recebeu um email que precisa ser validado. Localize o email (veja na caixa de spam) e clique no link que você recebeu para validar seu email no nosso sistema, pois só trabalhamos com Emails válidados');
+      $('#btn_outro_email').removeClass('no-display');
+      exibir_modal = true;
+      break;
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+      $('#carregado_dados').html('ERRO DE CADASTRO - ' + item_dados_login.login);
+      $('#btn_acessar').removeAttr('disabled','disabled');
+      toastr["error"]('Ocorreu algum erro de cadastro!','ERRO DE CADASTRO - ' + item_dados_login.login);
+      $('#info_modal').html('<strong>Ocorreu algum erro de cadastro:</strong><br>1 -	Se você cadastrou um email não válido, nosso sistema não permitirá o acesso, pois só trabalhamos com emails válidos.<br>Cadastre um email válido (Existente e ativo)<br>2 -	Ou pode ter ocorrido algum erro no momento do cadastro, conexão, banco de dados, etc.<br><br><strong>Caso o problema persista estamos a disposição.</strong><br>Entre em contato com a nossa equipe e reporte ERRO DE CADASTRO ' + item_dados_login.login+ '.<br><a href="index.html?#contato">CONTATO NO MAPA</a>');
+      $('#btn_outro_email').removeClass('no-display');
+      exibir_modal = true;
+     break;
+    case 9:
+      $('#carregado_dados').html('ERRO DE CONEXÃO - ' + item_dados_login.login);
+      $('#btn_acessar').removeAttr('disabled','disabled');
+      toastr["error"]('Erro de conexão ao acessar o banco de dados.','ERRO DE CONEXÃO - ' + item_dados_login.login);
+      $('#info_modal').html('<strong>Ocorreu algum ERRO de conexão ao acessar o banco de dados.</strong><br>Tente novamente e caso o problema persista estamos a disposição. Entre em contato com a nossa equipe e reporte ERRO DE CONEXÃO ' + item_dados_login.login + '.<br><a href="index.html?#contato">CONTATO NO MAPA</a>');
+      $('#btn_outro_email').removeClass('no-display');
+      exibir_modal = true;
+  }
+  if(painel_modal == 0 || painel_modal == ''){
+    painel_modal = 'panel_retorno_base';   
+  }
+  if(exibir_modal == true){
+    $('#'+painel_modal).modal({
+            backdrop: 'static',
+            keyboard: false  // to prevent closing with Esc button (if you want this too)
+    }).modal('show');   // initialized with no keyboard
+  }
+}
+  
+function ret_lanc_plan_cad_prof(acao, plano, passo, painel_modal){
+  console.log('ret_lanc_plan_cad_prof');
+  exibir_modal = false;
+  console.log('acao = ', acao);
+  console.log('plano = ', plano);
+  console.log('passo = ', passo);
+  switch(true) {      
+    case acao == 'info' && plano == 'base' && passo == '0':
+      $('#btn_avancar, #btn_acessar_dp, #info_modal').removeClass('no-display');
+      var text_info = '<div align="center"><strong>VOCÊ ESTÁ LOGADO<br>agora é só navegar</strong></div>';
+      $('#info_modal').html(text_info);
+      ret_info_login_base();
+      exibir_modal = true;
+      break;
+      
+    case acao == 'info' && plano == 'cadastro'  && passo == '0':
+      console.log('cadastro');
+      $('#btn_avancar_modal_cad_prof, #info_modal_cad_prof').removeClass('no-display');
+      ret_info_login_base();
+      $('#btn_avancar_modal_cad_prof').attr('name', 'cad_prof');
+      exibir_modal = true;      
+      break;
+      
+    case acao == 'info' && plano == 'ajustes' && passo == '0' && item_dados_login.session_upr_id == 0:
+      $('#info_modal_ajustes').removeClass('no-display');
+      $('#btn_avancar_ajustes').addClass('no-display');
+      var text_info = '<strong>LANÇAMENTO - DADOS PROFISSIONAIS </strong>';
+      $('#info_modal').html(text_info);
+      exibir_modal = true;
+    break;  
+      
+    case acao == 'info' && plano == 'promocao'  && passo == '0':
+      console.log('promocao');
+      var text_info = '<div align="center" class="alert alert-success"><strong>PROMOÇÃO DE LANÇAMENTO</strong><br>Essa é uma incrível oportunidade para você se cadastrar nessa semana de pré-lançamento do <strong>APLICATIVO CONSTELAÇÕES</strong> e participar de um grupo vip, sem custo nenhum de cadastro, e posteriormente se você quiser poderá aderir aos módulos e funcionalidades PREMIUM com descontos que será realmente diferenciados para você que participou desse momento único do <strong>APLICATIVO CONSTELAÇÕES</strong>.</div>';
+      $('#info_modal_promo').html(text_info);
+      $('#btn_avancar_modal_promo, #info_modal_promo').removeClass('no-display');
+      ret_info_login_base();
+      exibir_modal = true;
+      break;
+      
+    default:
+      $('#info_modal').removeClass('no-display');
+      var text_info = '<div align="center" calss="alert alert-info center"><strong>ERRO RETORNO DADOS </strong><br>Verifique sua conexão e tente novamente caso o problema persista entre em contato com a nossa central de atendimento.<br><a href="index.html?#contato">CONTATO NO MAPA</a> </div>';
+      $('#info_modal').html(text_info);
+      break;
+  }
+  if(exibir_modal == true){
+    console.log('painel_modal = ', painel_modal);
+    $('#'+painel_modal).modal({
+            backdrop: 'static',
+            keyboard: false  // to prevent closing with Esc button (if you want this too)
+    }).modal('show');   // initialized with no keyboard
+  }
+}
+  
+function tipo_pfj(tp){
+  console.log('tp = ', tp);
+  toastr.remove();
+  toastr["info"]('Aguarde, enviando dados ... <i class="fa fa-cog fa-spin"></i>');
+  $('#info_modal_ajustes').html('<div align="center" class="alert alert-info">Aguarde, enviando dados ... <i class="fa fa-cog fa-spin"></i></div>');
+  $.ajax({
+		url: 'consulta-pessoa-fisica-juridica-update.php',
+		type: "POST",
+		dataType: "json",
+		data:({
+			usu_id: item_dados_login.dados_usuario.usu_id,
+      tp    : tp
+					}),
+		success: function(json){
+			toastr.remove();
+			console.log('cadastrado = ', json);
+      if(json.cadastrado == 'sucesso'){
+        avancar_page('url_login');
+      } else {
+        $('#info_modal_ajustes').html('<div align="center" class="alert alert-danger"><strong>Ocorreu algum ERRO de conexão ao acessar o banco de dados.</strong><br>Tente novamente e caso o problema persista estamos a disposição. Entre em contato com a nossa equipe e reporte o ERRO.<br><a href="index.html?#contato">CONTATO NO MAPA</a></div>');
+      }
+    }      
+  });  
 }
 
 function esqueci_minha_senha(id){
@@ -414,14 +658,35 @@ function sair(){
 		data: ({
 			}),
 		success: function(json){
-			location.reload();
+			if(json.sair =='clear')avancar_page('mapa');
 		}
 	});
 }
 
-function avancar_page(){
-	console.log(url_login);
-	window.open(url_login,'_self');
+function avancar_page(url){
+  var url_acesso= '';
+  var protocol = window.location.hostname;
+  console.log('protocol = ', protocol);
+  if(protocol == 'localhost')protocol = 'localhost/iaper'
+	console.log('url === ', url);
+  if(url=='mapa')url_acesso = 'index.html';
+  if(url=='url_login')url_acesso='index-cadastro.html?login_reload=1&email='+email+'&senha=logado';
+  if(url=='url_cadastro')url_acesso='index-cadastro.html?logado=0';
+  if(typeof item_dados_login.dados_usuario !== 'undefined' && url=='cad_prof'){
+    url_acesso = 'http://'+protocol+'/page-profissional-cadastro.html?produto_id='+item_dados_login.produto_id+'&usu_id='+item_dados_login.dados_usuario.usu_id;
+  } else if(typeof item_dados_db.dados_usuario !== 'undefined' && url=='cad_prof'){
+    url_acesso = 'http://'+protocol+'/page-profissional-cadastro.html?produto_id='+item_dados_db.produto_id+'&usu_id='+item_dados_db.dados_usuario.usu_id;
+  }
+  if(url=='estado'){
+    estado = estado.substring(0, 2);
+    url_acesso = 'page-dados-filtro-pesquisa.html?estado='+estado;
+  }
+	window.open(url_acesso,'_self');
+}
+
+function avancar_cadastro_profissional(){
+	console.log(url_profissional);
+	window.open(url_profissional,'_self');
 }
 
 toastr.options = {

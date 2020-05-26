@@ -17,28 +17,31 @@ if($desenvolvimento_interno){
 
 $item_dados_db = array();
 
-//$sql = $conexao->query("
-//			SELECT nome, usuario_id
-//			FROM dados_obs
-//			WHERE 
-//				usuario_id = '$session_id'
-//			ORDER BY usuario_id
-//			");
-//
-////$dados = $sql->fetch_assoc();
-////$item_dados_db['SELECT'] = $dados;
-//
-//while($dados = $sql->fetch_assoc()){
-//	//array_push($item_dados_db,$dados);
-//	$item_dados_db['dados_pessoais'] = $dados;
-//}
+$sql = "SELECT nome, email
+				FROM usuarios
+				WHERE 
+					id = '$session_id'
+				ORDER BY id
+				";
 
-//echo '<pre>', print_r($item_dados_db,true), '</pre>';
-//echo $dados . '<br>';
+if($desenvolvimento_interno) echo '<br>LINHA: ' . __LINE__ . '  sql  = ' . $sql . '<br><br>';
+$sql_con = $conexao->query("$sql");
+
+//$dados = $sql_con->fetch_assoc();
+//$item_dados_db['SELECT'] = $dados;
+
+while($dados = $sql_con -> fetch_assoc()){
+	//array_push($item_dados_db,$dados);
+	$item_dados_db['dados_pessoais'] = $dados;
+}
+
+if($desenvolvimento_interno) echo __LINE__ .  '<pre> item_dados_db ';
 
 
 $email = $email_errado = 'hsfradinho# @gmail.com';
-//echo addslashes($email) .'<br>';
+
+if($desenvolvimento_interno) echo '<br>LINHA: ' . __LINE__ . '  sql  = ' . $sql . '<br><br>';
+if($desenvolvimento_interno) echo __LINE__ .  '<pre> item_dados_db '; 
 
 
 
@@ -146,6 +149,10 @@ $sql = $conexao->query("
 					");
 ///////////////////////////*/
 
+
+if($desenvolvimento_interno) echo '<br><br>RETORNO JSON<br>';
+echo json_encode($item_dados_db);
+
 ///////FUNÇÃO PARA TRATAMENTO RECURSIVO DE ARRAY UTF8//////
 //array_walk_recursive($retorno, 'encode_items');
 ////echo '<pre>', print_r($retorno,true);
@@ -155,5 +162,4 @@ $sql = $conexao->query("
 //    $item = utf8_encode($item);
 //}
 
-echo json_encode($item_dados_db);
 ?>

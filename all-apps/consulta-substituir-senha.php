@@ -6,56 +6,50 @@ include_once("../include/functions.php");
 //verificaLogin();
 //echo '<pre>_POST 	2 = ' . print_r($_POST,true);
 
-$item_dados_db = array();
-$retorno['cadastro'] = 'erro';
+$desenvolvimento = false;
+
 if($desenvolvimento_frd){
-	$email = 'hsfradinho@gmail.com';
-	$code='0';
-	$senha = '123456';
+	$usu_email = 'hsfradinho@gmail.com';
+	$udp_code  = 'A27BfBAW37WBch0BA7k3fB7hA';
+	$nova_senha = '123456';
 }
 
-if (isset($senha) && $senha != ''){
-	$senha_new = trim($senha);
+$item_dados_db = array();
+$retorno['cadastro'] = 'erro';
+$retorno['dados recebidos'] = $_POST;
+	
+
+if (isset($nova_senha) && $nova_senha != '' && isset($udp_code) && isset($usu_email)){
+	$senha_new = trim($nova_senha) . 'I@per';
 	$senha_new = md5($senha_new);
-	if(isset($_SESSION['session_id'])){
-		$session_id = $_SESSION['session_id']; 
-		$where = "id = '$session_id'";
-	}
+	$senha_check = md5('000000I@per');
 	
-	if(isset($code) && isset($email)){
-		$where = "email = '$email' AND email = '$email'";
-	}
+  $sql_sel = "SELECT usu_id, usu_nome, usu_sobrenome, udp_usuario_id, udp_usu_senha, udp_usu_senha_alternativa, udp_usu_pro_id
+				FROM  iaper_db.usuarios 
+        INNER JOIN iaper_db.usuarios_dados_pessoais on usu_id = udp_usuario_id
+				WHERE 
+          usu_email = '" . addslashes($usu_email) . "' AND udp_usu_pro_id = '" . $produto_id . "' AND udp_code = '" . $udp_code . "'
+        ";
+
+  if($dados = $conexao->query($sql_sel)->fetch_assoc()){
+  if($desenvolvimento_echo) echo '<br>' . __LINE__ .  '<pre> dados ', print_r($dados,true), '</pre>';
+  }	
+  $retorno['dados'] = $dados;
 	
-	if(isset($code) && isset($email)){	
-		$sql_sel = $conexao->query("SELECT id, code
-								FROM usuarios 
-								WHERE 
-									email = '$email'");
-		
-		if($dados = $sql_sel->fetch_assoc()){
-			if($code == $dados['code']){
-				$session_id = $dados['id'];
-				//echo ' code =  ' . $dados['code'];
-			} else {
-				if(!isset($_SESSION['session_id'])){
-					$retorno['cadastro'] = 'erro_code';
-					if($dados['code'] == 0){
-						$retorno['cadastro'] = 'erro_alterada';
-					}
-				}
-				//echo ' code =  ' . $dados['code'];
-			}
-		}	
-	}
-	
-	if(isset($session_id)){
-	$sql = "UPDATE usuarios 
-					SET 
-						senha = '".$senha_new."',
-						code = '0' 
+	if(!$desenvolvimento){
+  $udp_usuario_id = $dados['udp_usuario_id'];
+  $udp_usu_senha_alternativa = $dados['udp_usu_senha_alternativa'];
+  $udp_usu_senha = $dados['udp_usu_senha']; 
+	$sql = "UPDATE iaper_db.usuarios_dados_pessoais 
+					SET
+          udp_usu_senha = CASE WHEN udp_usu_senha  =  '" . $udp_usu_senha_alternativa . "' THEN '" . $senha_new . "' ELSE '" . $udp_usu_senha . "' END,
+						udp_usu_senha_alternativa = '" . $senha_new . "',
+						udp_code = '1964' 
 					WHERE 
-						id = '$session_id'";
-	//echo ' sql ' . $sql;
+						udp_usuario_id = '" . $udp_usuario_id . "' AND udp_usu_pro_id = '" . $produto_id . "' AND udp_code = '" . $udp_code . "'
+            ";
+            
+	if($desenvolvimento_echo) echo '<br>LINHA: ' . __LINE__ . '  sql  = ' . $sql . '<br><br>';
 		if($conexao->query($sql)){
 			$retorno['cadastro'] = 'sucesso';
 		}

@@ -129,41 +129,38 @@ call = setInterval(callback_CARREGANDO, 100);
       <div class="panel-body">
         <div id="pg_pv10" class="no-display"> 
           <!--DADOS DA PÁGINA DADOS -->
-          <div id="info_geral" class="alert alert-info center"></div>
+          <div id="info_geral" class="alert alert-info center"><i class="fa fa-refresh fa-spin"></i> Aguarde carregando seus dados</div>
           <div align="center" id="cadastro" class="cadastro_div col-lg-offset-3 col-md-offset-2 col-md-8 col-sm-12 col-lg-6">
             <form id="form_cadastro" class="cadastro_form">
-          <div class="form-dd-pessoais">
-            <div class="form-group">
-              <label class="control-label text-small"> Nome* </label>
-              <input type="text" id="nome" name="nome" placeholder="Nome" class="form-control dados_send"  onChange="dados_send_acesso(id)">
-            </div>
-            <div class="form-group">
-              <label class="control-label text-small"> Sobrenome* </label>
-              <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome" class="form-control dados_send" onChange="dados_send_acesso(id)">
-            </div>
-            <div class="form-group">
-              <label class="control-label text-small"> Email </label>
-              <input type="text" id="email" name="email" placeholder="email" class="form-control dados_send" data-tp="usuarios" disabled>
-            </div>
-            <div>
-              <button class="btn btn-blue btn-block accordion-toggle space5" data-toggle="collapse" data-parent="#accordion" href="#troca_de_senha" onClick="view_btn_send()">TROCAR MINHA SENHA</button>
-            </div>
-            <div id="troca_de_senha" class="panel-collapse collapse">
+          <div id="form-dd-pessoais" class="form-dd-pessoais no-display">
+            <div id="troca_de_senha">
               <div class="form-group">
                 <label class="control-label text-small"> Nova senha </label>
-                <input type="password" placeholder="NOVA SENHA" class="form-control dados_send" id="nova_senha">
+                <input type="password" placeholder="NOVA SENHA" class="form-control dados_send" id="nova_senha"><span style="color:red; font-size:x-small">min 6 - máx 20</span>
               </div>
               <div class="form-group">
                 <label class="control-label text-small"> Repetir Senha </label>
-                <input type="password" placeholder="REPETIR SENHA" class="form-control dados_send" id="repetir_senha">
+                <input type="password" placeholder="REPETIR SENHA" class="form-control dados_send" id="repetir_senha"><span id="senhas_completas" style="color:red; font-size:x-small"></span>
               </div>
+            <div class="form-group">
+              <label class="control-label text-small"> Nome* </label>
+              <input type="text" id="usu_nome" name="usu_nome" placeholder="Nome" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+              <label class="control-label text-small"> Sobrenome* </label>
+              <input type="text" id="usu_sobrenome" name="usu_sobrenome" placeholder="Sobrenome" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+              <label class="control-label text-small"> Email </label>
+              <input type="text" id="usu_email" name="usu_email" placeholder="email" class="form-control dados_send" data-tp="usuarios" disabled>
+            </div>
             </div>
           </div>
           </form>
-        </div>
-        <div>
-          <button id="btn-dados_send_senha" class="btn btn-success btn-block no-display" onClick="dados_send_senha()" style="margin-bottom:16px;">ENVIAR NOVA SENHA</button>
-        </div>
+          <div>
+            <button id="btn-dados_send_senha" class="btn btn-success btn-block" onClick="dados_send_senha()" style="margin-bottom:16px;">ENVIAR NOVA SENHA</button>
+          </div>
+        </div>        
       </div>
      </div>
     </div>
@@ -171,10 +168,10 @@ call = setInterval(callback_CARREGANDO, 100);
   </div>
  </div>
 <div class="modal fade" id="panel_retorno" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-center modal-sm" role="document">
+  <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id=""><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="info_ori_dim">MAPA DO <strong>DIREITO SISTÊMICO</strong><br> NO BRASIL</span></h5>
+        <h5 class="modal-title" id=""><a type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a><span class ="info_ori_dim text-center">MAPA DO <strong>DIREITO SISTÊMICO NO BRASIL</strong></span></h5>
       </div>
       <div class="modal-body">
         <div id="val_body_modal"></div>
@@ -230,77 +227,72 @@ function get_url(){
 		email = get_url.email; //////SEM ELE NÃO CARREGA A PÁGINA ///////
 }
 
-function view_btn_send(){
-	if($('#troca_de_senha').hasClass('in') === true){
-		$('#btn-dados_send_senha').addClass('no-display');
-	} else {
-		$('#btn-dados_send_senha').removeClass('no-display');
-	}
-	
-}
-
 function consulta_inicial(){
 	get_url();
-	console.log(code , email);
+	console.log('url = ', code , email);
 	toastr.remove();
 	toastr["info"]('Aguarde carregando dados!', "");
-	if(code == undefined && email == undefined){
-			desenvolvimento = false;
-			$.ajax({
-			url: '../consulta-config-inicial.php',
-			type: "POST",
-			dataType: "json",
-			data:({
-				desenvolvimento : desenvolvimento,
-						}),
-			success: function(json){
-				toastr.remove();
-				item_dados_db = json;
-				logado = json.logado;
-				console.log('item_dados_db = ', item_dados_db);
-				if(item_dados_db == ''){
-					console.log('log erro = ', json.logado);
-				} else {
-					console.log('log sucesso = ', json.logado);
-					$('#info_tt_pt').html('DADOS PESSOAIS');
-					$('#dados-usuario').removeClass('no-display');
-					for (var index in item_dados_db){
-						var id = index.split("_");
-						console.log('id = ', id);
-						$('#'+ id[1]).val(json[index]);
-					}
-				}
-			}
-		});
-	} else {
+	if(code != undefined && email != undefined){
 		$.ajax({
 			url: 'consulta-org-dados-torcar-senha.php',
 			type: "POST",
 			dataType: "json",
 			data:({
-				code : code,
-				email: email
+				usu_code : code,
+				usu_email: email
 						}),
 			success: function(json){
 				toastr.remove();
 				item_dados_db = json;
-				if(item_dados_db == ''){
-					//console.log('log erro = ', json.logado);
+				if(item_dados_db == '' || json.retorno == 'erro'){
+					$('#info_geral').html('ERRO NA CONSULTA!').removeClass('alert-info', 'alert-success').addClass('alert-danger');
+						$('#val_body_modal').html('<div align="center"><strong>ERRO NA CONSULTA!</strong></div>'+
+						'<div>Não foi possível fazer essa consulta por erro nos dados enviados!<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SUGESTÃO]</strong> Verifique a sua conexão, <strong>caso de tenha copiado do email para o navegador</strong> e tente novamente.</div>');
+            exibir_modal_img('panel_retorno');
 				} else {
 					console.log('item_dados_db = ', item_dados_db);
 					for (var index in item_dados_db['dados_usuario']){
 						$('#'+ index).val(item_dados_db['dados_usuario'][index]);
 					}
+          if(json.retorno == 'sucesso'){
+            $('#form-dd-pessoais').removeClass('no-display');
+            $('#info_geral').html('Altere a sua senha e confira seus dados antes de enviar!');
+          } else if(json.retorno == 'erro_code'){
+            $('#info_geral').html('ERRO DO CÓDIGO PARA TROCAR SENHA!').removeClass('alert-info', 'alert-success').addClass('alert-danger');
+						$('#val_body_modal').html('<div align="center"><strong>ERRO DO CÓDIGO PARA TROCAR SENHA</strong></div>'+
+							'<div>Principais motivos que acarretam esse erro:<br>'+
+							'<br>1 - Sua senha já foi alterada com o código enviado nessa solicitação.<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SOLUÇÃO[</strong> Tente acessar.'+
+							'<br><br>2 - Esse código pode ser de um email anterior (antigo).<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SOLUÇÃO]</strong> Vá para o <a href="../index.html" class="">MAPA</a>, clique em ENTRAR, em seguida, em ESQUECI MINHA SENHA para solicitar a alteração de senha. <br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SUGESTÃO]</strong> Para facilitar e não cometer erros, apague seus emails de solicitações anteriores (se houver), antes de solicitar uma nova.</div>');
+            exibir_modal_img('panel_retorno');
+					} else if(json.retorno == 'erro_alterada'){
+            $('#info_geral').html('SOLICITAÇÃO EXPIRADA OU NÃO REALIZADA!').removeClass('alert-info', 'alert-success').addClass('alert-danger');
+						$('#val_body_modal').html('<div align="center"><strong>SOLICITAÇÃO EXPIRADA OU NÃO REALIZADA!</strong></div>'+
+							'<div>A nova senha já foi alterada ou não foi solicitada.<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SOLUÇÃO]</strong> Vá para o <a href="../index.html" class="">MAPA</a>, clique em ENTRAR, em seguida, em ESQUECI MINHA SENHA para solicitar a alteração de senha. <br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SUGESTÃO]</strong> Para facilitar e não cometer erros, apague seus emails de solicitações anteriores (se houver), antes de solicitar uma nova.</div>');
+            exibir_modal_img('panel_retorno');
+          }  else if(json.retorno == 'erro_email'){
+            $('#info_geral').html('EMAIL NÃO ENCONTRADO!').removeClass('alert-info', 'alert-success').addClass('alert-danger');
+						$('#val_body_modal').html('<div align="center"><strong>EMAIL NÃO ENCONTRADO!</strong></div>'+
+							'<div>O  email dessa requisição não foi localizado na nossa base de dados!<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SUGESTÃO]</strong> Verifique a sua conexão, o link, <strong>caso de tenha copiado do email para o navegador</strong> e tente novamente.</div>');
+            exibir_modal_img('panel_retorno');
+          }
+          $('#val_body_modal').append('<br><div align="center" class="alert alert-info">Caso o problema persisita entre em contato com a nossa equipe. Dados na página inicial do <a href="../index.html?#contato" class="">FINAL DO MAPA</a>.</div>');
 				}
 			}
 		});		
-	}
+	} else {
+    $('#info_geral').html('ERRO NA CONSULTA!').removeClass('alert-info', 'alert-success').addClass('alert-danger');
+    $('#val_body_modal').html('<div align="center"><strong>ERRO NA CONSULTA!</strong></div>'+
+    '<div>Não foi possível fazer essa consulta por erro nos dados!<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SUGESTÃO]</strong> Verifique a sua conexão, <strong>caso de tenha copiado do email para o navegador</strong> e tente novamente.</div>');
+    exibir_modal_img('panel_retorno');
+  }
 }
-
+  
 function dados_send_senha() {
 	if(typeof item_dados_db != 'undefined' || (code != '' && email != '')){
 		var senha = $('#nova_senha').val();
 		var rpt_senha = $('#repetir_senha').val();
+    var email = item_dados_db.dados_usuario['usu_email'];
+    var code = item_dados_db.dados_usuario['udp_code'];
 		if(senha == rpt_senha && senha.length > 5){
 			$('#nova_senha, #repetir_senha').attr('disabled','disabled');
 			toastr["info"]('','Enviando dados!');
@@ -309,9 +301,9 @@ function dados_send_senha() {
 				type		: "POST",
 				dataType: "json",
 				data		: ({
-							senha		: senha,
-							email		: email,
-							code		: code,
+							nova_senha		: senha,
+							usu_email		: email,
+							udp_code		: code,
 				}),
 				success		: function(json){
 					$('#nova_senha, #repetir_senha').removeAttr('disabled','disabled');
@@ -324,25 +316,17 @@ function dados_send_senha() {
 					
 					if(json.cadastro == 'sucesso'){
 						toastr["info"]('No próximo acesso utilize esse login e senha','Dados enviados com sucesso!');
-						$('#val_body_modal').html('SUA SENHA FOI ALTERADA COM SUCESSO!');
-					} else if(json.cadastro == 'erro_code'){
-						$('#val_body_modal').html('ERRO DO CÓDIGO PARA TROCAR SENHA!');
-						$('#val_body_modal').html('<strong>ERRO DO CÓDIGO PARA TROCAR SENHA</strong>'+
-							'<br>Dois principais motivos que acarretam esse erro:<br>'+
-							'<br>1 - Sua senha já foi alterada com esse código.<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SOLUÇÃO[</strong> Tente acessar.'+
-							'<br>2 - Esse código é de um email antigo.<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SOLUÇÃO[</strong> Apague seus emails antigos com solicitações de troca e solicite uma nova alteração de senha. Vá para o <a href="../index.html" class="">MAPA</a>, clique em ENTRAR e em seguida em ESQUECI MINHA SENHA');						
-					} else if(json.cadastro == 'erro_alterada'){
-						$('#val_body_modal').html('ERRO AO TROCAR A SENHA!');
-						$('#val_body_modal').html('<strong>ERRO PARA TROCAR SENHA</strong>'+
-							'<br>Sua senha já foi alterada ANTERIORMENTE.<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SOLUÇÃO[</strong> Solicite uma nova alteração de senha. Vá para o <a href="../index.html" class="">MAPA</a>, clique em ENTRAR e em seguida em ESQUECI MINHA SENHA.<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[SUGESTÃO]</strong> Para facilitar, apague seus emails de solicitações anteriores, antes de solicitar uma nova.');						
+            $('#info_geral').html('Dados enviados com sucesso!<br>No próximo acesso utilize esse login e senha.').removeClass('alert-danger').addClass('alert-info');
+						$('#val_body_modal').html('SUA SENHA FOI ALTERADA COM SUCESSO!');	
 					} else {
-						toastr["error"]('Leia com atenção ou tente novamente caso seja a sua conexão','Erro ao trocar a senha!');
+            $('#info_geral').html('ERRO AO TROCAR A SENHA!<br>Leia com atenção e tente novamente caso seja a sua conexão.').removeClass('alert-info').addClass('alert-danger');
+						toastr["error"]('Leia com atenção e tente novamente caso seja a sua conexão','ERRO AO TROCAR SENHA!');
 						$('#val_body_modal').html('<strong>ERRO AO TROCAR SENHA</strong>'+
-							'<br>Três principais motivos que acarretam esse erro:<br>'+
+							'<br>Principais motivos que acarretam esse erro:<br>'+
 							'<br>1 - Falha na conexão'+
 							'<br>2 - Você não está logado portanto não pode alterar a sua senha'+
 							'<br>3 - Você precisa acessar o link do seu email se esqueceu a sua senha para trocá-la.'+
-							'<br><br>Para altera sua senha acesse vá para o <a href="../index.html" class="">MAPA</a>, clique em entrar e em seguida em ESQUECI MINHA SENHA'+
+							'<br><br>Para altera sua senha ACESSE o <a href="../index.html" class="">MAPA</a>, clique em entrar e em seguida em ESQUECI MINHA SENHA'+
 							'<br><div align="center"><a href="../index.html" class=""><img src="../images/logos/logo-dsb-2.png" class="img-fluid" alt="logo" style="max-width:30px;"></a><div>');
 					}
 				}
@@ -355,34 +339,14 @@ function dados_send_senha() {
 	}
 }
 
-function dados_send_acesso(id) {
-	var campo = $('#'+id).attr('name');
-	var valor = $('#'+id).val();
-	if(valor.length > 2){
-		$('#'+id).attr('disabled','disabled');
-		$.ajax({
-			url			: 'consulta-update-dp-dados-unicos.php', 
-			type		: "POST",
-			dataType: "json",
-			data		: ({
-						campo		: campo,
-						valor		: valor,
-			}),
-			success		: function(json){
-				$('#'+id).removeAttr('disabled','disabled');
-				toastr.remove();
-				if(json.cadastro == 'sucesso'){
-					toastr["info"]('','Dados enviados com sucesso!');
-					$('#'+id).attr('style','color:blue').removeAttr('disabled','disabled');
-				} else {
-					toastr["error"]('Tente novamente','Erro ao enviar seus dados!');
-					$('#'+id).attr('style','color:red').removeAttr('disabled','disabled');
-				}
-			}
-		});
-	} else {
-		toastr["error"]('O Campo Nnome e Sobrenome devem conter no mínimo 3 caracteres','Campos obrigatórios!');
-	}
+function exibir_modal_img(modal_id){
+	$('#'+modal_id).modal({
+    backdrop: 'static',
+    keyboard: false  // to prevent closing with Esc button (if you want this too)
+	})   // initialized with no keyboard
+	$('#'+modal_id).modal('show');
+	
+	//$('#panel_modal').modal('hide');
 }
 
 toastr.options = {
@@ -395,5 +359,35 @@ toastr.options = {
   "timeOut": 10000,
   "extendedTimeOut": 1000
 }
+  
+//function dados_send_acesso(id) {
+//	var campo = $('#'+id).attr('name');
+//	var valor = $('#'+id).val();
+//	if(valor.length > 2){
+//		$('#'+id).attr('disabled','disabled');
+//		$.ajax({
+//			url			: 'consulta-update-dp-dados-unicos.php', 
+//			type		: "POST",
+//			dataType: "json",
+//			data		: ({
+//						campo		: campo,
+//						valor		: valor,
+//			}),
+//			success		: function(json){
+//				$('#'+id).removeAttr('disabled','disabled');
+//				toastr.remove();
+//				if(json.cadastro == 'sucesso'){
+//					toastr["info"]('','Dados enviados com sucesso!');
+//					$('#'+id).attr('style','color:blue').removeAttr('disabled','disabled');
+//				} else {
+//					toastr["error"]('Tente novamente','Erro ao enviar seus dados!');
+//					$('#'+id).attr('style','color:red').removeAttr('disabled','disabled');
+//				}
+//			}
+//		});
+//	} else {
+//		toastr["error"]('O Campo Nnome e Sobrenome devem conter no mínimo 3 caracteres','Campos obrigatórios!');
+//	}
+//}
 </script>
 </html>

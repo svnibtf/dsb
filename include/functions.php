@@ -15,11 +15,11 @@ function verificaLogin(){
 	}
 }
 
-$desenvolvimento_echo     = false;
-$desenvolvimento_frd      = false;
-$desenvolvimento_interno  = false;
+$desenvolvimento_echo     	= false;
+$desenvolvimento_frd      	= false;
+$desenvolvimento_interno  	= false;
 if($_SERVER["SERVER_NAME"] != 'localhost'){
-	$desenvolvimento_echo    = false;
-  $desenvolvimento_frd     = false;
-  $desenvolvimento_interno = false;
+	$desenvolvimento_echo    	= false;
+  $desenvolvimento_frd     	= false;
+  $desenvolvimento_interno 	= false;
 }

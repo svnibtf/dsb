@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin: *');
 session_start();
 //verificaLogin();
-$desenvolvimento_externo = true;
+$desenvolvimento_externo = false;
 
 if($desenvolvimento_externo){
 define("DB_HOST",  "robb0254.publiccloud.com.br");

@@ -101,8 +101,8 @@ if(isset($email)){
 			$SEQUENCIA = 'DSB - Double';
 		/////////// //////////////////////////// //////////
 		if($dados_array['usu_email_validado'] == 0){
-			$validar = validar_email_llv($SEQUENCIA, $email, $MACHINE_CODE);
-			//$validar = 7;	
+			//$validar = validar_email_llv($SEQUENCIA, $email, $MACHINE_CODE);
+			$validar = 1;	
 			//if($desenvolvimento_echo) echo '<br>LINHA: ' . __LINE__ . '  validar  = ' . $validar . '<br><br>';
 			if($validar == 4){/// ESTA CADASTRADO NA MAQUINA CERTA E FALTA SOMENTE VALIDAR			
 				$retorno['login'] = 4;	

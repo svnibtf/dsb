@@ -3,7 +3,6 @@ header('Access-Control-Allow-Origin: *');
 session_start();
 //verificaLogin();
 $desenvolvimento_externo = false;
-
 if($desenvolvimento_externo){
 define("DB_HOST",  "robb0254.publiccloud.com.br");
 define("DB_NAME",  "iaper_dsb_db");
@@ -21,6 +20,11 @@ define("DB_NAME",  "iaper_dsb_db");
 define("DB_LOGIN", "root");
 define("DB_SENHA", "Aq1Sw2De3");
 }
+
+//////////// DATA ATUAL ///////////////
+$dtz = new DateTimeZone("America/Sao_Paulo"); //Your timezone
+$datetime_now = new DateTime(date("Y-m-d H:i:s"), $dtz);
+$datetime_now_str = $datetime_now->format("Y-m-d H:i:s");
 
 $produto_id = $pro_id = 101;
 $pla_id = 10;

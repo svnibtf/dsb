@@ -913,7 +913,7 @@ function estado_selecionado(id){
 	var dados_estado = $('#'+estado).text();
 	var sigla = dados_estado.split(":");
 	console.log('sigla = ', sigla[0]);
-	toastr["error"]('CARREGANDO OS DADOS SOLICITADOS <br> INFORMAÇÕES SOBRE O ESTADO: <strong>' + sigla[0] + '</strong>', '<em class="fa fa-cog fa-spin"></em> AGUARDE! <em class="fa fa-cog fa-spin"></em>');
+	toastr["info"]('CARREGANDO OS DADOS SOLICITADOS <br> INFORMAÇÕES SOBRE O ESTADO: <strong>' + sigla[0] + '</strong>', '<em class="fa fa-cog fa-spin"></em> AGUARDE! <em class="fa fa-cog fa-spin"></em>');
 	$('#debug').append('<br>page-dados-filtro-pesquisa.html?estado='+sigla[0]);
 	if(logado == 'sucesso'){
 		window.open('page-dados-filtro-pesquisa.html?estado='+sigla[0], '_self');
@@ -931,12 +931,12 @@ function verifica_login(origem){
 
 function aguarde(origem){
 	console.log('origem = ', origem);
-	toastr["error"]('ACESSANDO SEUS DADOS', '<em class="fa fa-cog fa-spin"></em> AGUARDE! <em class="fa fa-cog fa-spin"></em>');
+	toastr["info"]('ACESSANDO SEUS DADOS', '<em class="fa fa-cog fa-spin"></em> AGUARDE! <em class="fa fa-cog fa-spin"></em>');
 		
 }
 
 function enviar_acao(){
-	toastr["error"]('ACESSANDO SEU CADASTRO', '<em class="fa fa-cog fa-spin"></em> AGUARDE! <em class="fa fa-cog fa-spin"></em>');
+	toastr["info"]('ACESSANDO SEU CADASTRO', '<em class="fa fa-cog fa-spin"></em> AGUARDE! <em class="fa fa-cog fa-spin"></em>');
 	if(logado == 'sucesso'){
 		window.open('page-enviar-acao-dsb.html','_self');
 	} else {

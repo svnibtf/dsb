@@ -440,8 +440,6 @@ function login(){
 			}),
 			success: function(json){
 				console.log('RETORNO LOGIN = ',json);
-				$('#form_cadastro').hide();
-				$('#btn_acessar').hide();
 				item_dados_login = json;
 				////// TXT RELAÇÃO ENTRE AS VARIAVEIS DE RETORNO
 				//////ATIVAR A APRTIR DA DATA DE INICIO DA PROMOCAO NO INICIO DA PAGINA PHP//////
@@ -486,6 +484,8 @@ function ret_login(acao, plano, passo, painel_modal, login){
 			console.log('acao = ', acao);
 			console.log('plano = ', plano);
 			console.log('passo = ', passo);
+			$('#form_cadastro').hide();
+			$('#btn_acessar').hide();
 			ret_lanc_plan_cad_prof(acao, plano, passo, painel_modal);
 			break;
 		case 2:

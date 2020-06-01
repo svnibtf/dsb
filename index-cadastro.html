@@ -380,6 +380,8 @@ function consulta_inicial(){
 				console.log('log sucesso = ', json.logado);
 				if(json.logado == 'sucesso'){
 					//ret_login_page_info();
+					$('#form_cadastro').hide();
+					$('#btn_acessar').hide();
           if(typeof login_reload !== "undefined" && login_reload == 1){
             login();
           } else {
@@ -432,6 +434,8 @@ function login(){
 			}),
 		success: function(json){
 				console.log('RETORNO LOGIN = ',json);
+			$('#form_cadastro').hide();
+			$('#btn_acessar').hide();
         item_dados_login = json;
       ////// TXT RELAÇÃO ENTRE AS VARIAVEIS DE RETORNO  
 			//////ATIVAR A APRTIR DA DATA DE INICIO DA PROMOCAO NO INICIO DA PAGINA PHP//////

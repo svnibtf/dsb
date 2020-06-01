@@ -41,6 +41,7 @@
 38 - Backdrop
 39 - Sliding Bar (SB)
 40 - CSS FOR MOBILE
+41 - CUSTOM
 /* ---------------------------------------------------------------------- */
 /*
 
@@ -6838,4 +6839,12 @@ body.error-full-page {
 
 .isMobile ul.main-navigation-menu li:not(.open) a:hover {
   background: inherit !important;
+}
+
+/* ---------------------------------------------------------------------- */
+/*  CUSTOM
+/* ---------------------------------------------------------------------- */
+
+.btn-toggle-ver-senha {
+	cursor: pointer;
 }

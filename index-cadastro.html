@@ -21,6 +21,7 @@
 <script src="assets/js-obs/jquery-3.2.1.min.js"></script> 
 <script src="assets/js-obs/bootstrap.bundle.min.js"></script> 
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/script.js"></script>
 <style>
 body {
   max-width: 900px;
@@ -162,7 +163,7 @@ call = setInterval(callback_CARREGANDO, 100);
               <div  class="form-group">
                  <label id="olho"  for="senha">
                     Senha&nbsp;
-                    <img class="btn-toggle-ver-senha" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII=" alt="" />
+                    <img class="btn-toggle-ver-senha" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII=" alt="" onclick="toggle_ver_senha('senha')" />
                  </label>
                 <input type="password" class="form-control feedback" id="senha" placeholder="Insira sua senha" maxlength="20" required>
               </div>
@@ -396,11 +397,6 @@ function consulta_inicial(){
 if(typeof enviar != 'undefined' && enviar == 'cadastrar'){
 	$('#info_geral').html('Temos o maior prazer em colocar o seu link a disposição em nosso MAPA DE AÇÕES DO DIREITO SISTÊMICO NO BRASIL, mas precisamos primeiro identificá-lo.<br>Acesse com seu login (email) e senha ou clique em quero me cadastrar para fazer o seu cadastro.<br>O seu link é muito importante para nós!');
 }
-
-$(document).on('click', '#olho', function(){
-  var input = document.querySelector('#senha');
-  input.type = input.type == 'text' ? 'password' : 'text';
-});
 
 function login(){  
   console.log('login()', '  ---- ', typeof login_reload);

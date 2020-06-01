@@ -449,7 +449,7 @@ function login(){
 }
   
 function ret_info_login_base(){
-  $('#info_geral').html('<div align="center">Você está logado</div><a><button name="mapa" class="btn btn-blue btn-xs pull-left" onClick="avancar_page(name)">MAPA</a><button class="btn btn-danger btn-xs pull-right" onClick="sair()">SAIR</button></div><br><div align="center"></div>');
+  $('#info_geral').html('<div align="center">Você está logado</div><button name="mapa" class="btn btn-blue btn-xs pull-left" onClick="avancar_page(name)">MAPA<button class="btn btn-danger btn-xs pull-right" onClick="sair()">SAIR</button></div><br><div align="center"></div>');
   $('#btn_acessar_dp_page').removeClass('no-display');
   $('#btn_quero_cadastrar').addClass('no-display');
   if(typeof estado == 'undefined'){

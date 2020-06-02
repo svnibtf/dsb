@@ -6,6 +6,12 @@ include_once("../include/functions.php");
 //verificaLogin();
 //echo '<pre>_POST 	2 = ' . print_r($_POST,true);
 
+$query_udp_code = "AND udp_code = '{$udp_code}'";
+if($origem == 'local') {
+	$usu_email = $_SESSION['session_email'];
+	$query_udp_code = "";
+}
+
 $desenvolvimento = false;
 
 if($desenvolvimento_frd){
@@ -19,7 +25,7 @@ $retorno['cadastro'] = 'erro';
 $retorno['dados recebidos'] = $_POST;
 	
 
-if (isset($nova_senha) && $nova_senha != '' && isset($udp_code) && isset($usu_email)){
+if (isset($nova_senha) && $nova_senha != '' && (isset($udp_code) || $origem == 'local') && isset($usu_email)){
 	$senha_new = trim($nova_senha) . 'I@per';
 	$senha_new = md5($senha_new);
 	$senha_check = md5('000000I@per');
@@ -28,8 +34,7 @@ if (isset($nova_senha) && $nova_senha != '' && isset($udp_code) && isset($usu_em
 				FROM  iaper_db.usuarios 
         INNER JOIN iaper_db.usuarios_dados_pessoais on usu_id = udp_usuario_id
 				WHERE 
-          usu_email = '" . addslashes($usu_email) . "' AND udp_usu_pro_id = '" . $produto_id . "' AND udp_code = '" . $udp_code . "'
-        ";
+          usu_email = '" . addslashes($usu_email) . "' AND udp_usu_pro_id = '" . $produto_id . "' {$query_udp_code} ;";
 
   if($dados = $conexao->query($sql_sel)->fetch_assoc()){
   if($desenvolvimento_echo) echo '<br>' . __LINE__ .  '<pre> dados ', print_r($dados,true), '</pre>';
@@ -46,8 +51,7 @@ if (isset($nova_senha) && $nova_senha != '' && isset($udp_code) && isset($usu_em
 						udp_usu_senha_alternativa = '" . $senha_new . "',
 						udp_code = '1964' 
 					WHERE 
-						udp_usuario_id = '" . $udp_usuario_id . "' AND udp_usu_pro_id = '" . $produto_id . "' AND udp_code = '" . $udp_code . "'
-            ";
+						udp_usuario_id = '" . $udp_usuario_id . "' AND udp_usu_pro_id = '" . $produto_id . "' {$query_udp_code} ;";
             
 	if($desenvolvimento_echo) echo '<br>LINHA: ' . __LINE__ . '  sql  = ' . $sql . '<br><br>';
 		if($conexao->query($sql)){

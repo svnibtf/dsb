@@ -134,23 +134,23 @@ call = setInterval(callback_CARREGANDO, 100);
             <form id="form_cadastro" class="cadastro_form">
           <div id="form-dd-pessoais" class="form-dd-pessoais no-display">
             <div id="troca_de_senha">
-              <div class="form-group">
+              <div class="form-group" id="campo_senha_1">
                 <label class="control-label text-small"> Nova senha </label>
                 <input type="password" placeholder="NOVA SENHA" class="form-control dados_send" id="nova_senha"><span style="color:red; font-size:x-small">min 6 - máx 20</span>
               </div>
-              <div class="form-group">
+              <div class="form-group" id="campo_senha_2">
                 <label class="control-label text-small"> Repetir Senha </label>
                 <input type="password" placeholder="REPETIR SENHA" class="form-control dados_send" id="repetir_senha"><span id="senhas_completas" style="color:red; font-size:x-small"></span>
               </div>
-            <div class="form-group">
+            <div class="form-group" id="campo_nome">
               <label class="control-label text-small"> Nome* </label>
               <input type="text" id="usu_nome" name="usu_nome" placeholder="Nome" class="form-control" disabled>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="campo_sobrenome">
               <label class="control-label text-small"> Sobrenome* </label>
               <input type="text" id="usu_sobrenome" name="usu_sobrenome" placeholder="Sobrenome" class="form-control" disabled>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="campo_email">
               <label class="control-label text-small"> Email </label>
               <input type="text" id="usu_email" name="usu_email" placeholder="email" class="form-control dados_send" data-tp="usuarios" disabled>
             </div>
@@ -197,6 +197,7 @@ var item_dados_db = new Array();
 
 var code 	= '';
 var email = '';
+var origem = '';
 function get_url(){
 	get_url = {};
 		var url = window.location.href;
@@ -225,10 +226,21 @@ function get_url(){
 		}
 		code = get_url.code; //////SEM ELE NÃO CARREGA A PÁGINA ///////
 		email = get_url.email; //////SEM ELE NÃO CARREGA A PÁGINA ///////
+		origem = get_url.origem;
 }
 
 function consulta_inicial(){
 	get_url();
+
+	if(origem == 'local') {
+		$('#form-dd-pessoais').removeClass('no-display');
+		$('#info_geral').html('Altere a sua senha e confira seus dados antes de enviar!');
+		$('#campo_nome').hide();
+		$('#campo_sobrenome').hide();
+		$('#campo_email').hide();
+		return;
+	}
+
 	console.log('url = ', code , email);
 	toastr.remove();
 	toastr["info"]('Aguarde carregando dados!', "");
@@ -288,12 +300,37 @@ function consulta_inicial(){
 }
   
 function dados_send_senha() {
-	if(typeof item_dados_db != 'undefined' || (code != '' && email != '')){
-		var senha = $('#nova_senha').val();
-		var rpt_senha = $('#repetir_senha').val();
-    var email = item_dados_db.dados_usuario['usu_email'];
-    var code = item_dados_db.dados_usuario['udp_code'];
-		if(senha == rpt_senha && senha.length > 5){
+	var senha = $('#nova_senha').val();
+	var rpt_senha = $('#repetir_senha').val();
+
+	if(senha == rpt_senha && senha.length > 5){
+
+		if(origem == 'local') {
+			$.ajax({
+				url: "consulta-substituir-senha.php",
+				type: "POST",
+				dataType: "json",
+				data: ({
+					nova_senha: senha,
+					origem: "local"
+				}),
+				success: function(json){
+					if(json.cadastro != 'sucesso') {
+						toastr["error"]('','Logue para poder mudar sua senha!');
+					} else {
+						toastr["success"]('','<i class="fa fa-refresh fa-spin"></i> Senha alterada com sucesso! Você está sendo redirecionado');
+						setTimeout(function() {
+							location.href = "../index-cadastro.html";
+						}, 3000);
+					}
+				},
+			});
+			return;
+		}
+
+		var email = item_dados_db.dados_usuario['usu_email'];
+		var code = item_dados_db.dados_usuario['udp_code'];
+		if(typeof item_dados_db != 'undefined' || (code != '' && email != '')){
 			$('#nova_senha, #repetir_senha').attr('disabled','disabled');
 			toastr["info"]('','Enviando dados!');
 			$.ajax({
@@ -332,10 +369,10 @@ function dados_send_senha() {
 				}
 			});
 		} else {
-			toastr["error"]('Os campos Senha e Repetir Senha devem ser iguais com no mínimo 6 caracteres','Campos diferentes!');
+			toastr["error"]('Para trocar de senha é preciso ter logado ou recebido um email com um link com um código especial de acesso para trocá-la!','TROCA DE SENHA');
 		}
 	} else {
-		toastr["error"]('Para trocar de senha é preciso ter logado ou recebido um email com um link com um código especial de acesso para trocá-la!','TROCA DE SENHA');
+		toastr["error"]('Os campos Senha e Repetir Senha devem ser iguais com no mínimo 6 caracteres','Campos diferentes!');
 	}
 }
 

@@ -173,7 +173,10 @@ call = setInterval(callback_CARREGANDO, 100);
 									<button type="button" class="btn btn-blue fundo-btn btn-xs" onClick="login()" style="margin-bottom:16px;">ACESSAR</button>
 									<button id="btn_esqueci_senha" type="button" class="btn btn-white fundo-btn btn-xs pull-right" onClick="esqueci_minha_senha(id)" style="margin-bottom:16px;">ESQUECI MINHA SENHA</button>
 								</div>
-								<a id="btn_acessar_dp_page" type="button" onclick="avancar_page('cad_prof')" target="_self" class="btn btn-success btn-lg btn-block no-display" style="font-size:xx-small">ACESSAR MEUS DADOS</a>
+								<a id="btn_acessar_dp_page" type="button" onclick="avancar_page('cad_prof')" target="_self" class="btn btn-success btn-sm btn-block no-display">
+									ACESSAR MEUS DADOS<br>
+									TROCAR MINHA SENHA
+								</a>
 								<div id="carregado_dados" align="center" class="no-display cadastro_form" style="margin-top:6px;"><i class="fa fa-cog fa-spin"></i>&nbsp;Aguarde!<br>
 									Verificando seus dados.</div>
 							</div>
@@ -201,7 +204,7 @@ call = setInterval(callback_CARREGANDO, 100);
 					<div id="footer_retorno_base"  class="modal-footer">
 						<a id="btn_acessar_dp" type="button" onclick="avancar_page('cad_prof')" target="_self" class="btn btn-blue btn-block btn-xs btns-retornos 1" style="font-size:xx-small">
 							ACESSAR MEUS DADOS<br>
-							PARA TORCAR MINHA SENHA
+							TROCAR MINHA SENHA
 						</a>
 						<a id="btn_outro_email" type="button" class="btn btn-danger btn-lg btn-block btns-retornos no-display" href="page-cadastro.html" target="_blank">Quero me cadastrar
 							<br>
